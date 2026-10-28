@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Tous les modèles d'IA générative frontier et notables depuis 2018 (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès. Données Epoch AI, mises à jour chaque lundi.">
+<meta name="author" content="Hugo Dumontet">
+<meta property="og:title" content="Radar des modèles IA">
+<meta property="og:description" content="Les modèles d'IA générative frontier et notables, mis à jour chaque lundi à partir des données Epoch AI.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://hugodumontet.github.io/radar-ia-generative/">
+<title>Radar des modèles IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Charte graphique Hugo Dumontet v1, déclinaison sombre : fond marine, blocs en marine clair (#29446B, dérivé), texte blanc et menthe, accents en fond signature. Aplats, sans ombre ni dégradé.
+   Layout: header on the marine ground, collapsible guide, KPI cards, chart card, latest releases, catalogue (table on desktop, cards on tablet and phone). */
+:root{
+  --fond:#9ed8db; --menthe:#e9fff9; --marine:#1d3354; --teal:#0e7c82; --gris:#6b6b80; --blanc:#ffffff;
+  --carte:#29446b; --bleu-moyen:#6b8bb5;
+  --c-line:rgba(233,255,249,.18); --survol:rgba(158,216,219,.12); --tag:rgba(158,216,219,.16);
+  --us:var(--fond); --cn:var(--blanc); --eu:var(--teal); --other:var(--bleu-moyen);
+  --f-display:"Archivo Black", "Arial Black", system-ui, sans-serif;
+  --f-text:Inter, "Helvetica Neue", Arial, sans-serif;
+  --r-carte:10px; --r-barre:6px; --r-pilule:40px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--marine);color:var(--menthe);font-family:var(--f-text);font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px;display:flex;flex-direction:column;gap:20px}
+a{color:var(--fond);text-underline-offset:3px}
+a:hover{color:var(--blanc)}
+:focus-visible{outline:2px solid var(--fond);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px}
+.eyebrow{display:block;margin-bottom:12px}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,6vw,56px);line-height:1.02;margin:0;letter-spacing:-.01em;color:var(--fond);text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:400;font-size:20px;line-height:1.15;margin:0;color:var(--blanc);text-wrap:balance}
+h3{font-size:15px;font-weight:700;margin:0;color:var(--blanc)}
+.byline{margin:10px 0 0;font-size:15px}
+.byline a{color:var(--blanc);font-weight:700}
+.byline a:hover{color:var(--fond)}
+.sub{margin:8px 0 0;max-width:66ch}
+.stamp{display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:right;font-size:13px}
+.stamp select{width:auto;min-width:220px}
+.label{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--menthe)}
+@media (max-width:700px){.stamp{align-items:flex-start;text-align:left;width:100%}.stamp select{width:100%;min-width:0}}
+.card{color:var(--blanc);background:var(--carte);border-radius:var(--r-carte);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+@media (max-width:600px){.card{padding:16px}}
+.card .note,.card .count{color:var(--menthe)}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap}
+.note{font-size:13px;margin:0}
+.src{font-size:13px;margin:-8px 0 0;color:var(--menthe)}
+details.about{padding:0;gap:0}
+details.about>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;min-height:56px}
+details.about>summary::-webkit-details-marker{display:none}
+details.about>summary:focus-visible{outline-offset:-2px;border-radius:var(--r-carte)}
+.chev{flex:none;width:32px;height:32px;border-radius:50%;background:var(--fond);color:var(--marine);display:grid;place-items:center}
+.chev svg{transition:transform .2s}
+details.about[open] .chev svg{transform:rotate(180deg)}
+.guide{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:24px;padding:16px 20px 20px;border-top:1px solid var(--c-line)}
+.guide>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.guide p{margin:0;font-size:14px;color:var(--menthe)}
+.guide ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:3px;color:var(--menthe)}
+.guide .badge{margin-left:0;align-self:flex-start}
+@media (max-width:900px){.guide{grid-template-columns:minmax(0,1fr);gap:18px}}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{gap:4px;padding:16px 18px}
+.kpi .v{font-family:var(--f-display);font-size:clamp(30px,4vw,40px);line-height:1.05;font-variant-numeric:tabular-nums;color:var(--blanc)}
+.kpi .d{font-size:13px;color:var(--menthe)}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:380px){.kpis{grid-template-columns:minmax(0,1fr)}}
+.controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:flex-end}
+.controls .field{min-width:180px;flex:0 1 220px}
+.controls .field.segf{min-width:0;flex:0 0 auto}
+@media (max-width:600px){.controls .field,.controls .field.segf{flex:1 1 100%}.seg{display:flex}.seg button{flex:1}}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0;position:relative}
+input[type=search],select,.ms-btn{font:inherit;font-size:14px;color:var(--blanc);background:var(--marine);border:1px solid rgba(233,255,249,.32);border-radius:8px;padding:8px 10px;width:100%;min-width:0;min-height:40px}
+select option{background:var(--marine);color:var(--blanc)}
+input[type=search]::placeholder{color:rgba(233,255,249,.7)}
+.seg{display:inline-flex;border:1px solid var(--fond);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--menthe);padding:8px 14px;min-height:38px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--fond)}
+.seg button[aria-pressed="true"]{background:var(--fond);color:var(--marine)}
+.ms{position:relative;width:100%}
+.ms-btn{text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:relative;padding-right:32px}
+select,.ms-btn{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%239ed8db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:12px 12px;padding-right:38px}
+.ms-menu{position:absolute;z-index:20;top:calc(100% + 4px);left:0;min-width:100%;max-width:min(340px,calc(100vw - 32px));max-height:320px;overflow-y:auto;background:var(--marine);color:var(--blanc);border:1px solid var(--fond);border-radius:8px;padding:6px;display:flex;flex-direction:column}
+.ms-menu label{display:flex;align-items:center;gap:10px;padding:8px;border-radius:6px;font-size:14px;cursor:pointer;white-space:nowrap;min-height:38px}
+.ms-menu label:hover{background:var(--survol)}
+.ms-menu input{accent-color:var(--fond);margin:0;width:16px;height:16px}
+.ms-menu hr{border:0;border-top:1px solid var(--c-line);margin:4px 2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font:inherit;font-size:13.5px;font-weight:500;border:1px solid var(--fond);background:transparent;color:var(--menthe);border-radius:var(--r-pilule);padding:5px 13px;min-height:36px;cursor:pointer}
+.chip:hover{background:var(--survol)}
+.chip[aria-pressed="true"]{background:var(--fond);color:var(--marine)}
+.chip.ghost{border-color:var(--c-line);border-style:dashed;color:var(--menthe)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--menthe)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart{overflow-x:auto;overscroll-behavior-x:contain}
+.chart svg{display:block}
+.chart text{fill:var(--menthe);font-family:var(--f-text);font-size:11px}
+.chart text.v{fill:var(--blanc);font-weight:700}
+.chart text.lbl{fill:var(--blanc);font-size:12.5px}
+.swipe{display:none}
+@media (max-width:700px){.swipe{display:block}}
+.latest{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:column;grid-template-rows:repeat(5,auto);column-gap:32px}
+@media (max-width:760px){.latest{grid-template-columns:minmax(0,1fr);grid-auto-flow:row;grid-template-rows:none}}
+.latest li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--c-line)}
+.latest .dt{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--fond)}
+.latest .nm{font-weight:700;overflow-wrap:anywhere}
+.latest .og{color:var(--menthe);font-size:13px}
+.cat-filters{display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(0,1fr));gap:12px;align-items:end}
+@media (max-width:1000px){.cat-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.cat-filters .f-search{grid-column:1/-1}}
+@media (max-width:520px){.cat-filters{grid-template-columns:minmax(0,1fr)}}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px 16px;flex-wrap:wrap}
+.count{font-size:13.5px}
+.count b{color:var(--blanc);font-weight:700}
+.srow{display:flex;gap:8px}
+.fpanel{display:contents}
+.fbar{grid-column:1/-1}
+.ftog{display:none;flex:none;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:600;border:1px solid var(--fond);background:transparent;color:var(--fond);border-radius:8px;padding:0 12px;min-height:40px;cursor:pointer}
+.ftog[aria-expanded="true"]{background:var(--fond);color:var(--marine)}
+.ftog svg{transition:transform .2s}
+.ftog[aria-expanded="true"] svg{transform:rotate(180deg)}
+@media (max-width:599px){
+  .ftog{display:inline-flex}
+  .fpanel{display:none}
+  .fpanel.open{display:grid;grid-column:1/-1;grid-template-columns:minmax(0,1fr);gap:12px;padding:12px;border-radius:var(--r-carte);background:var(--marine)}
+  .fbar{flex-direction:column;align-items:stretch}
+  .fpanel.open>*{min-width:0}
+  #mods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  #mods .label{grid-column:1/-1}
+  #mods .chip{padding:5px 6px;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  #mods .chip:last-child{grid-column:span 2}
+}
+.sort-m{display:none;align-items:center;gap:8px}
+.sort-m select{width:auto}
+.tbl{border-radius:var(--r-carte);border:1px solid var(--c-line)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--marine);font-weight:700;padding:11px 12px;background:var(--fond);white-space:nowrap}
+th:first-child{border-top-left-radius:9px}th:last-child{border-top-right-radius:9px}
+th button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+th button:hover{color:var(--teal)}
+th button:focus-visible{outline:2px solid var(--marine)}
+th .ar{font-size:12px}
+th button.on .ar{color:var(--teal)}
+td{padding:10px 12px;border-bottom:1px solid var(--c-line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--survol)}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.mname{font-weight:700}
+.org{color:var(--menthe);font-size:13px;max-width:30ch}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:1px 7px;margin:0 4px 3px 0;background:var(--tag);color:var(--menthe);white-space:nowrap}
+.acc{font-size:13px;white-space:nowrap}
+.acc::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px;background:var(--bleu-moyen)}
+.acc.open::before{background:var(--fond)}
+.acc.api::before{background:var(--blanc)}
+.acc.closed::before{background:transparent;box-shadow:inset 0 0 0 1.5px var(--menthe)}
+.badge{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.b-new{box-shadow:inset 0 0 0 1.5px var(--fond);color:var(--fond)}
+.b-fr{background:var(--fond);color:var(--marine)}
+.c-link{width:1%;text-align:center}
+.lnk{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:30px;height:30px;padding:0 6px;border:1px solid var(--fond);border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;color:var(--fond)}
+.lnk:hover{background:var(--fond);color:var(--marine)}
+.lnk .t{display:none}
+.muted{color:var(--menthe)}
+/* Tablet and phone: each model becomes a card, sorting moves to a select */
+@media (max-width:1099px){
+  .sort-m{display:flex}
+  .tbl{border:0}
+  table,tbody,tr,td{display:block}
+  thead{display:none}
+  tbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+  tr{background:var(--marine);border-radius:var(--r-carte);padding:14px 14px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+  tbody tr:hover td{background:transparent}
+  td{border:0;padding:3px 0;display:flex;gap:10px;align-items:baseline;min-width:0}
+  td>span{min-width:0}
+  td::before{content:attr(data-label);flex:0 0 92px;font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--fond)}
+  td.c-name{order:-1;padding-bottom:6px;font-size:16px;display:block}
+  td.c-name::before,td.c-link::before,td.c-tog::before{display:none}
+  td.c-link{width:auto;text-align:left;padding-top:8px}
+  .lnk .t{display:inline}
+  .org{max-width:none}
+  .tag{white-space:normal}
+}
+/* Phone: each model is a compact band (name, provider, link), the rest opens with the arrow */
+@media (max-width:599px){
+  tbody{gap:8px}
+  tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;column-gap:10px;row-gap:2px;padding:10px 12px;align-items:center}
+  td.c-name{grid-column:1;grid-row:1;order:0;padding:0;font-size:15px}
+  td.org{grid-column:1;grid-row:2;padding:0;display:block}
+  td.org::before{display:none}
+  td.c-link{grid-column:2;grid-row:1/3;padding:0}
+  td.c-tog{grid-column:3;grid-row:1/3;padding:0;display:block}
+  td:not(.c-name):not(.org):not(.c-link):not(.c-tog){grid-column:1/-1}
+  tr:not(.open) td:not(.c-name):not(.org):not(.c-link):not(.c-tog){display:none}
+  tr.open td.num:first-child{margin-top:8px;padding-top:10px;border-top:1px solid var(--c-line)}
+  .lnk .t{display:none}
+  .lnk{width:36px;height:36px}
+}
+.c-tog{display:none}
+.tog{width:36px;height:36px;border-radius:50%;border:0;background:var(--fond);color:var(--marine);display:grid;place-items:center;cursor:pointer;padding:0}
+.tog svg{transition:transform .2s}
+tr.open .tog svg{transform:rotate(180deg)}
+.more{align-self:center;font:inherit;font-size:14px;font-weight:600;border:1px solid var(--fond);background:transparent;color:var(--fond);border-radius:var(--r-pilule);padding:9px 22px;min-height:40px;cursor:pointer}
+.more:hover{background:var(--fond);color:var(--marine)}
+.empty{padding:28px;text-align:center;color:var(--menthe)}
+.totop{position:fixed;z-index:30;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);font:inherit;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;min-height:44px;border-radius:var(--r-pilule);border:0;background:var(--fond);color:var(--marine);cursor:pointer}
+.totop:hover{background:var(--blanc)}
+footer{font-size:13px;display:flex;flex-direction:column;gap:6px;color:var(--menthe)}
+footer p{margin:0}
+footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
+footer a{color:var(--blanc);font-weight:600}
+footer a:hover{color:var(--fond)}
+.credit{display:flex;justify-content:center;align-items:center;gap:.3em;flex-wrap:wrap;text-align:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--c-line);font-size:15px;color:var(--blanc)}
+@media (prefers-reduced-motion:no-preference){.chip,.more,.seg button,.lnk,.totop{transition:background .15s,color .15s}}
+@media (prefers-reduced-motion:reduce){.chev svg{transition:none}}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <span class="label eyebrow">Veille · Marché IA générative</span>
+      <h1>Radar des modèles IA</h1>
+      <p class="byline">par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo Dumontet</a> · conçu avec Claude</p>
+      <p class="sub">Les modèles d'IA générative (texte, code, image, vidéo, audio) sortis depuis 2018 et retenus par Epoch AI comme notables ou frontier. Mis à jour chaque lundi.</p>
+    </div>
+    <div class="stamp">
+      <label class="label" for="snap">Publication affichée</label>
+      <select id="snap"><option>Chargement…</option></select>
+      <span>Données Epoch AI, licence CC BY 4.0</span>
+    </div>
+  </header>
+
+  <details class="card about">
+    <summary><h2>Comprendre les données : la source Epoch AI, les modèles notables et frontier</h2><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+    <div class="guide">
+      <div>
+        <h3>La source : Epoch AI</h3>
+        <p>Institut de recherche indépendant qui étudie l'évolution de l'IA. Il tient l'une des bases de référence sur les modèles, mise à jour chaque jour et citée par les chercheurs et les décideurs publics. Les grandes sorties y entrent en quelques jours, les autres parfois plus tard.</p>
+        <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Voir la base Epoch AI</a></p>
+      </div>
+      <div>
+        <h3>Notable</h3>
+        <p>Le modèle remplit au moins un de ces critères :</p>
+        <ul>
+          <li>plus de 5 000 citations scientifiques ;</li>
+          <li>entraînement à plus de 1 M$ (dollars 2023), ou au moins 1 % du modèle le plus cher à date ;</li>
+          <li>plus d'un million d'utilisateurs actifs par mois ;</li>
+          <li>meilleur résultat sur un benchmark reconnu ;</li>
+          <li>importance historique équivalente, jugée par Epoch.</li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="badge b-fr">Frontier</span></h3>
+        <p>Le modèle figurait dans le top 5 mondial du calcul d'entraînement au moment de sa sortie : c'est la pointe de la puissance brute.</p>
+        <p class="note">Epoch ne peut classer un modèle frontier que s'il dispose d'une estimation de son calcul. Beaucoup de modèles fermés récents n'en ont pas encore, d'où un nombre de frontier plus faible sur 2026.</p>
+      </div>
+    </div>
+  </details>
+
+  <section class="kpis" aria-label="Chiffres clés">
+    <div class="card kpi"><span class="label">Modèles suivis</span><span class="v" id="k-total">–</span><span class="d" id="k-total-d"></span></div>
+    <div class="card kpi"><span class="label">Sorties sur 30 jours</span><span class="v" id="k-30">–</span><span class="d" id="k-30-d"></span></div>
+    <div class="card kpi"><span class="label" id="k-year-l">Sorties de l'année</span><span class="v" id="k-year">–</span><span class="d" id="k-year-d"></span></div>
+    <div class="card kpi"><span class="label" id="k-open-l">Open source de l'année</span><span class="v" id="k-open">–</span><span class="d" id="k-open-d"></span></div>
+  </section>
+
+  <section class="card" aria-labelledby="chart-title">
+    <div class="ph"><h2 id="chart-title">Rythme des sorties</h2>
+      <div class="legend" id="legend"><span><i style="background:var(--us)"></i>États-Unis</span><span><i style="background:var(--cn)"></i>Chine</span><span><i style="background:var(--eu)"></i>Europe</span><span><i style="background:var(--other)"></i>Autres</span></div>
+    </div>
+    <div class="controls">
+      <div class="field segf"><span class="label">Vue</span>
+        <div class="seg" id="c-view" role="group" aria-label="Vue du graphique"><button type="button" data-v="time" aria-pressed="true">Dans le temps</button><button type="button" data-v="country" aria-pressed="false">Par pays</button></div></div>
+      <div class="field segf" data-for="time"><span class="label">Découpage</span>
+        <div class="seg" id="c-gran" role="group" aria-label="Découpage"><button type="button" data-g="y" aria-pressed="false">Année</button><button type="button" data-g="s" aria-pressed="false">Semestre</button><button type="button" data-g="q" aria-pressed="true">Trimestre</button></div></div>
+      <div class="field" data-for="time"><span class="label" id="l-ct-years">Années</span><div id="ct-years"></div></div>
+      <div class="field" data-for="time"><span class="label" id="l-ct-countries">Pays</span><div id="ct-countries"></div></div>
+      <div class="field" data-for="country" hidden><span class="label" id="l-cc-years">Années</span><div id="cc-years"></div></div>
+      <div class="field" data-for="country" hidden><span class="label" id="l-cc-q">Trimestres</span><div id="cc-q"></div></div>
+    </div>
+    <p class="note swipe" id="swipe" hidden>Faites glisser le graphique vers la gauche pour voir les périodes récentes.</p>
+    <div class="chart" id="chart"></div>
+    <p class="note" id="chart-note"></p>
+  </section>
+
+  <section class="card" aria-labelledby="latest-title">
+    <div class="ph"><h2 id="latest-title">Dernières sorties</h2><span class="count">Les 10 plus récentes</span></div>
+    <ol class="latest" id="latest"></ol>
+  </section>
+
+  <section class="card" aria-labelledby="cat-title">
+    <div class="ph"><h2 id="cat-title">Catalogue des modèles</h2><span class="note">Triez par date de sortie ou par paramètres avec les flèches ↕</span></div>
+    <div class="cat-filters">
+      <div class="field f-search"><label class="label" for="q">Rechercher</label>
+        <div class="srow"><input type="search" id="q" placeholder="Modèle ou fournisseur, ex. Claude, Qwen, Mistral"><button class="ftog" id="ftog" type="button" aria-expanded="false" aria-controls="fpanel">Filtres<span id="fcount"></span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+      <div class="fpanel" id="fpanel">
+        <div class="field"><label class="label" for="f-country">Pays</label><select id="f-country"></select></div>
+        <div class="field"><label class="label" for="f-org">Fournisseur</label><select id="f-org"></select></div>
+        <div class="field"><label class="label" for="f-acc">Accès</label><select id="f-acc"></select></div>
+        <div class="field"><span class="label" id="l-f-period">Période</span><div id="f-period"></div></div>
+        <div class="bar fbar">
+          <div class="chips" id="mods" role="group" aria-label="Modalité"></div>
+          <div class="chips">
+            <button class="chip" id="f-front" aria-pressed="false" type="button">Frontier uniquement</button>
+            <button class="chip ghost" id="reset" type="button">Réinitialiser</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bar"><span class="count" id="count"></span>
+      <span class="sort-m"><label class="label" for="sort-m">Trier</label><select id="sort-m"><option value="2:-1">Plus récents</option><option value="2:1">Plus anciens</option><option value="7:-1">Plus de paramètres</option><option value="7:1">Moins de paramètres</option></select></span>
+    </div>
+    <p class="note">« Comprend les images » : le modèle analyse des images en entrée, sans forcément en créer.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr>
+          <th><button type="button" data-k="2">Sortie <span class="ar">↕</span></button></th>
+          <th>Modèle</th>
+          <th>Fournisseur</th>
+          <th>Pays</th>
+          <th>Modalités</th>
+          <th>Accès</th>
+          <th><button type="button" data-k="7">Paramètres <span class="ar">↕</span></button></th>
+          <th class="c-link">Lien</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>Aucun modèle ne correspond à ces filtres. Élargissez la période ou changez de modalité.</div>
+    </div>
+    <button class="more" id="more" type="button" hidden>Afficher 60 de plus</button>
+  </section>
+
+  <button class="totop" id="totop" type="button" hidden aria-label="Revenir en haut de la page"><span aria-hidden="true">↑</span> Haut de page</button>
+
+  <details class="card about notes">
+    <summary><h2>Lire le catalogue : types d'accès, paramètres, modalités et liens</h2><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+    <div class="guide">
+      <div>
+        <h3>Types d'accès, d'après Epoch</h3>
+        <ul>
+          <li><b>API</b> : utilisable par les développeurs via API, et en général dans l'appli de l'éditeur.</li>
+          <li><b>Appli seulement</b> : utilisable dans un produit grand public, sans API.</li>
+          <li><b>Open source</b> : modèle téléchargeable (poids publiés), avec ou sans restriction de licence.</li>
+          <li><b>Accès restreint</b> : réservé à des partenaires.</li>
+          <li><b>Non publié</b> : annoncé ou publié en recherche, sans accès.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Colonnes et badges</h3>
+        <ul>
+          <li><b>Paramètres</b> : estimations Epoch, vides quand l'éditeur ne les publie pas.</li>
+          <li><b>Nouveau</b> : sorti dans les 14 jours précédant la publication affichée.</li>
+          <li><b>Modalités</b> : déduites des tâches renseignées par Epoch.</li>
+          <li><b>Lien ↗</b> : page officielle du modèle (annonce, fiche technique ou article de recherche) indiquée par Epoch.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Source</h3>
+        <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI, Data on AI Models</a> (fichiers « notable » et « frontier »), filtrés sur les tâches génératives. Licence CC BY 4.0.</p>
+      </div>
+    </div>
+  </details>
+
+  <footer>
+    <p class="credit">Radar créé par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo Dumontet</a> avec Claude.</p>
+  </footer>
+</div>
+
+<script>
+const COUNTRY={US:"États-Unis",CN:"Chine",FR:"France",GB:"Royaume-Uni",KR:"Corée du Sud",CA:"Canada",DE:"Allemagne",AU:"Australie",HK:"Hong Kong",IL:"Israël",SG:"Singapour",JP:"Japon",CH:"Suisse",FI:"Finlande",AE:"Émirats arabes unis",IN:"Inde",AT:"Autriche",BE:"Belgique",NL:"Pays-Bas",SA:"Arabie saoudite",TW:"Taïwan",NO:"Norvège",RU:"Russie",ES:"Espagne",SE:"Suède",IT:"Italie",BR:"Brésil",DK:"Danemark",PL:"Pologne",IE:"Irlande"};
+const SHORT={AE:"Émirats",SA:"Arabie s.",KR:"Corée du S.",GB:"Roy.-Uni"};
+const EU=new Set(["FR","GB","DE","CH","FI","AT","BE","NL","NO","ES","SE","IT","DK","PL","IE"]);
+const MOD={T:"Texte",C:"Code",I:"Image",V:"Vidéo",A:"Audio",M:"Comprend les images"};
+const ACC={api:"API",hosted:"Appli seulement",limited:"Accès restreint",open:"Open source","open-r":"Open source, licence restreinte","open-nc":"Open source, non commercial",unrel:"Non publié","?":"Inconnu"};
+const ACC_GROUP={api:"api",hosted:"api",limited:"closed",open:"open","open-r":"open","open-nc":"open",unrel:"closed","?":"closed"};
+const GROUP_COLOR={us:"--us",cn:"--cn",eu:"--eu",other:"--other"};
+const GROUP_NAME={us:"États-Unis",cn:"Chine",eu:"Europe",other:"Autres pays"};
+const $=id=>document.getElementById(id);
+let DATA=[],UPDATED=null,YEARS=[],view=[],shown=60,sortK=2,sortDir=-1;
+const state={q:"",country:"",org:"",acc:"",mod:"",front:false};
+const cs={view:"time",gran:"q"};
+
+const orgsOf=r=>r[1].split(",").map(s=>s.trim()).filter(Boolean);
+const ctyOf=r=>r[3]?r[3].split(","):[];
+const groupOf=c=>c==="US"?"us":c==="CN"?"cn":EU.has(c)?"eu":"other";
+const qOf=d=>Math.floor((+d.slice(5,7)-1)/3)+1;
+const daysBetween=(a,b)=>(new Date(b)-new Date(a))/864e5;
+function fmtParams(n){if(!n)return"–";if(n>=1e12)return(n/1e12).toLocaleString("fr-FR",{maximumFractionDigits:1})+" T";if(n>=1e9)return(n/1e9).toLocaleString("fr-FR",{maximumFractionDigits:1})+" Md";return(n/1e6).toLocaleString("fr-FR",{maximumFractionDigits:0})+" M"}
+const fmtDate=d=>d.slice(8)+"/"+d.slice(5,7)+"/"+d.slice(0,4);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cname=c=>COUNTRY[c]||c||"Non renseigné";
+function fillSelect(el,first,entries){el.innerHTML=(first===null?"":`<option value="">${first}</option>`)+entries.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join("")}
+function countryEntries(){const cc={};DATA.forEach(r=>ctyOf(r).forEach(c=>cc[c]=(cc[c]||0)+1));return Object.entries(cc).sort((a,b)=>b[1]-a[1]).map(([c,n])=>[c,cname(c)+" ("+n+")"])}
+function setPressed(group,attr,val){group.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset[attr]===val))}
+
+/* ---------- Multi-select dropdown: exclusive presets + multi-choice options ---------- */
+const openMenus=new Set();
+document.addEventListener("click",e=>{openMenus.forEach(m=>{if(!m.root.contains(e.target))m.close()})});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")openMenus.forEach(m=>{m.close();m.btn.focus()})});
+function makeMS(root,{presets,def,unit,labelledby,onChange}){
+  const m={root,preset:def,vals:new Set(),options:[]};
+  root.className="ms";
+  root.innerHTML=`<button type="button" class="ms-btn" aria-haspopup="true" aria-expanded="false" aria-labelledby="${labelledby} ${root.id}-btn" id="${root.id}-btn"></button><div class="ms-menu" role="group" hidden></div>`;
+  m.btn=root.querySelector(".ms-btn");m.menu=root.querySelector(".ms-menu");
+  m.close=()=>{m.menu.hidden=true;m.btn.setAttribute("aria-expanded","false");openMenus.delete(m)};
+  m.btn.addEventListener("click",()=>{if(m.menu.hidden){openMenus.forEach(x=>x.close());m.menu.hidden=false;m.btn.setAttribute("aria-expanded","true");openMenus.add(m)}else m.close()});
+  m.render=()=>{
+    m.menu.innerHTML=presets.map(p=>`<label><input type="checkbox" data-p="${p.v}" ${m.preset===p.v?"checked":""}>${esc(p.l)}</label>`).join("")+"<hr>"+
+      m.options.map(o=>`<label><input type="checkbox" data-o="${esc(o.v)}" ${m.vals.has(o.v)?"checked":""}>${esc(o.l)}</label>`).join("");
+    let txt;
+    if(m.preset!==null)txt=presets.find(p=>p.v===m.preset).l;
+    else{const sel=m.options.filter(o=>m.vals.has(o.v)).map(o=>o.short||o.l);txt=sel.length<=3?sel.join(", "):sel.length+" "+unit}
+    m.btn.textContent=txt};
+  m.menu.addEventListener("change",e=>{const i=e.target;
+    if(i.dataset.p!==undefined){m.preset=i.dataset.p;m.vals.clear()}
+    else{const v=i.dataset.o;i.checked?m.vals.add(v):m.vals.delete(v);m.preset=m.vals.size?null:def}
+    m.render();onChange()});
+  m.setOptions=opts=>{m.options=opts;const valid=new Set(opts.map(o=>o.v));[...m.vals].forEach(v=>{if(!valid.has(v))m.vals.delete(v)});if(!m.vals.size&&m.preset===null)m.preset=def;m.render()};
+  m.reset=()=>{m.preset=def;m.vals.clear();m.render()};
+  m.all=()=>m.preset===def&&!m.vals.size;
+  return m}
+
+/* ---------- Catalogue ---------- */
+let msPeriod;
+function inPeriod(r){const d=r[2];if(msPeriod.preset==="all")return true;if(msPeriod.preset==="30"||msPeriod.preset==="90")return daysBetween(d,UPDATED)<=+msPeriod.preset;return msPeriod.vals.has(d.slice(0,4))}
+function passes(r){
+  if(state.q){const q=state.q.toLowerCase();if(!(r[0].toLowerCase().includes(q)||r[1].toLowerCase().includes(q)))return false}
+  if(state.country&&!ctyOf(r).includes(state.country))return false;
+  if(state.org&&!orgsOf(r).includes(state.org))return false;
+  if(state.acc&&ACC_GROUP[r[5]]!==state.acc&&r[5]!==state.acc)return false;
+  if(state.mod&&!r[4].includes(state.mod))return false;
+  if(state.front&&!r[6])return false;
+  return inPeriod(r)}
+function bindCatalogue(){
+  msPeriod=makeMS($("f-period"),{presets:[{v:"30",l:"30 derniers jours"},{v:"90",l:"90 derniers jours"},{v:"all",l:"Depuis 2018"}],def:"all",unit:"années",labelledby:"l-f-period",onChange:update});
+  fillSelect($("f-acc"),"Tous les accès",[["open","Open source (toutes licences)"],["api","API ou appli (fermé)"],["closed","Non publié ou restreint"],["open-nc","Open source, non commercial"],["hosted","Appli seulement"]]);
+  $("mods").innerHTML='<span class="label" style="margin-right:4px">Modalité</span><button class="chip" type="button" data-m="" aria-pressed="true">Toutes</button>'+Object.entries(MOD).map(([k,l])=>`<button class="chip" type="button" data-m="${k}" aria-pressed="false">${l}</button>`).join("");
+  $("mods").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;state.mod=b.dataset.m;setPressed($("mods"),"m",state.mod);update()});
+  $("q").addEventListener("input",e=>{state.q=e.target.value.trim();update()});
+  $("f-country").addEventListener("change",e=>{state.country=e.target.value;update()});
+  $("f-org").addEventListener("change",e=>{state.org=e.target.value;update()});
+  $("f-acc").addEventListener("change",e=>{state.acc=e.target.value;update()});
+  $("f-front").addEventListener("click",e=>{state.front=!state.front;e.currentTarget.setAttribute("aria-pressed",state.front);update()});
+  $("reset").addEventListener("click",()=>{Object.assign(state,{q:"",country:"",org:"",acc:"",mod:"",front:false});
+    $("q").value="";["f-country","f-org","f-acc"].forEach(i=>$(i).value="");msPeriod.reset();
+    setPressed($("mods"),"m","");$("f-front").setAttribute("aria-pressed","false");update()});
+  document.querySelectorAll("th button").forEach(b=>b.addEventListener("click",()=>{const k=+b.dataset.k;if(sortK===k)sortDir*=-1;else{sortK=k;sortDir=-1}update()}));
+  $("sort-m").addEventListener("change",e=>{const[k,d]=e.target.value.split(":").map(Number);sortK=k;sortDir=d;update()});
+  $("more").addEventListener("click",()=>{shown+=60;renderRows()});
+  $("ftog").addEventListener("click",e=>{const o=$("fpanel").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)});
+  $("rows").addEventListener("click",e=>{const b=e.target.closest(".tog");if(!b)return;const tr=b.closest("tr");const o=tr.classList.toggle("open");b.setAttribute("aria-expanded",o)});
+}
+function fillCatalogue(){
+  const oc={};DATA.forEach(r=>orgsOf(r).forEach(o=>oc[o]=(oc[o]||0)+1));
+  fillSelect($("f-country"),"Tous les pays",countryEntries());$("f-country").value=state.country;if($("f-country").value!==state.country)state.country="";
+  fillSelect($("f-org"),"Tous les fournisseurs",Object.entries(oc).filter(([,n])=>n>=2).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([o,n])=>[o,o+" ("+n+")"]));$("f-org").value=state.org;if($("f-org").value!==state.org)state.org="";
+  msPeriod.setOptions(YEARS.slice().reverse().map(y=>({v:y,l:y})));
+}
+function linkCell(r){const u=r[9];if(!u||!/^https?:\/\//.test(u))return'<span class="muted">–</span>';let host="";try{host=new URL(u).hostname.replace(/^www\./,"")}catch(e){return'<span class="muted">–</span>'}
+  return `<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener" title="${esc(host)}" aria-label="Source officielle de ${esc(r[0])} (${esc(host)})"><span class="t">Source officielle</span>↗</a>`}
+function renderRows(){
+  $("rows").innerHTML=view.slice(0,shown).map(r=>{
+    const isNew=daysBetween(r[2],UPDATED)<=14;
+    const orgs=orgsOf(r);const orgTxt=orgs.length>2?orgs.slice(0,2).join(", ")+" +"+(orgs.length-2):orgs.join(", ");
+    return `<tr><td class="num" data-label="Sortie">${fmtDate(r[2])}</td>
+      <td class="c-name"><span class="mname">${esc(r[0])}</span>${isNew?'<span class="badge b-new">Nouveau</span>':""}${r[6]?'<span class="badge b-fr">Frontier</span>':""}</td>
+      <td class="org" data-label="Fournisseur">${esc(orgTxt)}</td>
+      <td data-label="Pays">${ctyOf(r).map(c=>esc(cname(c))).join(", ")||"–"}</td>
+      <td data-label="Modalités"><span>${r[4].split("").map(m=>`<span class="tag">${MOD[m]}</span>`).join("")}</span></td>
+      <td data-label="Accès"><span class="acc ${ACC_GROUP[r[5]]}">${ACC[r[5]]||r[5]}</span></td>
+      <td class="num" data-label="Paramètres">${fmtParams(r[7])}</td>
+      <td class="c-link">${linkCell(r)}</td>
+      <td class="c-tog"><button class="tog" type="button" aria-expanded="false" aria-label="Voir le détail de ${esc(r[0])}"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td></tr>`}).join("");
+  $("more").hidden=view.length<=shown;
+  $("empty").hidden=view.length>0;
+}
+function update(){
+  view=DATA.filter(passes);
+  view.sort((a,b)=>{const x=a[sortK],y=b[sortK];
+    if(sortK===7){if(!x&&!y)return 0;if(!x)return 1;if(!y)return -1}
+    return (x<y?-1:x>y?1:0)*sortDir||b[2].localeCompare(a[2])});
+  document.querySelectorAll("th button").forEach(b=>{const on=+b.dataset.k===sortK;b.classList.toggle("on",on);b.querySelector(".ar").textContent=on?(sortDir<0?"↓":"↑"):"↕"});
+  $("sort-m").value=sortK+":"+sortDir;
+  shown=60;renderRows();
+  const fr=view.filter(r=>r[6]).length;
+  const nf=[state.country,state.org,state.acc,state.mod,state.front].filter(Boolean).length+(msPeriod.all()?0:1);
+  $("fcount").textContent=nf?" ("+nf+")":"";
+  $("count").innerHTML=`<b>${view.length}</b> modèle${view.length>1?"s":""}${fr?` · dont ${fr} frontier`:""}`;
+}
+
+/* ---------- KPIs & latest ---------- */
+function kpis(){
+  const y=UPDATED.slice(0,4);
+  $("k-year-l").textContent="Sorties en "+y;$("k-open-l").textContent="Open source en "+y;
+  $("k-total").textContent=DATA.length.toLocaleString("fr-FR");
+  $("k-total-d").textContent="dont "+DATA.filter(r=>r[6]).length+" frontier";
+  const d30=DATA.filter(r=>daysBetween(r[2],UPDATED)<=30);
+  $("k-30").textContent=d30.length;
+  const c30={};d30.forEach(r=>{const c=ctyOf(r)[0]||"";c30[c]=(c30[c]||0)+1});
+  $("k-30-d").textContent=Object.entries(c30).sort((a,b)=>b[1]-a[1]).map(([c,n])=>cname(c)+" : "+n).join(" · ")||"Aucune";
+  const yr=DATA.filter(r=>r[2].startsWith(y));
+  $("k-year").textContent=yr.length;
+  const prev=DATA.filter(r=>r[2].startsWith(String(+y-1))&&r[2].slice(5)<=UPDATED.slice(5)).length;
+  $("k-year-d").textContent=prev+" à la même date en "+(+y-1);
+  const op=yr.filter(r=>ACC_GROUP[r[5]]==="open");
+  $("k-open").textContent=Math.round(op.length/Math.max(yr.length,1)*100)+" %";
+  $("k-open-d").textContent="des sorties "+y+" sont téléchargeables ("+op.length+" modèles, dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois)";
+}
+function latest(){
+  $("latest").innerHTML=DATA.slice().sort((a,b)=>b[2].localeCompare(a[2])).slice(0,10).map(r=>{
+    const isNew=daysBetween(r[2],UPDATED)<=14;
+    return `<li><span class="dt">${r[2].slice(8)}/${r[2].slice(5,7)}</span><span><span class="nm">${esc(r[0])}</span>${isNew?'<span class="badge b-new">Nouveau</span>':""}<br><span class="og">${esc(orgsOf(r)[0])} · ${esc(cname(ctyOf(r)[0]))}</span></span><span class="tag">${r[4].split("").filter(m=>m!=="M").map(m=>MOD[m]).slice(0,2).join(", ")||"Texte"}</span></li>`}).join("");
+}
+
+/* ---------- Chart (drawn at the container's real width, in pixels) ---------- */
+let msCtYears,msCtCountries,msCcYears,msCcQ;
+function bindChart(){
+  msCtYears=makeMS($("ct-years"),{presets:[{v:"",l:"Depuis 2018"}],def:"",unit:"années",labelledby:"l-ct-years",onChange:chart});
+  msCtCountries=makeMS($("ct-countries"),{presets:[{v:"",l:"Tous les pays"}],def:"",unit:"pays",labelledby:"l-ct-countries",onChange:chart});
+  msCcYears=makeMS($("cc-years"),{presets:[{v:"",l:"Depuis 2018"}],def:"",unit:"années",labelledby:"l-cc-years",onChange:chart});
+  msCcQ=makeMS($("cc-q"),{presets:[{v:"",l:"Toute l'année"}],def:"",unit:"trimestres",labelledby:"l-cc-q",onChange:chart});
+  msCcQ.setOptions([1,2,3,4].map(q=>({v:""+q,l:"T"+q+" ("+["janv.–mars","avr.–juin","juil.–sept.","oct.–déc."][q-1]+")",short:"T"+q})));
+  $("c-view").addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;cs.view=b.dataset.v;setPressed($("c-view"),"v",cs.view);
+    document.querySelectorAll("[data-for]").forEach(f=>f.hidden=f.dataset.for!==cs.view);openMenus.forEach(m=>m.close());chart()});
+  $("c-gran").addEventListener("click",e=>{const b=e.target.closest("[data-g]");if(!b)return;cs.gran=b.dataset.g;setPressed($("c-gran"),"g",cs.gran);chart()});
+  let lastW=0,t;
+  addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(()=>{const w=$("chart").clientWidth;if(w&&w!==lastW){lastW=w;if(DATA.length)chart()}},150)});
+}
+function fillChart(){
+  const yrs=YEARS.map(y=>({v:y,l:y}));
+  msCtYears.setOptions(yrs.slice().reverse());msCcYears.setOptions(yrs.slice().reverse());
+  msCtCountries.setOptions(countryEntries().map(([v,l])=>({v,l,short:cname(v)})));
+}
+const chartW=()=>Math.max(280,$("chart").clientWidth||900);
+function chart(){cs.view==="time"?chartTime():chartCountry()}
+function chartTime(){
+  const ey=+UPDATED.slice(0,4),em=+UPDATED.slice(5,7);
+  const years=msCtYears.all()?YEARS.map(Number):[...msCtYears.vals].map(Number).sort((a,b)=>a-b);
+  const ctySet=msCtCountries.all()?null:msCtCountries.vals;
+  const keys=[];
+  years.forEach(y=>{
+    if(cs.gran==="y")keys.push(""+y);
+    else if(cs.gran==="s"){for(let s=1;s<=2;s++){if(y===ey&&s>(em<=6?1:2))break;keys.push(y+"-S"+s)}}
+    else for(let q=1;q<=4;q++){if(y===ey&&q>qOf(UPDATED))break;keys.push(y+"-T"+q)}});
+  const B=Object.fromEntries(keys.map(k=>[k,{us:0,cn:0,eu:0,other:0}]));
+  const key=d=>{const y=d.slice(0,4),m=+d.slice(5,7);return cs.gran==="y"?y:cs.gran==="s"?y+"-S"+(m<=6?1:2):y+"-T"+qOf(d)};
+  let n=0;
+  DATA.forEach(r=>{const b=B[key(r[2])];if(!b)return;const cs_=ctyOf(r);let c=cs_[0];
+    if(ctySet){c=cs_.find(x=>ctySet.has(x));if(!c)return}
+    b[groupOf(c)]++;n++});
+  const tot=k=>Object.values(B[k]).reduce((a,b)=>a+b,0);
+  const max=Math.max(1,...keys.map(tot));
+  const step=max>80?20:max>40?10:max>16?5:max>6?2:1;const top=Math.ceil(max*1.08/step)*step;
+  const cw=chartW(),L=32,R=8,T=22,Bm=28,minBw=24;
+  const W=Math.max(cw,L+R+keys.length*minBw),H=cw<600?220:250,pw=W-L-R,ph=H-T-Bm,bw=pw/Math.max(keys.length,1);
+  const fs=bw<28?10:11;
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Nombre de sorties par période">`;
+  for(let v=0;v<=top;v+=step){const y=T+ph-v/top*ph;s+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--c-line)"/><text x="${L-6}" y="${y+3.5}" text-anchor="end">${v}</text>`}
+  keys.forEach((k,i)=>{let y=T+ph;const x=L+i*bw+bw*.14,w=bw*.72;
+    ["us","cn","eu","other"].forEach(g=>{const c=B[k][g];if(!c)return;const h=c/top*ph;y-=h;s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="var(${GROUP_COLOR[g]})" stroke="var(--carte)" stroke-width="1"><title>${k.replace("-"," ")} · ${GROUP_NAME[g]} : ${c} sortie${c>1?"s":""}</title></rect>`});
+    const t=tot(k);s+=`<text class="v" x="${(x+w/2).toFixed(1)}" y="${(y-5).toFixed(1)}" text-anchor="middle" style="font-size:${fs}px">${t}</text>`;
+    const first=cs.gran==="y"||k.endsWith("-S1")||k.endsWith("-T1")||i===0||keys[i-1].slice(0,4)!==k.slice(0,4);
+    if(cs.gran==="y")s+=`<text x="${(x+w/2).toFixed(1)}" y="${H-9}" text-anchor="middle">${k}</text>`;
+    else if(first){s+=`<text x="${(L+i*bw+2).toFixed(1)}" y="${H-9}">${k.slice(0,4)}</text>`;if(i>0)s+=`<line x1="${(L+i*bw).toFixed(1)}" x2="${(L+i*bw).toFixed(1)}" y1="${T+ph}" y2="${T+ph+6}" stroke="var(--menthe)"/>`}});
+  s+="</svg>";
+  const el=$("chart");el.innerHTML=s;
+  const scrolls=W>cw+2;$("swipe").hidden=!scrolls;if(scrolls)el.scrollLeft=el.scrollWidth;
+  const unit={y:"année",s:"semestre",q:"trimestre"}[cs.gran];
+  $("chart-note").textContent=`Une barre par ${unit}, couleur selon le pays du fournisseur. La période la plus récente est en cours. ${n} modèles affichés.`;
+}
+function chartCountry(){
+  const ys=msCcYears.all()?null:msCcYears.vals,qs=msCcQ.all()?null:msCcQ.vals;
+  const rows=DATA.filter(r=>(!ys||ys.has(r[2].slice(0,4)))&&(!qs||qs.has(""+qOf(r[2]))));
+  const C={};rows.forEach(r=>{const c=ctyOf(r)[0]||"";C[c]=(C[c]||0)+1});
+  const list=Object.entries(C).sort((a,b)=>b[1]-a[1]);
+  const shownList=list.slice(0,12);const rest=list.slice(12).reduce((a,[,n])=>a+n,0);
+  if(rest)shownList.push(["__rest",rest]);
+  const W=chartW(),narrow=W<520,rowH=28,L=narrow?104:160,R=44,T=4,H=T+shownList.length*rowH+6;
+  const max=Math.max(1,...shownList.map(x=>x[1]));
+  let s=`<svg width="${W}" height="${Math.max(H,40)}" viewBox="0 0 ${W} ${Math.max(H,40)}" role="img" aria-label="Nombre de sorties par pays">`;
+  if(!shownList.length)s+=`<text class="lbl" x="${W/2}" y="24" text-anchor="middle">Aucune sortie sur cette période.</text>`;
+  shownList.forEach(([c,n],i)=>{const y=T+i*rowH;const w=Math.max((n/max)*(W-L-R),2);
+    const label=c==="__rest"?`${list.length-12} autres pays`:(narrow&&SHORT[c])||cname(c);
+    const col=c==="__rest"?"--other":GROUP_COLOR[groupOf(c)];
+    const edge="";
+    s+=`<text class="lbl" x="${L-10}" y="${y+18}" text-anchor="end">${esc(label)}</text><rect x="${L}" y="${y+6}" width="${w.toFixed(1)}" height="${rowH-11}" rx="${4}" fill="var(${col})"${edge}/><text class="v" x="${(L+w+6).toFixed(1)}" y="${y+18}">${n}</text>`});
+  s+="</svg>";
+  $("chart").innerHTML=s;$("swipe").hidden=true;
+  const yTxt=ys?[...ys].sort().join(", "):"depuis 2018";const qTxt=qs?" · trimestres "+[...qs].sort().map(q=>"T"+q).join(", "):"";
+  $("chart-note").textContent=`${rows.length} sorties (${yTxt}${qTxt}), classées par pays du premier fournisseur.`;
+}
+
+/* ---------- Publications (one snapshot per Monday) ---------- */
+let SNAPS=[];
+function loadSnapshot(file){
+  return fetch(file).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{
+    DATA=d.rows;UPDATED=d.updated;YEARS=[...new Set(DATA.map(r=>r[2].slice(0,4)))].sort();
+    fillCatalogue();fillChart();kpis();latest();chart();update();
+  })}
+function fail(){$("empty").hidden=false;$("empty").textContent="Les données n'ont pas pu être chargées. Rechargez la page dans quelques instants."}
+bindCatalogue();bindChart();
+const totop=$("totop");
+addEventListener("scroll",()=>{totop.hidden=scrollY<700},{passive:true});
+totop.addEventListener("click",()=>{scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("snap").focus({preventScroll:true})});
+fetch("snapshots.json").then(r=>r.ok?r.json():Promise.reject()).catch(()=>[{date:null,label:"Dernière publication",file:"data.json"}]).then(list=>{
+  SNAPS=list.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  fillSelect($("snap"),null,SNAPS.map((s,i)=>[s.file,s.label+(i===0?" (dernière)":"")]));
+  $("snap").addEventListener("change",e=>loadSnapshot(e.target.value).catch(fail));
+  return loadSnapshot(SNAPS[0].file);
+}).catch(fail);
+</script>
+
+</body>
+</html>

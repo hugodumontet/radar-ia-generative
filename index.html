@@ -220,7 +220,10 @@ footer p{margin:0}
 footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 footer a{color:var(--blanc);font-weight:600}
 footer a:hover{color:var(--fond)}
-.credit{display:flex;justify-content:center;align-items:center;gap:.3em;flex-wrap:wrap;text-align:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--c-line);font-size:15px;color:var(--blanc)}
+.avis{display:inline-flex;align-items:center;gap:6px;margin-top:4px;padding:6px 14px;border:1px solid var(--fond);border-radius:var(--r-pilule);color:var(--fond);font-weight:600;font-size:13.5px;text-decoration:none}
+.avis:hover{background:var(--fond);color:var(--marine)}
+.avis-foot{text-align:center;margin:24px 0 0;font-size:14px;color:var(--menthe)}
+.credit{display:flex;justify-content:center;align-items:center;gap:.3em;flex-wrap:wrap;text-align:center;margin-top:16px;padding-top:28px;border-top:1px solid var(--c-line);font-size:15px;color:var(--blanc)}
 @media (prefers-reduced-motion:no-preference){.chip,.more,.seg button,.lnk,.totop{transition:background .15s,color .15s}}
 @media (prefers-reduced-motion:reduce){.chev svg{transition:none}}
 </style>
@@ -240,6 +243,7 @@ footer a:hover{color:var(--fond)}
       <label class="label" for="snap">Publication affichée</label>
       <select id="snap"><option>Chargement…</option></select>
       <span>Données Epoch AI, licence CC BY 4.0</span>
+      <a class="avis" href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
@@ -375,6 +379,7 @@ footer a:hover{color:var(--fond)}
   </details>
 
   <footer>
+    <p class="avis-foot">Une erreur, un modèle manquant, une idée ? <a href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis</a> (2 minutes, sans compte).</p>
     <p class="credit">Radar créé par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo Dumontet</a> avec Claude.</p>
   </footer>
 </div>

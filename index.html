@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Tous les modèles d'IA générative frontier et notables depuis 2018 (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès. Données Epoch AI, mises à jour chaque lundi.">
+<meta name="description" content="Tous les modèles d'IA générative frontier et notables depuis 2018 (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès. Données Epoch AI, mises à jour chaque vendredi.">
 <meta name="author" content="Hugo Dumontet">
 <meta name="robots" content="noindex, follow">
 <meta property="og:title" content="Radar des modèles IA générative">
@@ -11,21 +11,21 @@
 <meta property="og:image" content="https://hugodumontet.github.io/radar-ia-generative/apercu-partage.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Radar des modèles IA générative : 574 modèles suivis, mis à jour chaque lundi à partir des données Epoch AI">
+<meta property="og:image:alt" content="Radar des modèles IA générative : tous les modèles d'IA générative notables depuis 2018, mis à jour chaque vendredi à partir des données Epoch AI">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Les modèles d'IA générative frontier et notables, mis à jour chaque lundi à partir des données Epoch AI.">
+<meta property="og:description" content="Les modèles d'IA générative frontier et notables, mis à jour chaque vendredi à partir des données Epoch AI.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://hugodumontet.github.io/radar-ia-generative/">
 <title>Radar des modèles IA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
 <style>
-/* Charte graphique Hugo Dumontet v1, déclinaison sombre : fond marine, blocs en marine clair (#29446B, dérivé), texte blanc et menthe, accents en fond signature. Aplats, sans ombre ni dégradé.
+/* Charte graphique Hugo Dumontet v1, déclinaison « Nuit » (v15) : fond de page marine très foncé (#0B1524, dérivé), blocs en marine clair (#29446B, dérivé), champs en marine, texte blanc et menthe, accents en fond signature. Aplats, sans ombre ni dégradé.
    Layout: header on the marine ground, collapsible guide, KPI cards, chart card, latest releases, catalogue (table on desktop, cards on tablet and phone). */
 :root{
   --fond:#9ed8db; --menthe:#e9fff9; --marine:#1d3354; --teal:#0e7c82; --gris:#6b6b80; --blanc:#ffffff;
-  --carte:#29446b; --bleu-moyen:#6b8bb5;
+  --nuit:#0b1524; --carte:#29446b; --bleu-moyen:#6b8bb5;
   --c-line:rgba(233,255,249,.18); --survol:rgba(158,216,219,.12); --tag:rgba(158,216,219,.16);
   --us:var(--fond); --cn:var(--blanc); --eu:var(--teal); --other:var(--bleu-moyen);
   --f-display:"Archivo Black", "Arial Black", system-ui, sans-serif;
@@ -34,7 +34,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{background:var(--marine);color:var(--menthe);font-family:var(--f-text);font-size:15px;line-height:1.5}
+body{background:var(--nuit);color:var(--menthe);font-family:var(--f-text);font-size:15px;line-height:1.5}
 .wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px;display:flex;flex-direction:column;gap:20px}
 a{color:var(--fond);text-underline-offset:3px}
 a:hover{color:var(--blanc)}
@@ -76,7 +76,8 @@ details.about[open] .chev svg{transform:rotate(180deg)}
 .kpi .v{font-family:var(--f-display);font-size:clamp(30px,4vw,40px);line-height:1.05;font-variant-numeric:tabular-nums;color:var(--blanc)}
 .kpi .d{font-size:13px;color:var(--menthe)}
 @media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:380px){.kpis{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:330px){.kpis{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:599px){.kpis{gap:8px}.kpi{padding:12px 14px}}
 .controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:flex-end}
 .controls .field{min-width:180px;flex:0 1 220px}
 .controls .field.segf{min-width:0;flex:0 0 auto}
@@ -224,7 +225,24 @@ footer a:hover{color:var(--fond)}
 .avis:hover{background:var(--fond);color:var(--marine)}
 .avis-foot{text-align:center;margin:24px 0 0;font-size:14px;color:var(--menthe)}
 .credit{display:flex;justify-content:center;align-items:center;gap:.3em;flex-wrap:wrap;text-align:center;margin-top:16px;padding-top:28px;border-top:1px solid var(--c-line);font-size:15px;color:var(--blanc)}
-@media (prefers-reduced-motion:no-preference){.chip,.more,.seg button,.lnk,.totop{transition:background .15s,color .15s}}
+.cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 22px;min-height:44px;border-radius:var(--r-pilule);background:var(--fond);color:var(--marine);font-weight:700;font-size:15px;text-decoration:none}
+.cta:hover{background:var(--blanc);color:var(--marine)}
+@media (max-width:599px){.cta{display:flex;justify-content:center;width:100%}}
+summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sum-d{font-size:13px;color:var(--menthe)}
+#latest-title{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 20px)}
+.cftog{display:none}
+.lmore{display:none}
+@media (max-width:599px){
+  .cftog{display:inline-flex;flex:1 1 100%;justify-content:center}
+  .controls:not(.open) .cf{display:none}
+  .latest:not(.open) li:nth-child(n+6){display:none}
+  .lmore{display:block}
+  .kpi .d{font-size:12px;line-height:1.4}
+  .kpi .v{font-size:28px}
+}
+@media (max-width:1099px){.sort-hint{display:none}}
+@media (prefers-reduced-motion:no-preference){.chip,.cta,.more,.seg button,.lnk,.totop{transition:background .15s,color .15s}}
 @media (prefers-reduced-motion:reduce){.chev svg{transition:none}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -237,18 +255,18 @@ footer a:hover{color:var(--fond)}
       <span class="label eyebrow">Veille · Marché IA générative</span>
       <h1>Radar des modèles IA</h1>
       <p class="byline">par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo Dumontet</a> · conçu avec Claude</p>
-      <p class="sub">Les modèles d'IA générative (texte, code, image, vidéo, audio) sortis depuis 2018 et retenus par Epoch AI comme notables ou frontier. Mis à jour chaque lundi.</p>
+      <p class="sub">Toutes les sorties de modèles d'IA générative depuis 2018, au même endroit : qui sort quoi, quand, d'où, et comment y accéder. Texte, code, image, vidéo, audio. Mis à jour chaque vendredi.</p>
+      <a class="cta" href="#latest-title">Voir les dernières sorties <span aria-hidden="true">↓</span></a>
     </div>
     <div class="stamp">
       <label class="label" for="snap">Publication affichée</label>
       <select id="snap"><option>Chargement…</option></select>
-      <span>Données Epoch AI, licence CC BY 4.0</span>
       <a class="avis" href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
   <details class="card about">
-    <summary><h2>Comprendre les données : la source Epoch AI, les modèles notables et frontier</h2><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+    <summary><span><h2>Comprendre les données</h2><span class="sum-d">La source Epoch AI, les modèles notables et frontier</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
     <div class="guide">
       <div>
         <h3>La source : Epoch AI</h3>
@@ -290,10 +308,11 @@ footer a:hover{color:var(--fond)}
         <div class="seg" id="c-view" role="group" aria-label="Vue du graphique"><button type="button" data-v="time" aria-pressed="true">Dans le temps</button><button type="button" data-v="country" aria-pressed="false">Par pays</button></div></div>
       <div class="field segf" data-for="time"><span class="label">Découpage</span>
         <div class="seg" id="c-gran" role="group" aria-label="Découpage"><button type="button" data-g="y" aria-pressed="false">Année</button><button type="button" data-g="s" aria-pressed="false">Semestre</button><button type="button" data-g="q" aria-pressed="true">Trimestre</button></div></div>
-      <div class="field" data-for="time"><span class="label" id="l-ct-years">Années</span><div id="ct-years"></div></div>
-      <div class="field" data-for="time"><span class="label" id="l-ct-countries">Pays</span><div id="ct-countries"></div></div>
-      <div class="field" data-for="country" hidden><span class="label" id="l-cc-years">Années</span><div id="cc-years"></div></div>
-      <div class="field" data-for="country" hidden><span class="label" id="l-cc-q">Trimestres</span><div id="cc-q"></div></div>
+      <button class="ftog cftog" id="cftog" type="button" aria-expanded="false">Filtrer le graphique<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="field cf" data-for="time"><span class="label" id="l-ct-years">Années</span><div id="ct-years"></div></div>
+      <div class="field cf" data-for="time"><span class="label" id="l-ct-countries">Pays</span><div id="ct-countries"></div></div>
+      <div class="field cf" data-for="country" hidden><span class="label" id="l-cc-years">Années</span><div id="cc-years"></div></div>
+      <div class="field cf" data-for="country" hidden><span class="label" id="l-cc-q">Trimestres</span><div id="cc-q"></div></div>
     </div>
     <p class="note swipe" id="swipe" hidden>Faites glisser le graphique vers la gauche pour voir les périodes récentes.</p>
     <div class="chart" id="chart"></div>
@@ -301,12 +320,13 @@ footer a:hover{color:var(--fond)}
   </section>
 
   <section class="card" aria-labelledby="latest-title">
-    <div class="ph"><h2 id="latest-title">Dernières sorties</h2><span class="count">Les 10 plus récentes</span></div>
+    <div class="ph"><h2 id="latest-title">Dernières sorties</h2><span class="count">Les plus récentes, d'après Epoch AI</span></div>
     <ol class="latest" id="latest"></ol>
+    <button class="more lmore" id="lmore" type="button" aria-expanded="false">Voir les 5 suivantes</button>
   </section>
 
   <section class="card" aria-labelledby="cat-title">
-    <div class="ph"><h2 id="cat-title">Catalogue des modèles</h2><span class="note">Triez par date de sortie ou par paramètres avec les flèches ↕</span></div>
+    <div class="ph"><h2 id="cat-title">Catalogue des modèles</h2><span class="note sort-hint">Triez par date de sortie ou par paramètres avec les flèches ↕</span></div>
     <div class="cat-filters">
       <div class="field f-search"><label class="label" for="q">Rechercher</label>
         <div class="srow"><input type="search" id="q" placeholder="Modèle ou fournisseur, ex. Claude, Qwen, Mistral"><button class="ftog" id="ftog" type="button" aria-expanded="false" aria-controls="fpanel">Filtres<span id="fcount"></span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
@@ -327,7 +347,6 @@ footer a:hover{color:var(--fond)}
     <div class="bar"><span class="count" id="count"></span>
       <span class="sort-m"><label class="label" for="sort-m">Trier</label><select id="sort-m"><option value="2:-1">Plus récents</option><option value="2:1">Plus anciens</option><option value="7:-1">Plus de paramètres</option><option value="7:1">Moins de paramètres</option></select></span>
     </div>
-    <p class="note">« Comprend les images » : le modèle analyse des images en entrée, sans forcément en créer.</p>
     <div class="tbl">
       <table>
         <thead><tr>
@@ -350,7 +369,7 @@ footer a:hover{color:var(--fond)}
   <button class="totop" id="totop" type="button" hidden aria-label="Revenir en haut de la page"><span aria-hidden="true">↑</span> Haut de page</button>
 
   <details class="card about notes">
-    <summary><h2>Lire le catalogue : types d'accès, paramètres, modalités et liens</h2><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+    <summary><span><h2>Lire le catalogue</h2><span class="sum-d">Types d'accès, paramètres, modalités et liens</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
     <div class="guide">
       <div>
         <h3>Types d'accès, d'après Epoch</h3>
@@ -367,7 +386,7 @@ footer a:hover{color:var(--fond)}
         <ul>
           <li><b>Paramètres</b> : estimations Epoch, vides quand l'éditeur ne les publie pas.</li>
           <li><b>Nouveau</b> : sorti dans les 14 jours précédant la publication affichée.</li>
-          <li><b>Modalités</b> : déduites des tâches renseignées par Epoch.</li>
+          <li><b>Modalités</b> : déduites des tâches renseignées par Epoch. « Comprend les images » : le modèle analyse des images en entrée, sans forcément en créer.</li>
           <li><b>Lien ↗</b> : page officielle du modèle (annonce, fiche technique ou article de recherche) indiquée par Epoch.</li>
         </ul>
       </div>
@@ -608,7 +627,7 @@ function chartCountry(){
   $("chart-note").textContent=`${rows.length} sorties (${yTxt}${qTxt}), classées par pays du premier fournisseur.`;
 }
 
-/* ---------- Publications (one snapshot per Monday) ---------- */
+/* ---------- Publications (one snapshot per Friday) ---------- */
 let SNAPS=[];
 function loadSnapshot(file){
   return fetch(file).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{
@@ -617,6 +636,8 @@ function loadSnapshot(file){
   })}
 function fail(){$("empty").hidden=false;$("empty").textContent="Les données n'ont pas pu être chargées. Rechargez la page dans quelques instants."}
 bindCatalogue();bindChart();
+$("cftog").addEventListener("click",e=>{const o=e.currentTarget.closest(".controls").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)});
+$("lmore").addEventListener("click",e=>{const o=$("latest").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o);e.currentTarget.textContent=o?"Voir moins":"Voir les 5 suivantes"});
 const totop=$("totop");
 addEventListener("scroll",()=>{totop.hidden=scrollY<700},{passive:true});
 totop.addEventListener("click",()=>{scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("snap").focus({preventScroll:true})});

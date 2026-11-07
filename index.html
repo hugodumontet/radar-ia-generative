@@ -242,6 +242,18 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
   .kpi .v{font-size:28px}
 }
 @media (max-width:1099px){.sort-hint{display:none}}
+.stamp-row{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.stamp-row .avis{margin-top:0}
+.fapply{display:none}
+.br{display:none}
+@media (max-width:700px){.stamp-row{flex-direction:row;align-items:center;flex-wrap:nowrap;gap:6px}.stamp .stamp-row select{width:auto;flex:0 1 auto;min-width:0;font-size:13.5px;padding-right:30px;background-position:right 11px center}.stamp-row .avis{min-height:40px;padding:0 12px;flex:none;white-space:nowrap}}
+@media (max-width:370px){.stamp-row .avis{padding:0 10px;font-size:13px}}
+@media (max-width:340px){.stamp-row{flex-wrap:wrap}}
+@media (max-width:599px){
+  .fpanel.open .fapply{display:block;font:inherit;font-size:15px;font-weight:700;border:0;border-radius:var(--r-pilule);background:var(--fond);color:var(--marine);min-height:44px;padding:10px 18px;cursor:pointer;width:100%}
+  .br{display:block}
+}
+#count{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 16px)}
 @media (prefers-reduced-motion:no-preference){.chip,.cta,.more,.seg button,.lnk,.totop{transition:background .15s,color .15s}}
 @media (prefers-reduced-motion:reduce){.chev svg{transition:none}}
 </style>
@@ -260,8 +272,8 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
     </div>
     <div class="stamp">
       <label class="label" for="snap">Publication affichée</label>
-      <select id="snap"><option>Chargement…</option></select>
-      <a class="avis" href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis <span aria-hidden="true">↗</span></a>
+      <div class="stamp-row"><select id="snap"><option>Chargement…</option></select>
+      <a class="avis" href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
 
@@ -342,6 +354,7 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
             <button class="chip ghost" id="reset" type="button">Réinitialiser</button>
           </div>
         </div>
+        <button class="fapply" id="fapply" type="button">Afficher les résultats</button>
       </div>
     </div>
     <div class="bar"><span class="count" id="count"></span>
@@ -398,7 +411,7 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
   </details>
 
   <footer>
-    <p class="avis-foot">Une erreur, un modèle manquant, une idée ? <a href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis</a> (2 minutes, sans compte).</p>
+    <p class="avis-foot">Une erreur, un modèle manquant, une idée ?<span class="br"></span> <a href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis</a> (2 minutes, sans compte).</p>
     <p class="credit">Radar créé par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo Dumontet</a> avec Claude.</p>
   </footer>
 </div>
@@ -485,6 +498,7 @@ function bindCatalogue(){
   $("sort-m").addEventListener("change",e=>{const[k,d]=e.target.value.split(":").map(Number);sortK=k;sortDir=d;update()});
   $("more").addEventListener("click",()=>{shown+=60;renderRows()});
   $("ftog").addEventListener("click",e=>{const o=$("fpanel").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)});
+  $("fapply").addEventListener("click",()=>{$("fpanel").classList.remove("open");$("ftog").setAttribute("aria-expanded","false");$("count").scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
   $("rows").addEventListener("click",e=>{const b=e.target.closest(".tog");if(!b)return;const tr=b.closest("tr");const o=tr.classList.toggle("open");b.setAttribute("aria-expanded",o)});
 }
 function fillCatalogue(){
@@ -522,6 +536,7 @@ function update(){
   const fr=view.filter(r=>r[6]).length;
   const nf=[state.country,state.org,state.acc,state.mod,state.front].filter(Boolean).length+(msPeriod.all()?0:1);
   $("fcount").textContent=nf?" ("+nf+")":"";
+  $("fapply").textContent=view.length?`Afficher ${view.length===1?"le modèle":"les "+view.length.toLocaleString("fr-FR")+" modèles"}`:"Aucun modèle : modifiez les filtres";
   $("count").innerHTML=`<b>${view.length}</b> modèle${view.length>1?"s":""}${fr?` · dont ${fr} frontier`:""}`;
 }
 
@@ -643,7 +658,7 @@ addEventListener("scroll",()=>{totop.hidden=scrollY<700},{passive:true});
 totop.addEventListener("click",()=>{scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("snap").focus({preventScroll:true})});
 fetch("snapshots.json").then(r=>r.ok?r.json():Promise.reject()).catch(()=>[{date:null,label:"Dernière publication",file:"data.json"}]).then(list=>{
   SNAPS=list.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
-  fillSelect($("snap"),null,SNAPS.map((s,i)=>[s.file,s.label+(i===0?" (dernière)":"")]));
+  fillSelect($("snap"),null,SNAPS.map((s,i)=>[s.file,(s.date?fmtDate(s.date):s.label)+(i===0?" (dernière)":"")]));
   $("snap").addEventListener("change",e=>loadSnapshot(e.target.value).catch(fail));
   return loadSnapshot(SNAPS[0].file);
 }).catch(fail);

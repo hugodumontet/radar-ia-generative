@@ -1,0 +1,55 @@
+{
+ "publication": "2026-11-06",
+ "debut": "2026-10-30",
+ "fin": "2026-11-05",
+ "retenus": [
+  "Gemini Omni 1.2 Flash",
+  "GPT-6 Cyber",
+  "ERNIE 5.5 Flash Base",
+  "Tencent Hy4",
+  "Images 2.6",
+  "Kimi K3.1 Pro"
+ ],
+ "ecartes": [
+  {
+   "titre": "Le Chonk brings the brains. Studio puts it to work.",
+   "source": "Mistral AI",
+   "raison": "Le Chonk = Mistral Large 4, déjà chez Epoch (06/10/2026) ; article produit"
+  },
+  {
+   "titre": "mistralai/Mistral-Large-4-1T-A52B",
+   "source": "Hugging Face",
+   "raison": "mise à jour d'un modèle déjà chez Epoch"
+  },
+  {
+   "titre": "black-forest-labs/flux-3-image-klein",
+   "source": "Hugging Face",
+   "raison": "annoncé en octobre 2026, pas cette semaine"
+  },
+  {
+   "titre": "MiniMaxAI/MiniMax-M3.1-Flash",
+   "source": "Hugging Face",
+   "raison": "annoncé le 19/10/2026 ; publication des poids seulement"
+  },
+  {
+   "titre": "microsoft/Mage-VL-Cowork",
+   "source": "Hugging Face",
+   "raison": "variante de recherche d'un modèle existant"
+  },
+  {
+   "titre": "DevRev delivers autonomous self-service with GPT-6.1 Sol",
+   "source": "OpenAI",
+   "raison": "témoignage client, modèle déjà chez Epoch"
+  },
+  {
+   "titre": "42AI comes out of stealth with $62.5M and a world model",
+   "source": "TechCrunch",
+   "raison": "nouveau labo cité par un seul média (seuil : 2)"
+  },
+  {
+   "titre": "autres éléments",
+   "source": "toutes",
+   "raison": "pas une sortie de modèle (partenariats, études, nominations, sécurité, outils, modèles hors IA générative)"
+  }
+ ]
+}

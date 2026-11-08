@@ -1,0 +1,9 @@
+{
+ "_lisez_moi": "Noms différents d'un même modèle selon les sources. Clé = nom dans sorties.json, valeurs = autres noms possibles chez Epoch. Ne mettre un alias que s'il est confirmé par une source officielle.",
+ "alias": {
+  "Images 2.6": [
+   "ChatGPT Images 2.6",
+   "GPT-Image-2.6"
+  ]
+ }
+}

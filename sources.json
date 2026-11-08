@@ -1,0 +1,79 @@
+{
+  "_lisez_moi": "Sources lues chaque vendredi par collect.py. role = officiel (annonce du labo, peut prouver une sortie) ou reperage (média : sert seulement à repérer, ne prouve rien). Toute nouvelle source : vérifier éditeur réel, mises à jour régulières, pas de copie ni de miroir, conditions d'utilisation, et que son domaine est autorisé pour Claude.",
+  "sources": [
+    {
+      "nom": "OpenAI",
+      "role": "officiel",
+      "type": "rss",
+      "url": "https://openai.com/news/rss.xml"
+    },
+    {
+      "nom": "Google DeepMind",
+      "role": "officiel",
+      "type": "rss",
+      "url": "https://deepmind.google/blog/rss.xml"
+    },
+    {
+      "nom": "Google (blog IA)",
+      "role": "officiel",
+      "type": "rss",
+      "url": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "nom": "Mistral AI",
+      "role": "officiel",
+      "type": "rss",
+      "url": "https://mistral.ai/rss.xml"
+    },
+    {
+      "nom": "Anthropic",
+      "role": "officiel",
+      "type": "anthropic",
+      "url": "https://www.anthropic.com/news"
+    },
+    {
+      "nom": "Hugging Face (comptes officiels)",
+      "role": "officiel",
+      "type": "hf",
+      "comptes": [
+        "Qwen",
+        "deepseek-ai",
+        "mistralai",
+        "meta-llama",
+        "google",
+        "openai",
+        "moonshotai",
+        "zai-org",
+        "microsoft",
+        "nvidia",
+        "ibm-granite",
+        "CohereLabs",
+        "MiniMaxAI",
+        "tencent",
+        "baidu",
+        "xai-org",
+        "black-forest-labs",
+        "stabilityai",
+        "allenai"
+      ]
+    },
+    {
+      "nom": "TechCrunch",
+      "role": "reperage",
+      "type": "rss",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/"
+    },
+    {
+      "nom": "Ars Technica",
+      "role": "reperage",
+      "type": "rss",
+      "url": "https://arstechnica.com/ai/feed/"
+    },
+    {
+      "nom": "The Decoder",
+      "role": "reperage",
+      "type": "rss",
+      "url": "https://the-decoder.com/feed/"
+    }
+  ]
+}

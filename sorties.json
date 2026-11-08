@@ -1,0 +1,97 @@
+{
+ "maj": "2026-11-06",
+ "semaines": [
+  {
+   "publication": "2026-11-06",
+   "debut": "2026-10-30",
+   "fin": "2026-11-05"
+  }
+ ],
+ "sorties": [
+  {
+   "nom": "Gemini Omni 1.2 Flash",
+   "fournisseur": "Google DeepMind",
+   "date": "2026-11-05",
+   "modalites": "V",
+   "lien": "https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/googles-gemini-omni-1-2-flash-stretches-ai-video-clips-to-15-seconds-and-cuts-pricing-by-30-percent/"
+    }
+   ],
+   "publication": "2026-11-06",
+   "statut": "attente"
+  },
+  {
+   "nom": "GPT-6 Cyber",
+   "fournisseur": "OpenAI",
+   "date": "2026-11-05",
+   "modalites": "TC",
+   "lien": "https://openai.com/index/introducing-gpt-6-cyber",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/openais-gpt-6-cyber-can-both-break-into-systems-and-propose-how-to-fix-them/"
+    }
+   ],
+   "publication": "2026-11-06",
+   "statut": "attente"
+  },
+  {
+   "nom": "ERNIE 5.5 Flash Base",
+   "fournisseur": "Baidu",
+   "date": "2026-11-05",
+   "modalites": "T",
+   "lien": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/baidu-releases-ernie-5-5-flash-base-with-280-billion-parameters-as-an-open-source-foundation-model/"
+    }
+   ],
+   "publication": "2026-11-06",
+   "statut": "attente"
+  },
+  {
+   "nom": "Tencent Hy4",
+   "fournisseur": "Tencent",
+   "date": "2026-11-05",
+   "modalites": "TM",
+   "lien": "https://hy.tencent.ai/research/hy4",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/tencent-releases-hy4-with-vision-and-computer-use-claims-second-place-among-chinese-ai-models/"
+    }
+   ],
+   "publication": "2026-11-06",
+   "statut": "attente"
+  },
+  {
+   "nom": "Images 2.6",
+   "fournisseur": "OpenAI",
+   "date": "2026-11-04",
+   "modalites": "I",
+   "lien": "https://openai.com/index/introducing-images-2-6",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/chatgpt-can-now-turn-text-prompts-and-photos-into-animated-gifs-with-openais-images-2-6-model/"
+    }
+   ],
+   "publication": "2026-11-06",
+   "statut": "attente"
+  },
+  {
+   "nom": "Kimi K3.1 Pro",
+   "fournisseur": "Moonshot",
+   "date": "2026-11-02",
+   "modalites": "TM",
+   "lien": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+   "reperes": [],
+   "publication": "2026-11-06",
+   "statut": "attente"
+  }
+ ]
+}

@@ -1,0 +1,86 @@
+{
+ "publication": "2026-11-18",
+ "debut": "2026-11-11",
+ "fin": "2026-11-17",
+ "retenus": [
+  "Gemini 4 Hydrogen",
+  "GPT-6.2 Astra",
+  "GPT-6.2 Sol",
+  "Qwen4-Max",
+  "Tencent Hy4 flash",
+  "MiniMax H3-Image"
+ ],
+ "ecartes": [
+  {
+   "titre": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+   "source": "Google (blog IA) / The Decoder",
+   "raison": "Gemini Decision 1 attribue des scores et probabilités, ne génère pas de contenu (modèle de décision/classement)"
+  },
+  {
+   "titre": "Astra for Law leads in legal intelligence",
+   "source": "OpenAI",
+   "raison": "déclinaison métier de GPT-6.2 Astra, pas un modèle à part entière"
+  },
+  {
+   "titre": "Meituan releases a 1.6-trillion-parameter agent model (LongCat-2.5)",
+   "source": "The Decoder",
+   "raison": "dévoilé avant la semaine (poids en ligne dès le 10/11/2026) ; publication des poids seulement"
+  },
+  {
+   "titre": "Runway's open-source Praxis-1 turns video AI into a robot controller",
+   "source": "The Decoder",
+   "raison": "modèle de robotique, hors IA générative"
+  },
+  {
+   "titre": "Anthropic's Claude Fable 5.2 doesn't generate images, it paints them",
+   "source": "The Decoder",
+   "raison": "modèle déjà chez Epoch (09/11/2026)"
+  },
+  {
+   "titre": "Gemini 4 Carbon takes the MathArena crown",
+   "source": "The Decoder",
+   "raison": "modèle déjà chez Epoch (10/11/2026) ; article de classement"
+  },
+  {
+   "titre": "nvidia/Nemotron-Labs-Sigma-distill-* (10 dépôts)",
+   "source": "Hugging Face",
+   "raison": "variantes distillées de recherche"
+  },
+  {
+   "titre": "tencent/Qwen3-8B-DSpine-b16, tencent/Qwen3.8-27B-DSpine-b16",
+   "source": "Hugging Face",
+   "raison": "variantes de recherche de modèles existants"
+  },
+  {
+   "titre": "tencent/Hy4-flash-base",
+   "source": "Hugging Face",
+   "raison": "version base de Tencent Hy4 flash, déjà retenu"
+  },
+  {
+   "titre": "baidu/Unlimited-OCR-2",
+   "source": "Hugging Face",
+   "raison": "OCR pur, hors IA générative"
+  },
+  {
+   "titre": "black-forest-labs/hf-spaces-moderation-client",
+   "source": "Hugging Face",
+   "raison": "outil de modération"
+  },
+  {
+   "titre": "AlphaGenome 2",
+   "source": "Google DeepMind",
+   "raison": "modèle de biologie, hors IA générative"
+  },
+  {
+   "titre": "OpenAI releases a new image classifier to combat CSAM",
+   "source": "TechCrunch / OpenAI",
+   "raison": "outil de sécurité/classification"
+  },
+  {
+   "titre": "autres éléments",
+   "source": "toutes",
+   "raison": "pas une sortie de modèle : témoignages clients, produits (ChatGPT Wallet, ChatGPT for Sales, Gemini Tasks, Claude Meetings, Claude for Manufacturing, Lumo…), partenariats, études, régulation, levées de fonds, incidents, nominations"
+  }
+ ],
+ "sources_en_panne": []
+}

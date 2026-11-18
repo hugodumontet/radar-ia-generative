@@ -1,6 +1,11 @@
 {
- "maj": "2026-11-06",
+ "maj": "2026-11-18",
  "semaines": [
+  {
+   "publication": "2026-11-18",
+   "debut": "2026-11-11",
+   "fin": "2026-11-17"
+  },
   {
    "publication": "2026-11-06",
    "debut": "2026-10-30",
@@ -8,6 +13,88 @@
   }
  ],
  "sorties": [
+  {
+   "nom": "Gemini 4 Hydrogen",
+   "fournisseur": "Google DeepMind",
+   "date": "2026-11-12",
+   "modalites": "TCM",
+   "lien": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "reperes": [
+    {
+     "source": "Ars Technica",
+     "lien": "https://arstechnica.com/google/2026/11/google-rolls-out-gemini-4-hydrogen-finally-replacing-3-8-flash/"
+    },
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/googles-gemini-4-hydrogen-outscores-the-bigger-argon-just-four-weeks-after-its-launch/"
+    }
+   ],
+   "publication": "2026-11-18",
+   "statut": "attente"
+  },
+  {
+   "nom": "GPT-6.2 Astra",
+   "fournisseur": "OpenAI",
+   "date": "2026-11-17",
+   "modalites": "T",
+   "lien": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/openai-launches-gpt-6-2-astra-and-sol-with-lower-api-prices-and-some-benchmark-gains/"
+    }
+   ],
+   "publication": "2026-11-18",
+   "statut": "attente"
+  },
+  {
+   "nom": "GPT-6.2 Sol",
+   "fournisseur": "OpenAI",
+   "date": "2026-11-17",
+   "modalites": "T",
+   "lien": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/openai-launches-gpt-6-2-astra-and-sol-with-lower-api-prices-and-some-benchmark-gains/"
+    }
+   ],
+   "publication": "2026-11-18",
+   "statut": "attente"
+  },
+  {
+   "nom": "Qwen4-Max",
+   "fournisseur": "Alibaba",
+   "date": "2026-11-16",
+   "modalites": "TCM",
+   "lien": "https://www.alibabacloud.com/press-room/alibaba-unveils-qwen4-max",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/alibabas-qwen4-max-takes-on-opus-5-5-gpt-6-and-kimi-k3-1-pro-at-much-lower-prices/"
+    }
+   ],
+   "publication": "2026-11-18",
+   "statut": "attente"
+  },
+  {
+   "nom": "Tencent Hy4 flash",
+   "fournisseur": "Tencent",
+   "date": "2026-11-16",
+   "modalites": "TM",
+   "lien": "https://huggingface.co/tencent/Hy4-flash",
+   "publication": "2026-11-18",
+   "statut": "attente"
+  },
+  {
+   "nom": "MiniMax H3-Image",
+   "fournisseur": "MiniMax",
+   "date": "2026-11-11",
+   "modalites": "I",
+   "lien": "https://minimax.io/blog/minimax-h3-image",
+   "publication": "2026-11-18",
+   "statut": "attente"
+  },
   {
    "nom": "Gemini Omni 1.2 Flash",
    "fournisseur": "Google DeepMind",
@@ -91,7 +178,7 @@
    "lien": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
    "reperes": [],
    "publication": "2026-11-06",
-   "statut": "attente"
+   "statut": "pas_encore"
   }
  ]
 }

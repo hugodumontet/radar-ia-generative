@@ -2,8 +2,8 @@
  "maj": "2026-11-19",
  "note": "Prix vérifiés à la main sur la page officielle de chaque fournisseur. Montants des API en dollars hors taxes (convertis en euros à l'affichage). Abonnements : prix mensuel en euros affiché en France par le fournisseur. Un prix absent = non vérifié, jamais estimé.",
  "taux": {
-  "eur_usd": 1.0968,
-  "date": "2026-11-18",
+  "eur_usd": 1.0992,
+  "date": "2026-11-19",
   "source": "Banque centrale européenne",
   "lien": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.fr.html"
  },

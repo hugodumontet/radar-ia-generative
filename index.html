@@ -404,6 +404,48 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
   .hero .kpi .label{grid-column:1/-1}
   .hero .kpi .d{line-height:1.3}
 }
+
+/* ---------- v21 ---------- */
+/* blocs repliables (Lire le catalogue, Méthode et sources) : contenu aligné sur le titre */
+.guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:16px 20px 20px;border-top:1px solid var(--c-line)}
+.guide>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.guide p{margin:0;font-size:14px;color:var(--menthe)}
+.guide ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:3px;color:var(--menthe)}
+.guide.g2{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:12px}
+.guide.g2>div{background:var(--tag);border-radius:8px;padding:14px 16px}
+@media (max-width:900px){.guide,.guide.g2{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto;gap:16px}}
+#methode{scroll-margin-top:16px}
+/* bande explicative */
+@media (min-width:1100px){.xrow{grid-template-columns:auto minmax(0,1fr) minmax(0,1fr) auto}}
+.xrow .badge{margin:0 6px 0 0}
+a.xtog{text-decoration:none}
+/* chiffres clés : gros chiffre, détail sur 2 lignes à côté */
+@media (min-width:1000px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,min(42%,540px))}
+  .hero-txt .byline{margin-top:10px}
+  .hero .kpi{grid-template-columns:auto minmax(0,1fr);column-gap:14px;padding:12px 16px;align-content:center}
+  .kpi .v{font-size:36px;line-height:1}
+  .hero .kpi .d{font-size:12.5px;line-height:1.35;min-height:2.7em;display:flex;align-items:center}
+  .hero-side .cta,.hero .stamp-row .avis,.hero .stamp select{min-height:38px;height:38px}
+  .hero-side .cta{padding:0 18px}
+  .hero-txt{justify-content:flex-start}
+  .hero-txt .stamp{margin-top:auto;padding-top:14px}
+}
+/* sorties de la semaine : une ligne par modèle */
+.week a,.week .wi{grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:12px;padding:8px 0;min-height:44px}
+.week .wn{min-width:0}
+.week .og{display:inline;margin:0 0 0 6px;font-size:13px}
+.week .st{justify-self:end}
+#week-before .week li{opacity:.85}
+.wlate{margin:4px 0 0;padding:10px 14px;border-radius:8px;background:var(--tag);font-size:13.5px;line-height:1.6;color:var(--blanc)}
+.wlate b{color:var(--fond);margin-right:4px}
+.wlate a{color:var(--blanc);font-weight:600}
+.wlate .muted{font-size:12.5px}
+@media (max-width:599px){.week a,.week .wi{grid-template-columns:44px minmax(0,1fr)}.week .st{grid-column:2;justify-self:start}.week .og{display:block;margin:2px 0 0}}
+/* test de contraste B (?test=b) : chiffres clés et bande explicative sans fond, bordure menthe */
+@media (max-width:1099px){.xt{white-space:normal}}
+@media (max-width:599px){.xrow{grid-template-columns:minmax(0,1fr)}.xrow .xtog{grid-column:1;grid-row:auto;justify-content:center}}
+body.contour .hero .kpi,body.contour .explain{background:transparent;border:1px solid var(--fond)}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -420,8 +462,8 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
   <header class="hero">
     <div class="hero-txt">
       <div class="titre"><h1>Radar des modèles IA</h1><span class="beta" id="beta" title="Le radar est encore en développement">Bêta</span></div>
-      <p class="byline">Conçu par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo DUMONTET</a> avec Claude</p>
       <p class="sub">Toutes les sorties de modèles d'IA générative depuis 2018, au même endroit : qui sort quoi, quand, d'où, et comment y accéder (texte, code, image, vidéo, audio). Mis à jour chaque vendredi.</p>
+      <p class="byline">Conçu par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo DUMONTET</a> avec Claude</p>
       <div class="stamp">
         <label class="label" for="snap">Publication affichée</label>
         <div class="stamp-row"><select id="snap"><option>Chargement…</option></select>
@@ -431,9 +473,9 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
     <div class="hero-side">
       <section class="kpis" aria-label="Chiffres clés">
         <div class="card kpi"><span class="label">Modèles suivis</span><span class="v" id="k-total">–</span><span class="d" id="k-total-d"></span></div>
-        <div class="card kpi"><span class="label">Sorties sur 30 jours</span><span class="v" id="k-30">–</span><span class="d" id="k-30-d"></span></div>
         <div class="card kpi"><span class="label" id="k-year-l">Sorties de l'année</span><span class="v" id="k-year">–</span><span class="d" id="k-year-d"></span></div>
-        <div class="card kpi"><span class="label" id="k-open-l">Open source de l'année</span><span class="v" id="k-open">–</span><span class="d" id="k-open-d"></span></div>
+        <div class="card kpi"><span class="label">Sorties open source</span><span class="v" id="k-open">–</span><span class="d" id="k-open-d"></span></div>
+        <div class="card kpi"><span class="label">Modèles sortis en Europe</span><span class="v" id="k-eu">–</span><span class="d" id="k-eu-d"></span></div>
       </section>
       <a class="cta" href="#week-title">Voir les sorties de la semaine <span aria-hidden="true">↓</span></a>
     </div>
@@ -441,35 +483,10 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
 
   <section class="card explain" aria-labelledby="explain-title">
     <div class="xrow">
-      <h2 id="explain-title" class="xt"><span class="g-ico" aria-hidden="true">?</span>Lire le radar</h2>
-      <p><b>Les données</b> La base de référence <a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI</a> + les annonces des labos, chaque vendredi.</p>
-      <p><b>Notable</b> Un modèle qui a compté : très cité, très utilisé, coûteux à entraîner ou record.</p>
+      <h2 id="explain-title" class="xt">Quels modèles d'IA générative ?</h2>
+      <p><span class="badge b-fr">Notable</span> Un modèle qui a compté : très cité, très utilisé, coûteux à entraîner ou record.</p>
       <p><span class="badge b-fr">Frontier</span> Parmi les 5 modèles les plus puissants au monde à sa sortie.</p>
-      <button class="xtog" id="xtog" type="button" aria-expanded="false" aria-controls="xmore">Méthode<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
-    <div class="xmore" id="xmore" hidden>
-      <div class="gmore-in">
-        <div>
-          <h3>Notable : au moins un critère</h3>
-          <ul>
-            <li>plus de 5 000 citations scientifiques ;</li>
-            <li>entraînement à plus de 1 M$ (dollars 2023), ou au moins 1 % du modèle le plus cher à date ;</li>
-            <li>plus d'un million d'utilisateurs actifs par mois ;</li>
-            <li>meilleur résultat sur un benchmark reconnu ;</li>
-            <li>importance historique équivalente, jugée par Epoch.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Frontier</h3>
-          <p>Epoch ne classe un modèle frontier que s'il a une estimation de son calcul. Beaucoup de modèles fermés récents n'en ont pas encore, d'où moins de frontier sur 2026.</p>
-          <h3>Sorties de la semaine</h3>
-          <p>Sources lues : OpenAI, Google, Anthropic, Mistral et leurs comptes Hugging Face ; repérage dans TechCrunch, Ars Technica et The Decoder. Un modèle n'est retenu que si son labo l'a annoncé. Il devient « Confirmé par Epoch » dès son ajout, ou « Pas encore chez Epoch » après deux semaines.</p>
-        </div>
-        <div>
-          <h3>Classements et prix</h3>
-          <p>Classement <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">Arena</a> (licence CC BY 4.0) : des internautes comparent deux réponses à l'aveugle et votent. Seuls les modèles avec au moins 1 000 votes sont gardés. Prix relevés sur les pages tarifs officielles.</p>
-        </div>
-      </div>
+      <a class="xtog" id="xtog" href="#methode">En savoir plus <span aria-hidden="true">↓</span></a>
     </div>
   </section>
 
@@ -499,7 +516,7 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
     <ol class="week" id="week"></ol>
     <p class="week-empty" id="week-empty" hidden>Aucune sortie repérée sur cette période.</p>
     <div class="wpart" id="week-before" hidden><h3 class="wsub">Juste avant</h3><ol class="week" id="week-prev"></ol></div>
-    <div class="wpart" id="week-late" hidden><h3 class="wsub">Arrivés cette semaine dans le catalogue <span class="note">sortis plus tôt, ajoutés par Epoch AI depuis la publication précédente</span></h3><ol class="week" id="week-added"></ol></div>
+    <p class="wlate" id="week-late" hidden></p>
     <p class="note wlegend" id="week-legend"></p>
   </section>
 
@@ -586,6 +603,38 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
         <h3>Source</h3>
         <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI, Data on AI Models</a> (fichiers « notable » et « frontier »), filtrés sur les tâches génératives. Licence CC BY 4.0.</p>
       </div>
+    </div>
+  </details>
+
+  <details class="card about" id="methode">
+    <summary><span><h2>Méthode et sources</h2><span class="sum-d">Notable, frontier, sorties de la semaine, classements et prix</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+    <div class="guide g2">
+        <div>
+          <h3>Notable : au moins un critère</h3>
+          <ul>
+            <li>plus de 5 000 citations scientifiques ;</li>
+            <li>entraînement à plus de 1 M$ (dollars 2023), ou au moins 1 % du modèle le plus cher à date ;</li>
+            <li>plus d'un million d'utilisateurs actifs par mois ;</li>
+            <li>meilleur résultat sur un benchmark reconnu ;</li>
+            <li>importance historique équivalente, jugée par Epoch.</li>
+          </ul>
+          <p>Liste et critères tenus par <a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI</a>, la base de référence des modèles d'IA.</p>
+        </div>
+        <div>
+          <h3>Frontier</h3>
+          <p>Le modèle figurait dans le top 5 mondial du calcul d'entraînement au moment de sa sortie : c'est la pointe de la puissance brute.</p>
+          <p>Epoch ne classe un modèle frontier que s'il a une estimation de son calcul. Beaucoup de modèles fermés récents n'en ont pas encore, d'où moins de frontier sur 2026.</p>
+        </div>
+        <div>
+          <h3>Sorties de la semaine</h3>
+          <p>Sources lues chaque vendredi : OpenAI, Google, Anthropic, Mistral et leurs comptes Hugging Face ; repérage dans TechCrunch, Ars Technica et The Decoder. Un modèle n'est retenu que si son labo l'a annoncé.</p>
+          <p>Il devient « Confirmé par Epoch » dès son ajout, ou « Pas encore chez Epoch » après deux semaines. Chiffres, graphique et catalogue restent calculés sur Epoch seul.</p>
+        </div>
+        <div>
+          <h3>Classements et prix</h3>
+          <p>Classement <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">Arena</a> (licence CC BY 4.0) : des internautes comparent deux réponses à l'aveugle et votent. Seuls les modèles avec au moins 1 000 votes sont gardés.</p>
+          <p>Prix relevés à la main sur les pages tarifs officielles, convertis en euros au taux de la BCE.</p>
+        </div>
     </div>
   </details>
 
@@ -722,20 +771,19 @@ function update(){
 /* ---------- KPIs ---------- */
 function kpis(){
   const y=UPDATED.slice(0,4);
-  $("k-year-l").textContent="Sorties en "+y;$("k-open-l").textContent="Open source en "+y;
+  $("k-year-l").textContent="Sorties en "+y;
   $("k-total").textContent=DATA.length.toLocaleString("fr-FR");
-  $("k-total-d").textContent="dont "+DATA.filter(r=>r[6]).length+" frontier";
-  const d30=DATA.filter(r=>daysBetween(r[2],UPDATED)<=30);
-  $("k-30").textContent=d30.length;
-  const c30={};d30.forEach(r=>{const c=ctyOf(r)[0]||"";c30[c]=(c30[c]||0)+1});
-  $("k-30-d").textContent=Object.entries(c30).sort((a,b)=>b[1]-a[1]).map(([c,n])=>cname(c)+" : "+n).join(" · ")||"Aucune";
+  $("k-total-d").textContent="depuis 2018, dont "+DATA.filter(r=>r[6]).length+" frontier";
   const yr=DATA.filter(r=>r[2].startsWith(y));
   $("k-year").textContent=yr.length;
   const prev=DATA.filter(r=>r[2].startsWith(String(+y-1))&&r[2].slice(5)<=UPDATED.slice(5)).length;
-  $("k-year-d").textContent=prev+" à la même date en "+(+y-1);
-  const op=yr.filter(r=>ACC_GROUP[r[5]]==="open");
-  $("k-open").textContent=Math.round(op.length/Math.max(yr.length,1)*100)+" %";
-  $("k-open-d").textContent="des sorties "+y+" sont téléchargeables ("+op.length+" modèles, dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois)";
+  $("k-year-d").textContent="contre "+prev+" à la même date en "+(+y-1);
+  const op=DATA.filter(r=>ACC_GROUP[r[5]]==="open");
+  $("k-open").textContent=Math.round(op.length/Math.max(DATA.length,1)*100)+" %";
+  $("k-open-d").textContent=op.length+" modèles depuis 2018, dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois";
+  const eu=DATA.filter(r=>EU.has(ctyOf(r)[0]));
+  $("k-eu").textContent=eu.length;
+  $("k-eu-d").textContent="depuis 2018, dont "+eu.filter(r=>ctyOf(r)[0]==="FR").length+" en France";
 }
 
 /* ---------- Chart (drawn at the container's real width, in pixels) ---------- */
@@ -883,7 +931,7 @@ const SNAPCACHE={};
 const getSnap=f=>f?(SNAPCACHE[f]||(SNAPCACHE[f]=fetch(f).then(r=>r.ok?r.json():null).catch(()=>null))):Promise.resolve(null);
 function wItem(o){
   const mods=(o.mods||"T").split("").filter(m=>m!=="M").map(m=>MOD[m]).join(", ")||"Texte";
-  const inner=`<span class="dt">${dm(o.date)}</span><span><span class="nm">${esc(o.nom)}</span>${o.lien?' <span aria-hidden="true">↗</span>':""}<span class="og">${esc(o.four)} · ${mods}</span><span class="st st-${o.st}">${ST[o.st]||""}</span></span>`;
+  const inner=`<span class="dt">${dm(o.date)}</span><span class="wn"><span class="nm">${esc(o.nom)}</span>${o.lien?' <span aria-hidden="true">↗</span>':""} <span class="og">${esc(o.four)} · ${mods}</span></span><span class="st st-${o.st}">${ST[o.st]||""}</span>`;
   return `<li>${o.lien?`<a href="${esc(o.lien)}" target="_blank" rel="noopener">${inner}</a>`:`<div class="wi">${inner}</div>`}</li>`}
 function week(file){
   const i=SNAPS.findIndex(x=>x.file===file),date=(SNAPS[i]&&SNAPS[i].date)||UPDATED,rows=DATA;
@@ -907,7 +955,7 @@ function week(file){
     $("week").innerHTML=now.map(wItem).join("");$("week").hidden=!now.length;
     $("week-empty").hidden=now.length>0;
     $("week-prev").innerHTML=prev.map(wItem).join("");$("week-before").hidden=!prev.length;
-    $("week-added").innerHTML=late.map(wItem).join("");$("week-late").hidden=!late.length;
+    $("week-late").innerHTML=late.length?`<b>Aussi entrés au catalogue</b> <span class="muted">(sortis plus tôt, ajoutés par Epoch AI cette semaine)</span> `+late.map(o=>`${o.lien?`<a href="${esc(o.lien)}" target="_blank" rel="noopener">${esc(o.nom)}</a>`:esc(o.nom)} <span class="muted">${dm(o.date)}</span>`).join('<span class="sep" aria-hidden="true"> · </span>'):"";$("week-late").hidden=!late.length;
     const sts=new Set([...now,...prev,...late].map(o=>o.st));
     const LEG={attente:"pas encore vérifié par Epoch AI",confirme:"présent dans le catalogue",pas_encore:"annoncé il y a plus de 2 semaines, absent d'Epoch"};
     $("week-legend").innerHTML=["attente","confirme","pas_encore"].filter(k=>sts.has(k)).map(k=>`<span><span class="st st-${k}">${ST[k]}</span> ${LEG[k]}</span>`).join("");
@@ -921,7 +969,8 @@ function loadSnapshot(file){
 function fail(){$("empty").hidden=false;$("empty").textContent="Les données n'ont pas pu être chargées. Rechargez la page dans quelques instants."}
 bindCatalogue();bindChart();
 $("cftog").addEventListener("click",e=>{const o=e.currentTarget.closest(".controls").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)});
-$("xtog").addEventListener("click",e=>{const o=$("xmore").hidden;$("xmore").hidden=!o;e.currentTarget.setAttribute("aria-expanded",o)});
+$("xtog").addEventListener("click",()=>{$("methode").open=true});
+addEventListener("hashchange",()=>{if(location.hash==="#methode")$("methode").open=true});
 const totop=$("totop");
 addEventListener("scroll",()=>{totop.hidden=scrollY<700},{passive:true});
 totop.addEventListener("click",()=>{scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("snap").focus({preventScroll:true})});
@@ -931,6 +980,7 @@ fetch("snapshots.json").then(r=>r.ok?r.json():Promise.reject()).catch(()=>[{date
   $("snap").addEventListener("change",e=>loadSnapshot(e.target.value).catch(fail));
   return loadSnapshot(SNAPS[0].file);
 }).catch(fail);
+if(/[?&]test=b\b/.test(location.search))document.body.classList.add("contour");
 /* v19 : bande « en développement », pilotée par bandeau.json (actif, pastille, message, version) */
 (function(){
   const b=$("bandeau"),K="radar-bandeau-ferme";

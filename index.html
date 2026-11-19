@@ -35,12 +35,11 @@
 }
 *{box-sizing:border-box}
 body{background:var(--nuit);color:var(--menthe);font-family:var(--f-text);font-size:15px;line-height:1.5}
-.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px;display:flex;flex-direction:column;gap:20px}
+.wrap{max-width:1800px;margin:0 auto;padding-left:max(clamp(16px,2.5vw,40px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,2.5vw,40px),env(safe-area-inset-right,0px));padding-block:32px 56px;display:flex;flex-direction:column;gap:20px}
 a{color:var(--fond);text-underline-offset:3px}
 a:hover{color:var(--blanc)}
 :focus-visible{outline:2px solid var(--fond);outline-offset:2px}
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px}
-.eyebrow{display:block;margin-bottom:12px}
 h1{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,6vw,56px);line-height:1.02;margin:0;letter-spacing:-.01em;color:var(--fond);text-wrap:balance}
 h2{font-family:var(--f-display);font-weight:400;font-size:20px;line-height:1.15;margin:0;color:var(--blanc);text-wrap:balance}
 h3{font-size:15px;font-weight:700;margin:0;color:var(--blanc)}
@@ -65,12 +64,6 @@ details.about>summary:focus-visible{outline-offset:-2px;border-radius:var(--r-ca
 .chev{flex:none;width:32px;height:32px;border-radius:50%;background:var(--fond);color:var(--marine);display:grid;place-items:center}
 .chev svg{transition:transform .2s}
 details.about[open] .chev svg{transform:rotate(180deg)}
-.guide{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:24px;padding:16px 20px 20px;border-top:1px solid var(--c-line)}
-.guide>div{display:flex;flex-direction:column;gap:6px;min-width:0}
-.guide p{margin:0;font-size:14px;color:var(--menthe)}
-.guide ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:3px;color:var(--menthe)}
-.guide .badge{margin-left:0;align-self:flex-start}
-@media (max-width:900px){.guide{grid-template-columns:minmax(0,1fr);gap:18px}}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .kpi{gap:4px;padding:16px 18px}
 .kpi .v{font-family:var(--f-display);font-size:clamp(30px,4vw,40px);line-height:1.05;font-variant-numeric:tabular-nums;color:var(--blanc)}
@@ -286,7 +279,7 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
 .urank .px b{font-weight:700;color:var(--blanc)}
 .urank .px.na{color:var(--menthe);font-size:13px}
 .urank .promo{display:block;font-size:13px;color:var(--fond);margin-top:2px}
-.usubs{border-top:1px solid var(--c-line);padding-top:12px;font-size:14px}
+.usubs{border-top:1px solid var(--c-line);padding-top:14px;margin-top:6px;font-size:14px}
 .usubs h3{font-size:14px;margin:0 0 6px;color:var(--blanc)}
 .usubs ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px}
 .usubs a{font-weight:600}
@@ -294,64 +287,129 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
 .unote{color:var(--menthe)}
 @media (prefers-reduced-motion:no-preference){.chip,.cta,.more,.seg button,.utabs button,.lnk,.totop{transition:background .15s,color .15s}}
 @media (prefers-reduced-motion:reduce){.chev svg{transition:none}}
+
+/* ---------- v18 : haut de page en deux colonnes, guide visible ---------- */
+.hero{display:flex;flex-direction:column;gap:20px;align-items:stretch}
+.hero-txt{display:flex;flex-direction:column;min-width:0}
+.hero-txt .byline{margin-top:12px}
+.hero-txt .stamp{margin-top:20px;align-items:flex-start;text-align:left}
+.hero .stamp-row{flex-direction:row;align-items:center;flex-wrap:wrap;gap:8px}
+.hero .stamp-row .avis{min-height:40px;padding:0 14px}
+.hero-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.hero-side .cta{margin-top:0;justify-content:center}
+@media (min-width:1000px){
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,min(46%,600px));gap:40px}
+  .hero-txt{justify-content:space-between;padding-block:4px}
+  .hero-txt .sub{font-size:17px;line-height:1.55}
+  h1{font-size:clamp(48px,4.6vw,76px)}
+  .hero .kpis{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;flex:1}
+  .hero .kpi{justify-content:flex-start;padding:20px 22px}
+  .hero-side .cta{align-self:stretch}
+}
+@media (max-width:999px){.hero-side .cta{align-self:flex-start}}
+@media (max-width:599px){.hero-side .cta{align-self:stretch}.hero .stamp-row{flex-wrap:nowrap}}
+.guide30{border:2px solid var(--fond)}
+.guide30 h2{display:flex;align-items:center;gap:10px}
+.g-ico{flex:none;width:28px;height:28px;border-radius:50%;background:var(--fond);color:var(--marine);display:grid;place-items:center;font-family:var(--f-display);font-size:16px}
+.gsteps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.gsteps li{background:var(--tag);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.gsteps p{margin:0;font-size:14px;color:var(--menthe)}
+.gsteps .badge{margin-left:0}
+@media (max-width:1099px){.gsteps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:599px){.gsteps{grid-template-columns:minmax(0,1fr);gap:8px}.gsteps li{padding:12px 14px}}
+.gmore>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:700;color:var(--fond)}
+.gmore>summary::-webkit-details-marker{display:none}
+.gmore>summary .chev{width:26px;height:26px}
+.gmore[open]>summary .chev svg{transform:rotate(180deg)}
+.gmore-in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-top:12px;border-top:1px solid var(--c-line)}
+.gmore-in>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.gmore-in p,.gmore-in ul{margin:0;font-size:14px;color:var(--menthe)}
+.gmore-in ul{padding-left:18px;display:flex;flex-direction:column;gap:3px}
+.gmore-in h3+p,.gmore-in h3+ul{margin-bottom:6px}
+@media (max-width:900px){.gmore-in{grid-template-columns:minmax(0,1fr);gap:16px}}
+
+/* ---------- v18 : top 5 en ligne ---------- */
+.urank{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:4px}
+.urank li{display:flex;flex-direction:column;gap:8px;padding:14px;border:0;border-radius:8px;background:var(--tag);min-width:0}
+.urank .ubody{display:flex;flex-direction:column;gap:2px;min-width:0}
+.urank .og{font-size:13px}
+.urank .px{display:flex;flex-direction:column;gap:1px;margin-top:8px}
+.urank .px.na{display:block}
+.uunit{display:block;margin-top:4px;font-weight:600;color:var(--blanc)}
+.usubs ul{gap:8px 12px}
+.usubs li{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.ulab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--menthe);margin-right:2px}
+.usubs a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 12px;border:1px solid var(--c-line);border-radius:var(--r-pilule);text-decoration:none;color:var(--blanc);font-weight:600;font-size:13.5px}
+.usubs a b{color:var(--fond)}
+.usubs a:hover{background:var(--survol)}
+@media (max-width:1099px){.urank{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:599px){
+  .urank{grid-template-columns:minmax(0,1fr);gap:0}
+  .urank li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--c-line);border-radius:0;background:none}
+  .urank .px{flex-direction:row;flex-wrap:wrap;gap:0 12px;margin-top:3px}
+  .usubs li{width:100%}.ulab{width:100%}
+}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 
 <div class="wrap">
-  <header>
-    <div>
-      <span class="label eyebrow">Veille · Marché IA générative</span>
+  <header class="hero">
+    <div class="hero-txt">
       <h1>Radar des modèles IA</h1>
-      <p class="byline">par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo Dumontet</a> · conçu avec Claude</p>
+      <p class="byline">Conçu par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo DUMONTET</a> avec Claude</p>
       <p class="sub">Toutes les sorties de modèles d'IA générative depuis 2018, au même endroit : qui sort quoi, quand, d'où, et comment y accéder. Texte, code, image, vidéo, audio. Mis à jour chaque vendredi.</p>
-      <a class="cta" href="#week-title">Voir les dernières sorties <span aria-hidden="true">↓</span></a>
+      <div class="stamp">
+        <label class="label" for="snap">Publication affichée</label>
+        <div class="stamp-row"><select id="snap"><option>Chargement…</option></select>
+        <a class="avis" href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis <span aria-hidden="true">↗</span></a></div>
+      </div>
     </div>
-    <div class="stamp">
-      <label class="label" for="snap">Publication affichée</label>
-      <div class="stamp-row"><select id="snap"><option>Chargement…</option></select>
-      <a class="avis" href="https://tally.so/r/GeekNe" target="_blank" rel="noopener">Donner mon avis <span aria-hidden="true">↗</span></a></div>
+    <div class="hero-side">
+      <section class="kpis" aria-label="Chiffres clés">
+        <div class="card kpi"><span class="label">Modèles suivis</span><span class="v" id="k-total">–</span><span class="d" id="k-total-d"></span></div>
+        <div class="card kpi"><span class="label">Sorties sur 30 jours</span><span class="v" id="k-30">–</span><span class="d" id="k-30-d"></span></div>
+        <div class="card kpi"><span class="label" id="k-year-l">Sorties de l'année</span><span class="v" id="k-year">–</span><span class="d" id="k-year-d"></span></div>
+        <div class="card kpi"><span class="label" id="k-open-l">Open source de l'année</span><span class="v" id="k-open">–</span><span class="d" id="k-open-d"></span></div>
+      </section>
+      <a class="cta" href="#week-title">Voir les dernières sorties <span aria-hidden="true">↓</span></a>
     </div>
   </header>
 
-  <details class="card about">
-    <summary><span><h2>Comprendre les données</h2><span class="sum-d">La source Epoch AI, les modèles notables et frontier</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
-    <div class="guide">
-      <div>
-        <h3>La source : Epoch AI</h3>
-        <p>Institut de recherche indépendant qui étudie l'évolution de l'IA. Il tient l'une des bases de référence sur les modèles, mise à jour chaque jour et citée par les chercheurs et les décideurs publics. Les grandes sorties y entrent en quelques jours, les autres parfois plus tard.</p>
-        <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Voir la base Epoch AI</a></p>
-        <h3>Les sorties de la semaine</h3>
-        <p>Pour ne pas attendre Epoch, le radar lit aussi chaque semaine les annonces officielles des labos (OpenAI, Google, Anthropic, Mistral et leurs comptes Hugging Face) et repère les sorties dans la presse tech (TechCrunch, Ars Technica, The Decoder). Un modèle n'est retenu que si son labo l'a annoncé. Il passe en « Confirmé par Epoch » dès qu'Epoch l'ajoute ; au bout de deux semaines sans cela, il est marqué « Pas encore chez Epoch ». Les chiffres et le catalogue restent calculés sur Epoch seul.</p>
-        <h3>Classements et prix</h3>
-        <p>Le bloc « Quel modèle pour quel usage ? » reprend le classement d'Arena : des internautes comparent deux réponses à l'aveugle et votent pour la meilleure. Seuls les modèles avec au moins 1 000 votes sont gardés. Les prix viennent des pages tarifs officielles de chaque labo, relues chaque semaine.</p>
-        <p><a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">Voir les données Arena (licence CC BY 4.0)</a></p>
+  <section class="card guide30" aria-labelledby="guide-title">
+    <div class="ph"><h2 id="guide-title"><span class="g-ico" aria-hidden="true">?</span>Comprendre le radar en 30 secondes</h2></div>
+    <ul class="gsteps">
+      <li><h3>D'où viennent les données</h3><p>D'<a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI</a>, institut de recherche indépendant qui tient la base de référence des modèles d'IA. Chiffres, graphique et catalogue en sont issus.</p></li>
+      <li><h3>Pourquoi c'est à jour</h3><p>Epoch peut mettre quelques jours. Chaque vendredi, le radar lit aussi les annonces officielles des labos et la presse tech pour montrer les sorties de la semaine.</p></li>
+      <li><h3>Notable</h3><p>Un modèle qui a compté : très cité, très utilisé, très coûteux à entraîner ou premier sur un test reconnu.</p></li>
+      <li><h3><span class="badge b-fr">Frontier</span></h3><p>À sa sortie, il faisait partie des 5 modèles les plus puissants au monde, mesurés au calcul d'entraînement.</p></li>
+    </ul>
+    <details class="gmore">
+      <summary>Critères détaillés et méthode<span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="gmore-in">
+        <div>
+          <h3>Notable : au moins un critère</h3>
+          <ul>
+            <li>plus de 5 000 citations scientifiques ;</li>
+            <li>entraînement à plus de 1 M$ (dollars 2023), ou au moins 1 % du modèle le plus cher à date ;</li>
+            <li>plus d'un million d'utilisateurs actifs par mois ;</li>
+            <li>meilleur résultat sur un benchmark reconnu ;</li>
+            <li>importance historique équivalente, jugée par Epoch.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Frontier</h3>
+          <p>Epoch ne classe un modèle frontier que s'il a une estimation de son calcul. Beaucoup de modèles fermés récents n'en ont pas encore, d'où moins de frontier sur 2026.</p>
+          <h3>Sorties de la semaine</h3>
+          <p>Sources lues : OpenAI, Google, Anthropic, Mistral et leurs comptes Hugging Face ; repérage dans TechCrunch, Ars Technica et The Decoder. Un modèle n'est retenu que si son labo l'a annoncé. Il devient « Confirmé par Epoch » dès son ajout, ou « Pas encore chez Epoch » après deux semaines.</p>
+        </div>
+        <div>
+          <h3>Classements et prix</h3>
+          <p>Classement <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">Arena</a> (licence CC BY 4.0) : des internautes comparent deux réponses à l'aveugle et votent. Seuls les modèles avec au moins 1 000 votes sont gardés. Prix relevés sur les pages tarifs officielles.</p>
+        </div>
       </div>
-      <div>
-        <h3>Notable</h3>
-        <p>Le modèle remplit au moins un de ces critères :</p>
-        <ul>
-          <li>plus de 5 000 citations scientifiques ;</li>
-          <li>entraînement à plus de 1 M$ (dollars 2023), ou au moins 1 % du modèle le plus cher à date ;</li>
-          <li>plus d'un million d'utilisateurs actifs par mois ;</li>
-          <li>meilleur résultat sur un benchmark reconnu ;</li>
-          <li>importance historique équivalente, jugée par Epoch.</li>
-        </ul>
-      </div>
-      <div>
-        <h3><span class="badge b-fr">Frontier</span></h3>
-        <p>Le modèle figurait dans le top 5 mondial du calcul d'entraînement au moment de sa sortie : c'est la pointe de la puissance brute.</p>
-        <p class="note">Epoch ne peut classer un modèle frontier que s'il dispose d'une estimation de son calcul. Beaucoup de modèles fermés récents n'en ont pas encore, d'où un nombre de frontier plus faible sur 2026.</p>
-      </div>
-    </div>
-  </details>
-
-  <section class="kpis" aria-label="Chiffres clés">
-    <div class="card kpi"><span class="label">Modèles suivis</span><span class="v" id="k-total">–</span><span class="d" id="k-total-d"></span></div>
-    <div class="card kpi"><span class="label">Sorties sur 30 jours</span><span class="v" id="k-30">–</span><span class="d" id="k-30-d"></span></div>
-    <div class="card kpi"><span class="label" id="k-year-l">Sorties de l'année</span><span class="v" id="k-year">–</span><span class="d" id="k-year-d"></span></div>
-    <div class="card kpi"><span class="label" id="k-open-l">Open source de l'année</span><span class="v" id="k-open">–</span><span class="d" id="k-open-d"></span></div>
+    </details>
   </section>
 
   <section class="card" aria-labelledby="chart-title">
@@ -390,7 +448,7 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
 
   <section class="card" aria-labelledby="usage-title" id="usage-sec" hidden>
     <div class="ph"><h2 id="usage-title">Quel modèle pour quel usage ?</h2><span class="count" id="usage-date"></span></div>
-    <p class="note usage-intro">Les 5 modèles préférés des internautes qui les comparent à l'aveugle, avec leur prix. Choisissez un usage.</p>
+    <p class="note usage-intro">Les 5 modèles préférés des internautes qui les comparent à l'aveugle, avec leur prix. Choisissez un usage.<span class="uunit" id="uunit"></span></p>
     <div class="utabs" role="tablist" aria-label="Usages" id="utabs"></div>
     <div class="upanel" role="tabpanel" id="upanel" tabindex="0">
       <p class="udesc" id="udesc"></p>
@@ -725,7 +783,7 @@ function chartCountry(){
       }else if(v.jusqu_au){
         promo=`<span class="promo">${esc(v.note||"Prix temporaire")} jusqu'au ${fmtDate(v.jusqu_au).slice(0,5)}`+(v.apres?`, puis ${eur(v.apres.entree,T)} / ${eur(v.apres.sortie,T)}`:"")+`</span>`;
       }
-      if(v.unite==="mtok")return `<span class="px">Envoi <b>${eur(a.entree,T)}</b> · Réponse <b>${eur(a.sortie,T)}</b> <span class="og">par million de tokens</span></span>`+promo;
+      if(v.unite==="mtok")return `<span class="px"><span>Envoi <b>${eur(a.entree,T)}</b></span><span>Réponse <b>${eur(a.sortie,T)}</b></span></span>`+promo;
       if(v.unite==="seconde")return `<span class="px"><b>${eur(a.prix,T)}</b> <span class="og">par seconde de ${esc(v.precision||"vidéo")}</span></span>`+promo;
       return "";
     };
@@ -736,11 +794,13 @@ function chartCountry(){
       $("upanel").setAttribute("aria-labelledby","ut-"+u.id);
       $("udesc").textContent=u.description;
       $("usage-date").textContent="Classement Arena du "+fmtDate(u.date_arena);
-      $("urank").innerHTML=u.modeles.map(m=>`<li><span class="rg" aria-hidden="true">${m.rang}</span><span><span class="nm">${esc(m.nom)}</span> <span class="og">· ${esc(lab[m.labo]||m.labo)}</span>${prix(m)}</span></li>`).join("");
+      $("urank").innerHTML=u.modeles.map(m=>`<li><span class="rg" aria-hidden="true">${m.rang}</span><span class="ubody"><span class="nm">${esc(m.nom)}</span><span class="og">${esc(lab[m.labo]||m.labo)}</span>${prix(m)}</span></li>`).join("");
+      const mt=u.modeles.some(m=>P&&P.api&&P.api[m.nom]&&P.api[m.nom].unite==="mtok");
+      $("uunit").textContent=mt&&T?" Prix des API en euros HT, par million de tokens (envoi / réponse).":"";
       const labs=[...new Set(u.modeles.map(m=>lab[m.labo]||m.labo))];
       const subs=(P&&P.abonnements||[]).filter(a=>labs.includes(a.labo));
       $("usubs").hidden=!subs.length;
-      $("usubs").innerHTML=subs.length?`<h3>Sans coder : les abonnements de ces labos</h3><ul>${subs.map(a=>`<li><a href="${esc(a.lien)}" target="_blank" rel="noopener">${esc(a.offre)}</a> ${a.des?"dès ":""}${nb(a.prix,a.prix%1?2:0)}\u00a0€/mois</li>`).join("")}</ul><p class="note">Prix affichés en France par chaque labo. Les modèles inclus varient selon l'offre.</p>`:"";
+      $("usubs").innerHTML=subs.length?`<h3>Sans coder, avec un abonnement</h3><ul>${[...new Set(subs.map(x=>x.labo))].map(l=>`<li><span class="ulab">${esc(l)}</span>${subs.filter(x=>x.labo===l).map(x=>`<a href="${esc(x.lien)}" target="_blank" rel="noopener">${esc(x.offre)} <b>${x.des?"dès ":""}${nb(x.prix,x.prix%1?2:0)}\u00a0€/mois</b></a>`).join("")}</li>`).join("")}</ul><p class="note">Prix affichés en France par chaque labo. Les modèles inclus varient selon l'offre.</p>`:"";
     }
     tabs.innerHTML=C.usages.map((u,i)=>`<button type="button" role="tab" id="ut-${u.id}" aria-controls="upanel" aria-selected="false" tabindex="-1">${esc(u.label)}</button>`).join("");
     [...tabs.children].forEach((b,i)=>b.addEventListener("click",()=>show(i)));

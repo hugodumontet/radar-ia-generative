@@ -442,10 +442,10 @@ a.xtog{text-decoration:none}
 .wlate a{color:var(--blanc);font-weight:600}
 .wlate .muted{font-size:12.5px}
 @media (max-width:599px){.week a,.week .wi{grid-template-columns:44px minmax(0,1fr)}.week .st{grid-column:2;justify-self:start}.week .og{display:block;margin:2px 0 0}}
-/* test de contraste B (?test=b) : chiffres clés et bande explicative sans fond, bordure menthe */
+/* contraste B retenu (v21.1) : chiffres clés et bande explicative sans fond, bordure menthe */
 @media (max-width:1099px){.xt{white-space:normal}}
 @media (max-width:599px){.xrow{grid-template-columns:minmax(0,1fr)}.xrow .xtog{grid-column:1;grid-row:auto;justify-content:center}}
-body.contour .hero .kpi,body.contour .explain{background:transparent;border:1px solid var(--fond)}
+.hero .kpi,.explain{background:transparent;border:1px solid var(--fond)}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -780,7 +780,7 @@ function kpis(){
   $("k-year-d").textContent="contre "+prev+" à la même date en "+(+y-1);
   const op=DATA.filter(r=>ACC_GROUP[r[5]]==="open");
   $("k-open").textContent=Math.round(op.length/Math.max(DATA.length,1)*100)+" %";
-  $("k-open-d").textContent=op.length+" modèles depuis 2018, dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois";
+  $("k-open-d").textContent=op.length+" depuis 2018, dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois";
   const eu=DATA.filter(r=>EU.has(ctyOf(r)[0]));
   $("k-eu").textContent=eu.length;
   $("k-eu-d").textContent="depuis 2018, dont "+eu.filter(r=>ctyOf(r)[0]==="FR").length+" en France";
@@ -980,7 +980,6 @@ fetch("snapshots.json").then(r=>r.ok?r.json():Promise.reject()).catch(()=>[{date
   $("snap").addEventListener("change",e=>loadSnapshot(e.target.value).catch(fail));
   return loadSnapshot(SNAPS[0].file);
 }).catch(fail);
-if(/[?&]test=b\b/.test(location.search))document.body.classList.add("contour");
 /* v19 : bande « en développement », pilotée par bandeau.json (actif, pastille, message, version) */
 (function(){
   const b=$("bandeau"),K="radar-bandeau-ferme";

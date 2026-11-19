@@ -353,7 +353,7 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
     <p class="note">Les modèles annoncés par leurs labos cette semaine, avant leur entrée dans la base Epoch AI. Touchez un modèle pour lire son annonce officielle.</p>
     <ol class="week" id="week"></ol>
     <p class="week-empty" id="week-empty" hidden></p>
-    <p class="note wlegend"><span><span class="st st-attente">Annoncé, en attente</span> pas encore vérifié par Epoch AI</span><span><span class="st st-confirme">Confirmé par Epoch</span> présent dans le catalogue</span></p>
+    <p class="note wlegend" id="week-legend"><span><span class="st st-attente">Annoncé, en attente</span> pas encore vérifié par Epoch AI</span><span><span class="st st-confirme">Confirmé par Epoch</span> présent dans le catalogue</span></p>
   </section>
 
   <section class="card" aria-labelledby="latest-title">
@@ -685,7 +685,8 @@ function week(file){
     const first=(S.semaines||[]).map(x=>x.publication).sort()[0];
     const e=$("week-empty");
     e.hidden=list.length>0;
-    e.textContent=w?"Aucune nouvelle sortie annoncée par les labos cette semaine.":(date&&first&&date<first?`Ce bloc existe depuis la publication du ${fmtDate(first)}. Choisissez une publication plus récente pour le voir.`:"Les sorties de cette semaine ne sont pas encore disponibles.");
+    $("week").hidden=$("week-legend").hidden=!list.length;
+    e.textContent=w?"Aucune nouvelle sortie annoncée par les labos cette semaine.":(date&&first&&date<first?`Ce bloc existe depuis la publication du ${fmtDate(first)}. Choisissez une publication plus récente pour le voir.`:"Pas de sorties de la semaine pour cette publication. Choisissez une autre publication pour les voir.");
   });
 }
 function loadSnapshot(file){

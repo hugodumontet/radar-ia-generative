@@ -1,0 +1,359 @@
+{
+ "maj": "2026-11-19",
+ "source": {
+  "nom": "Arena (LMArena)",
+  "licence": "CC BY 4.0",
+  "lien": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+  "min_votes": 1000
+ },
+ "usages": [
+  {
+   "id": "images",
+   "label": "Images",
+   "description": "Créer une image à partir d'un texte (visuels, illustrations, publicités).",
+   "date_arena": "2026-11-17",
+   "modeles": [
+    {
+     "rang": 1,
+     "nom": "GPT-Image-2.5 Sunburst",
+     "reglage": "",
+     "labo": "openai",
+     "score": 1428,
+     "marge": 5,
+     "votes": 68073,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 2,
+     "nom": "GPT-Image-2.6 Sunburst",
+     "reglage": "GPT-Image-2.6 Sunburst (Medium)",
+     "labo": "openai",
+     "score": 1410,
+     "marge": 9,
+     "votes": 6547,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 3,
+     "nom": "GPT-Image-2.5 Flare",
+     "reglage": "",
+     "labo": "openai",
+     "score": 1400,
+     "marge": 5,
+     "votes": 67372,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
+     "nom": "MAI-Image-2.7",
+     "reglage": "",
+     "labo": "microsoft-ai",
+     "score": 1387,
+     "marge": 12,
+     "votes": 3082,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 5,
+     "nom": "GPT-Image-2",
+     "reglage": "GPT-Image-2 (Medium)",
+     "labo": "openai",
+     "score": 1382,
+     "marge": 4,
+     "votes": 110696,
+     "licence": "Proprietary"
+    }
+   ]
+  },
+  {
+   "id": "video",
+   "label": "Vidéo",
+   "description": "Créer une courte vidéo à partir d'un texte.",
+   "date_arena": "2026-11-09",
+   "modeles": [
+    {
+     "rang": 1,
+     "nom": "Gemini Omni 1.2 Flash",
+     "reglage": "",
+     "labo": "google",
+     "score": 1540,
+     "marge": 16,
+     "votes": 1714,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 2,
+     "nom": "Gemini Omni 1.1 Flash",
+     "reglage": "",
+     "labo": "google",
+     "score": 1513,
+     "marge": 15,
+     "votes": 1792,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 3,
+     "nom": "Gemini Omni Flash",
+     "reglage": "",
+     "labo": "google",
+     "score": 1509,
+     "marge": 8,
+     "votes": 46707,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
+     "nom": "FLUX 3 Video",
+     "reglage": "",
+     "labo": "bfl",
+     "score": 1491,
+     "marge": 17,
+     "votes": 1314,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 5,
+     "nom": "Grok Imagine Video 1.5",
+     "reglage": "",
+     "labo": "xai",
+     "score": 1488,
+     "marge": 19,
+     "votes": 1249,
+     "licence": "Proprietary"
+    }
+   ]
+  },
+  {
+   "id": "sites",
+   "label": "Sites web",
+   "description": "Créer une page ou un site web complet à partir d'une demande.",
+   "date_arena": "2026-11-15",
+   "modeles": [
+    {
+     "rang": 1,
+     "nom": "Claude Fable 5.2",
+     "reglage": "Claude Fable 5.2 (xHigh)",
+     "labo": "anthropic",
+     "score": 1826,
+     "marge": 19,
+     "votes": 1445,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 2,
+     "nom": "Claude Opus 5.5",
+     "reglage": "Claude Opus 5.5 (Max)",
+     "labo": "anthropic",
+     "score": 1816,
+     "marge": 12,
+     "votes": 4399,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 3,
+     "nom": "Claude Sonnet 5.5",
+     "reglage": "Claude Sonnet 5.5 (xHigh)",
+     "labo": "anthropic",
+     "score": 1772,
+     "marge": 10,
+     "votes": 6120,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
+     "nom": "Gemini 4 Carbon",
+     "reglage": "Gemini 4 Carbon (High)",
+     "labo": "google",
+     "score": 1768,
+     "marge": 15,
+     "votes": 2105,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 5,
+     "nom": "GPT-6 Astra",
+     "reglage": "GPT-6 Astra (Max)",
+     "labo": "openai",
+     "score": 1763,
+     "marge": 8,
+     "votes": 8685,
+     "licence": "Proprietary"
+    }
+   ]
+  },
+  {
+   "id": "code",
+   "label": "Code",
+   "description": "Écrire, corriger et expliquer du code (scripts, automatisations).",
+   "date_arena": "2026-11-11",
+   "modeles": [
+    {
+     "rang": 1,
+     "nom": "Gemini 4 Carbon",
+     "reglage": "Gemini 4 Carbon (High)",
+     "labo": "google",
+     "score": 1564,
+     "marge": 19,
+     "votes": 1069,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 2,
+     "nom": "Claude Opus 5.5",
+     "reglage": "Claude Opus 5.5 (High)",
+     "labo": "anthropic",
+     "score": 1543,
+     "marge": 11,
+     "votes": 3460,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 3,
+     "nom": "Gemini 4 Argon",
+     "reglage": "Gemini 4 Argon (High)",
+     "labo": "google",
+     "score": 1540,
+     "marge": 9,
+     "votes": 4833,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
+     "nom": "Claude Opus 4.6",
+     "reglage": "",
+     "labo": "anthropic",
+     "score": 1534,
+     "marge": 5,
+     "votes": 24530,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 5,
+     "nom": "MiMo-V2.6-Pro",
+     "reglage": "",
+     "labo": "xiaomi",
+     "score": 1534,
+     "marge": 18,
+     "votes": 1091,
+     "licence": "MIT"
+    }
+   ]
+  },
+  {
+   "id": "recherche",
+   "label": "Recherche web",
+   "description": "Répondre en cherchant sur internet, avec des sources.",
+   "date_arena": "2026-11-09",
+   "modeles": [
+    {
+     "rang": 1,
+     "nom": "Qwen3.8-Max",
+     "reglage": "",
+     "labo": "alibaba",
+     "score": 1260,
+     "marge": 14,
+     "votes": 1998,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 2,
+     "nom": "GPT-5.6 Sol",
+     "reglage": "GPT-5.6 Sol (xHigh)",
+     "labo": "openai",
+     "score": 1258,
+     "marge": 6,
+     "votes": 62364,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 3,
+     "nom": "Claude Opus 4.6",
+     "reglage": "Claude Opus 4.6 (Search)",
+     "labo": "anthropic",
+     "score": 1252,
+     "marge": 5,
+     "votes": 166732,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
+     "nom": "GPT-5.5",
+     "reglage": "GPT-5.5 (Search)",
+     "labo": "openai",
+     "score": 1246,
+     "marge": 5,
+     "votes": 121489,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 5,
+     "nom": "Claude Opus 5",
+     "reglage": "Claude Opus 5 (High)",
+     "labo": "anthropic",
+     "score": 1239,
+     "marge": 7,
+     "votes": 34000,
+     "licence": "Proprietary"
+    }
+   ]
+  },
+  {
+   "id": "documents",
+   "label": "Documents",
+   "description": "Lire et analyser des PDF et des fichiers (rapports, études).",
+   "date_arena": "2026-11-09",
+   "modeles": [
+    {
+     "rang": 1,
+     "nom": "Claude Fable 5.1",
+     "reglage": "Claude Fable 5.1 (Max)",
+     "labo": "anthropic",
+     "score": 1515,
+     "marge": 15,
+     "votes": 1453,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 2,
+     "nom": "Claude Opus 5",
+     "reglage": "Claude Opus 5 (High)",
+     "labo": "anthropic",
+     "score": 1509,
+     "marge": 6,
+     "votes": 16189,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 3,
+     "nom": "Claude Opus 4.6",
+     "reglage": "Claude Opus 4.6 (High)",
+     "labo": "anthropic",
+     "score": 1508,
+     "marge": 6,
+     "votes": 29456,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
+     "nom": "Claude Fable 5",
+     "reglage": "Claude Fable 5 (High)",
+     "labo": "anthropic",
+     "score": 1497,
+     "marge": 7,
+     "votes": 12357,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 5,
+     "nom": "Claude Opus 4.7",
+     "reglage": "Claude Opus 4.7 (High)",
+     "labo": "anthropic",
+     "score": 1496,
+     "marge": 6,
+     "votes": 23327,
+     "licence": "Proprietary"
+    }
+   ]
+  }
+ ]
+}

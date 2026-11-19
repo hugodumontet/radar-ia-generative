@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Tous les modèles d'IA générative frontier et notables depuis 2018 (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès. Données Epoch AI, mises à jour chaque vendredi.">
+<meta name="description" content="Tous les modèles d'IA générative frontier et notables depuis 2018 (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès, avec les meilleurs modèles par usage et leurs prix en euros. Données Epoch AI et Arena, mises à jour chaque semaine.">
 <meta name="author" content="Hugo Dumontet">
 <meta name="robots" content="noindex, follow">
 <meta property="og:title" content="Radar des modèles IA générative">
@@ -269,7 +269,30 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
   .br{display:block}
 }
 #count{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 16px)}
-@media (prefers-reduced-motion:no-preference){.chip,.cta,.more,.seg button,.lnk,.totop{transition:background .15s,color .15s}}
+/* ---------- Quel modèle pour quel usage (v17) ---------- */
+.utabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media (max-width:760px){.utabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.utabs button{font:inherit;font-size:14px;font-weight:600;min-height:44px;padding:6px 8px;border:1px solid var(--fond);border-radius:8px;background:transparent;color:var(--menthe);cursor:pointer;line-height:1.2}
+.utabs button[aria-selected="true"]{background:var(--fond);color:var(--marine)}
+.utabs button:hover:not([aria-selected="true"]){background:var(--survol)}
+.utabs button:focus-visible,.upanel:focus-visible{outline:2px solid var(--blanc);outline-offset:2px}
+.udesc{margin:0;color:var(--menthe);font-size:14px}
+.urank{list-style:none;margin:0;padding:0}
+.urank li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--c-line)}
+.urank .rg{font-family:var(--f-display);font-size:22px;line-height:1.1;color:var(--fond)}
+.urank .nm{font-weight:700;overflow-wrap:anywhere}
+.urank .og{color:var(--menthe);font-size:13px}
+.urank .px{display:block;font-size:14px;margin-top:3px;font-variant-numeric:tabular-nums}
+.urank .px b{font-weight:700;color:var(--blanc)}
+.urank .px.na{color:var(--menthe);font-size:13px}
+.urank .promo{display:block;font-size:13px;color:var(--fond);margin-top:2px}
+.usubs{border-top:1px solid var(--c-line);padding-top:12px;font-size:14px}
+.usubs h3{font-size:14px;margin:0 0 6px;color:var(--blanc)}
+.usubs ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.usubs a{font-weight:600}
+.usubs .note{margin-top:6px}
+.unote{color:var(--menthe)}
+@media (prefers-reduced-motion:no-preference){.chip,.cta,.more,.seg button,.utabs button,.lnk,.totop{transition:background .15s,color .15s}}
 @media (prefers-reduced-motion:reduce){.chev svg{transition:none}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -301,6 +324,9 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
         <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Voir la base Epoch AI</a></p>
         <h3>Les sorties de la semaine</h3>
         <p>Pour ne pas attendre Epoch, le radar lit aussi chaque semaine les annonces officielles des labos (OpenAI, Google, Anthropic, Mistral et leurs comptes Hugging Face) et repère les sorties dans la presse tech (TechCrunch, Ars Technica, The Decoder). Un modèle n'est retenu que si son labo l'a annoncé. Il passe en « Confirmé par Epoch » dès qu'Epoch l'ajoute ; au bout de deux semaines sans cela, il est marqué « Pas encore chez Epoch ». Les chiffres et le catalogue restent calculés sur Epoch seul.</p>
+        <h3>Classements et prix</h3>
+        <p>Le bloc « Quel modèle pour quel usage ? » reprend le classement d'Arena : des internautes comparent deux réponses à l'aveugle et votent pour la meilleure. Seuls les modèles avec au moins 1 000 votes sont gardés. Les prix viennent des pages tarifs officielles de chaque labo, relues chaque semaine.</p>
+        <p><a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">Voir les données Arena (licence CC BY 4.0)</a></p>
       </div>
       <div>
         <h3>Notable</h3>
@@ -360,6 +386,18 @@ summary>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
     <div class="ph"><h2 id="latest-title">Dernières sorties</h2><span class="count">Les plus récentes, d'après Epoch AI</span></div>
     <ol class="latest" id="latest"></ol>
     <button class="more lmore" id="lmore" type="button" aria-expanded="false">Voir les 5 suivantes</button>
+  </section>
+
+  <section class="card" aria-labelledby="usage-title" id="usage-sec" hidden>
+    <div class="ph"><h2 id="usage-title">Quel modèle pour quel usage ?</h2><span class="count" id="usage-date"></span></div>
+    <p class="note usage-intro">Les 5 modèles préférés des internautes qui les comparent à l'aveugle, avec leur prix. Choisissez un usage.</p>
+    <div class="utabs" role="tablist" aria-label="Usages" id="utabs"></div>
+    <div class="upanel" role="tabpanel" id="upanel" tabindex="0">
+      <p class="udesc" id="udesc"></p>
+      <ol class="urank" id="urank"></ol>
+      <div class="usubs" id="usubs"></div>
+    </div>
+    <p class="note unote" id="unote"></p>
   </section>
 
   <section class="card" aria-labelledby="cat-title">
@@ -667,6 +705,56 @@ function chartCountry(){
   $("chart-note").textContent=`${rows.length} sorties (${yTxt}${qTxt}), classées par pays du premier fournisseur.`;
 }
 
+/* ---------- Quel modèle pour quel usage (v17) ---------- */
+(function(){
+  const nb=(v,d)=>v.toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d});
+  const eur=(usd,t)=>{const v=usd/t;return nb(v,v<0.1?3:2)+"\u00a0€"};
+  const lab={};
+  Promise.all([fetch("classements.json").then(r=>r.ok?r.json():null),fetch("prix.json").then(r=>r.ok?r.json():null)]).catch(()=>[null,null]).then(([C,P])=>{
+    if(!C||!C.usages||!C.usages.length)return;
+    const sec=$("usage-sec"),tabs=$("utabs"),T=P&&P.taux?P.taux.eur_usd:null,auj=new Date().toISOString().slice(0,10);
+    Object.assign(lab,(P&&P.labos)||{});
+    const prix=m=>{
+      const v=P&&P.api&&P.api[m.nom];
+      const ac=P&&P.a_confirmer&&P.a_confirmer[m.nom];
+      if(!v||!T)return `<span class="px na">${esc(ac&&ac.affiche||"Prix pas encore vérifié par le radar")}</span>`;
+      let a=v,promo="";
+      if(v.jusqu_au&&v.jusqu_au<auj){
+        if(!v.apres)return `<span class="px na">Prix en cours de vérification</span>`;
+        a=v.apres;
+      }else if(v.jusqu_au){
+        promo=`<span class="promo">${esc(v.note||"Prix temporaire")} jusqu'au ${fmtDate(v.jusqu_au).slice(0,5)}`+(v.apres?`, puis ${eur(v.apres.entree,T)} / ${eur(v.apres.sortie,T)}`:"")+`</span>`;
+      }
+      if(v.unite==="mtok")return `<span class="px">Envoi <b>${eur(a.entree,T)}</b> · Réponse <b>${eur(a.sortie,T)}</b> <span class="og">par million de tokens</span></span>`+promo;
+      if(v.unite==="seconde")return `<span class="px"><b>${eur(a.prix,T)}</b> <span class="og">par seconde de ${esc(v.precision||"vidéo")}</span></span>`+promo;
+      return "";
+    };
+    function show(i,focus){
+      const u=C.usages[i];
+      [...tabs.children].forEach((b,j)=>{b.setAttribute("aria-selected",j===i);b.tabIndex=j===i?0:-1});
+      if(focus)tabs.children[i].focus();
+      $("upanel").setAttribute("aria-labelledby","ut-"+u.id);
+      $("udesc").textContent=u.description;
+      $("usage-date").textContent="Classement Arena du "+fmtDate(u.date_arena);
+      $("urank").innerHTML=u.modeles.map(m=>`<li><span class="rg" aria-hidden="true">${m.rang}</span><span><span class="nm">${esc(m.nom)}</span> <span class="og">· ${esc(lab[m.labo]||m.labo)}</span>${prix(m)}</span></li>`).join("");
+      const labs=[...new Set(u.modeles.map(m=>lab[m.labo]||m.labo))];
+      const subs=(P&&P.abonnements||[]).filter(a=>labs.includes(a.labo));
+      $("usubs").hidden=!subs.length;
+      $("usubs").innerHTML=subs.length?`<h3>Sans coder : les abonnements de ces labos</h3><ul>${subs.map(a=>`<li><a href="${esc(a.lien)}" target="_blank" rel="noopener">${esc(a.offre)}</a> ${a.des?"dès ":""}${nb(a.prix,a.prix%1?2:0)}\u00a0€/mois</li>`).join("")}</ul><p class="note">Prix affichés en France par chaque labo. Les modèles inclus varient selon l'offre.</p>`:"";
+    }
+    tabs.innerHTML=C.usages.map((u,i)=>`<button type="button" role="tab" id="ut-${u.id}" aria-controls="upanel" aria-selected="false" tabindex="-1">${esc(u.label)}</button>`).join("");
+    [...tabs.children].forEach((b,i)=>b.addEventListener("click",()=>show(i)));
+    tabs.addEventListener("keydown",e=>{
+      const k={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+      const cur=[...tabs.children].findIndex(b=>b.getAttribute("aria-selected")==="true");
+      if(k){e.preventDefault();show((cur+k+C.usages.length)%C.usages.length,true)}
+      else if(e.key==="Home"){e.preventDefault();show(0,true)}else if(e.key==="End"){e.preventDefault();show(C.usages.length-1,true)}
+    });
+    $("unote").textContent=(T?`Prix des API hors taxes, convertis du dollar au taux de la BCE du ${fmtDate(P.taux.date)} (1 € = ${nb(T,4)} $). Un million de tokens représente environ 1 000 pages de texte. `:"")+"Quelques points d'écart au classement signifient une quasi-égalité.";
+    sec.hidden=false;
+    show(0);
+  });
+})();
 /* ---------- Publications (one snapshot per Friday) ---------- */
 let SNAPS=[];
 const SORTIES=fetch("sorties.json").then(r=>r.ok?r.json():null).catch(()=>null);

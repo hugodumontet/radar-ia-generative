@@ -1,0 +1,271 @@
+{
+ "maj": "2026-11-19",
+ "note": "Prix vérifiés à la main sur la page officielle de chaque fournisseur. Montants des API en dollars hors taxes (convertis en euros à l'affichage). Abonnements : prix mensuel en euros affiché en France par le fournisseur. Un prix absent = non vérifié, jamais estimé.",
+ "taux": {
+  "eur_usd": 1.0968,
+  "date": "2026-11-18",
+  "source": "Banque centrale européenne",
+  "lien": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.fr.html"
+ },
+ "api": {
+  "Claude Fable 5.2": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 8,
+   "sortie": 40,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-fable-5-2"
+  },
+  "Claude Fable 5.1": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 10,
+   "sortie": 50,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-fable-5-1"
+  },
+  "Claude Fable 5": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 10,
+   "sortie": 50,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-fable-5"
+  },
+  "Claude Opus 5.5": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 4,
+   "sortie": 20,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-opus-5-5"
+  },
+  "Claude Opus 5": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 5,
+   "sortie": 25,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-opus-5"
+  },
+  "Claude Opus 4.7": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 5,
+   "sortie": 25,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-opus-4-7"
+  },
+  "Claude Opus 4.6": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 5,
+   "sortie": 25,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-opus-4-6"
+  },
+  "Claude Sonnet 5.5": {
+   "labo": "Anthropic",
+   "unite": "mtok",
+   "entree": 2,
+   "sortie": 10,
+   "lien": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "claude-sonnet-5-5"
+  },
+  "GPT-6 Astra": {
+   "labo": "OpenAI",
+   "unite": "mtok",
+   "entree": 10,
+   "sortie": 50,
+   "lien": "https://developers.openai.com/api/docs/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "gpt-6-astra"
+  },
+  "GPT-5.6 Sol": {
+   "labo": "OpenAI",
+   "unite": "mtok",
+   "entree": 4,
+   "sortie": 20,
+   "jusqu_au": "2026-11-30",
+   "apres": null,
+   "note": "Prix promotionnel",
+   "lien": "https://developers.openai.com/api/docs/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "gpt-5.6-sol"
+  },
+  "GPT-5.5": {
+   "labo": "OpenAI",
+   "unite": "mtok",
+   "entree": 5,
+   "sortie": 30,
+   "lien": "https://developers.openai.com/api/docs/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "gpt-5.5"
+  },
+  "Gemini 4 Carbon": {
+   "labo": "Google",
+   "unite": "mtok",
+   "entree": 2,
+   "sortie": 10,
+   "jusqu_au": "2026-11-30",
+   "apres": {
+    "entree": 4,
+    "sortie": 20
+   },
+   "note": "Prix de lancement",
+   "lien": "https://ai.google.dev/gemini-api/docs/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "gemini/gemini-4-carbon"
+  },
+  "Gemini 4 Argon": {
+   "labo": "Google",
+   "unite": "mtok",
+   "entree": 2,
+   "sortie": 10,
+   "jusqu_au": "2026-11-30",
+   "apres": {
+    "entree": 4,
+    "sortie": 20
+   },
+   "note": "Prix de lancement",
+   "lien": "https://ai.google.dev/gemini-api/docs/pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "gemini/gemini-4-argon"
+  },
+  "Qwen3.8-Max": {
+   "labo": "Alibaba",
+   "unite": "mtok",
+   "entree": 2,
+   "sortie": 6,
+   "lien": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+   "verifie_le": "2026-11-19",
+   "litellm": "dashscope/qwen3.8-max"
+  },
+  "Gemini Omni 1.2 Flash": {
+   "labo": "Google",
+   "unite": "seconde",
+   "prix": 0.07,
+   "precision": "vidéo 720p",
+   "lien": "https://ai.google.dev/gemini-api/docs/pricing",
+   "verifie_le": "2026-11-19"
+  },
+  "Gemini Omni 1.1 Flash": {
+   "labo": "Google",
+   "unite": "seconde",
+   "prix": 0.1,
+   "precision": "vidéo 720p (estimation Google)",
+   "note": "Remplacé par Omni 1.2 Flash le 03/12/2026",
+   "lien": "https://ai.google.dev/gemini-api/docs/pricing",
+   "verifie_le": "2026-11-19"
+  },
+  "FLUX 3 Video": {
+   "labo": "Black Forest Labs",
+   "unite": "seconde",
+   "prix": 0.15,
+   "precision": "vidéo HD",
+   "lien": "https://bfl.ai/pricing",
+   "verifie_le": "2026-11-19"
+  }
+ },
+ "a_confirmer": {
+  "MiMo-V2.6-Pro": {
+   "raison": "Page tarifs de Xiaomi illisible sans navigateur.",
+   "affiche": "Prix pas encore vérifié par le radar"
+  },
+  "Grok Imagine Video 1.5": {
+   "raison": "Prix absent de la page xAI lue le 19/11.",
+   "affiche": "Prix pas encore vérifié par le radar"
+  },
+  "GPT-Image-2.5 Sunburst": {
+   "raison": "OpenAI facture au token image, sans prix par image publié.",
+   "affiche": "Pas de prix fixe par image : facturé selon la taille et la qualité"
+  },
+  "GPT-Image-2.6 Sunburst": {
+   "raison": "OpenAI facture au token image, sans prix par image publié.",
+   "affiche": "Pas de prix fixe par image : facturé selon la taille et la qualité"
+  },
+  "GPT-Image-2.5 Flare": {
+   "raison": "OpenAI facture au token image, sans prix par image publié.",
+   "affiche": "Pas de prix fixe par image : facturé selon la taille et la qualité"
+  },
+  "GPT-Image-2": {
+   "raison": "OpenAI facture au token image, sans prix par image publié.",
+   "affiche": "Pas de prix fixe par image : facturé selon la taille et la qualité"
+  },
+  "MAI-Image-2.7": {
+   "raison": "Pas de page tarifs Microsoft trouvée.",
+   "affiche": "Prix pas encore vérifié par le radar"
+  },
+  "Gemini Omni Flash": {
+   "raison": "Nom Arena sans numéro de version, correspondance tarifaire incertaine.",
+   "affiche": "Prix pas encore vérifié par le radar"
+  }
+ },
+ "abonnements": [
+  {
+   "labo": "OpenAI",
+   "offre": "ChatGPT Plus",
+   "prix": 23,
+   "lien": "https://chatgpt.com/fr-FR/pricing/",
+   "verifie_le": "2026-11-19"
+  },
+  {
+   "labo": "OpenAI",
+   "offre": "ChatGPT Pro",
+   "prix": 103,
+   "des": true,
+   "lien": "https://chatgpt.com/fr-FR/pricing/",
+   "verifie_le": "2026-11-19"
+  },
+  {
+   "labo": "Anthropic",
+   "offre": "Claude Pro",
+   "prix": 18,
+   "note": "15 € par mois en paiement annuel",
+   "lien": "https://claude.com/fr-fr/pricing",
+   "verifie_le": "2026-11-19"
+  },
+  {
+   "labo": "Anthropic",
+   "offre": "Claude Max",
+   "prix": 90,
+   "des": true,
+   "lien": "https://claude.com/fr-fr/pricing",
+   "verifie_le": "2026-11-19"
+  },
+  {
+   "labo": "Google",
+   "offre": "Google AI Pro",
+   "prix": 21.99,
+   "lien": "https://gemini.google/fr/subscriptions/",
+   "verifie_le": "2026-11-19"
+  },
+  {
+   "labo": "Google",
+   "offre": "Google AI Ultra",
+   "prix": 99.99,
+   "des": true,
+   "lien": "https://gemini.google/fr/subscriptions/",
+   "verifie_le": "2026-11-19"
+  }
+ ],
+ "labos": {
+  "openai": "OpenAI",
+  "anthropic": "Anthropic",
+  "google": "Google",
+  "alibaba": "Alibaba",
+  "xiaomi": "Xiaomi",
+  "microsoft-ai": "Microsoft",
+  "bfl": "Black Forest Labs",
+  "xai": "xAI",
+  "bytedance": "ByteDance"
+ }
+}

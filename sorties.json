@@ -1,6 +1,11 @@
 {
- "maj": "2026-11-18",
+ "maj": "2026-11-20",
  "semaines": [
+  {
+   "publication": "2026-11-20",
+   "debut": "2026-11-18",
+   "fin": "2026-11-19"
+  },
   {
    "publication": "2026-11-18",
    "debut": "2026-11-11",
@@ -13,6 +18,21 @@
   }
  ],
  "sorties": [
+  {
+   "nom": "Gemini 4 Neon",
+   "fournisseur": "Google DeepMind",
+   "date": "2026-11-18",
+   "modalites": "TCM",
+   "lien": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+   "reperes": [
+    {
+     "source": "The Decoder",
+     "lien": "https://the-decoder.com/google-ships-gemini-4-neon-its-fourth-new-gemini-model-in-a-month/"
+    }
+   ],
+   "publication": "2026-11-20",
+   "statut": "attente"
+  },
   {
    "nom": "Gemini 4 Hydrogen",
    "fournisseur": "Google DeepMind",
@@ -108,7 +128,7 @@
     }
    ],
    "publication": "2026-11-06",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "GPT-6 Cyber",
@@ -123,7 +143,7 @@
     }
    ],
    "publication": "2026-11-06",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "ERNIE 5.5 Flash Base",
@@ -138,7 +158,7 @@
     }
    ],
    "publication": "2026-11-06",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "Tencent Hy4",
@@ -153,7 +173,7 @@
     }
    ],
    "publication": "2026-11-06",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "Images 2.6",
@@ -168,7 +188,7 @@
     }
    ],
    "publication": "2026-11-06",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "Kimi K3.1 Pro",

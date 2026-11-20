@@ -1,0 +1,46 @@
+{
+ "publication": "2026-11-20",
+ "debut": "2026-11-18",
+ "fin": "2026-11-19",
+ "retenus": [
+  "Gemini 4 Neon"
+ ],
+ "ecartes": [
+  {
+   "titre": "Genie 4 is now available",
+   "source": "Google DeepMind",
+   "raison": "Genie 4 déjà annoncé le 27/10/2026 (aperçu de recherche) ; ici simple ouverture d'accès aux abonnés"
+  },
+  {
+   "titre": "microsoft/Aion-1.0-Instruct-2.3B (+ variante ONNX-WebGPU)",
+   "source": "Hugging Face (comptes officiels)",
+   "raison": "Aion 1.0 Instruct annoncé à Build (juin 2026) ; publication des poids seulement"
+  },
+  {
+   "titre": "tencent/Hy4-flash, Hy4-base, Hy4-flash-base",
+   "source": "Hugging Face (comptes officiels)",
+   "raison": "Hy4 et Hy4 flash déjà retenus les semaines précédentes ; publication des poids / modèles de base"
+  },
+  {
+   "titre": "nvidia/C-RADIOv4-H-AV",
+   "source": "Hugging Face (comptes officiels)",
+   "raison": "encodeur de vision, hors IA générative"
+  },
+  {
+   "titre": "Google's latest AI model is faster, cheaper and smarter... / Google ships Gemini 4 Neon",
+   "source": "The Decoder",
+   "raison": "articles sur Gemini 4 Neon, retenu via la page officielle"
+  },
+  {
+   "titre": "Deploying Daybreak Red / Get started with Daybreak Blue / Codex Security Plugin / PR scans",
+   "source": "OpenAI",
+   "raison": "guides produits et outils de sécurité, pas de nouveau modèle"
+  },
+  {
+   "titre": "Autres éléments (11)",
+   "source": "OpenAI, Google (blog IA), Anthropic, TechCrunch, The Decoder",
+   "raison": "partenariat (Le Figaro), introduction en bourse d'Anthropic, témoignage client, articles de recherche et de sécurité, fonctionnalités produit (Gemini sur Mac, appareils Android à faible mémoire, Tool Retrieval), étude de coûts OCR, stratégie Microsoft, interview"
+  }
+ ],
+ "sources_en_panne": []
+}

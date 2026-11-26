@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-19",
+ "maj": "2026-11-26",
  "source": {
   "nom": "Arena (LMArena)",
   "licence": "CC BY 4.0",
@@ -11,16 +11,16 @@
    "id": "images",
    "label": "Images",
    "description": "Créer une image à partir d'un texte (visuels, illustrations, publicités).",
-   "date_arena": "2026-11-17",
+   "date_arena": "2026-11-20",
    "modeles": [
     {
      "rang": 1,
      "nom": "GPT-Image-2.5 Sunburst",
      "reglage": "",
      "labo": "openai",
-     "score": 1428,
+     "score": 1429,
      "marge": 5,
-     "votes": 68073,
+     "votes": 73040,
      "licence": "Proprietary"
     },
     {
@@ -28,9 +28,9 @@
      "nom": "GPT-Image-2.6 Sunburst",
      "reglage": "GPT-Image-2.6 Sunburst (Medium)",
      "labo": "openai",
-     "score": 1410,
+     "score": 1412,
      "marge": 9,
-     "votes": 6547,
+     "votes": 7168,
      "licence": "Proprietary"
     },
     {
@@ -40,7 +40,7 @@
      "labo": "openai",
      "score": 1400,
      "marge": 5,
-     "votes": 67372,
+     "votes": 72202,
      "licence": "Proprietary"
     },
     {
@@ -48,9 +48,9 @@
      "nom": "MAI-Image-2.7",
      "reglage": "",
      "labo": "microsoft-ai",
-     "score": 1387,
-     "marge": 12,
-     "votes": 3082,
+     "score": 1385,
+     "marge": 10,
+     "votes": 4485,
      "licence": "Proprietary"
     },
     {
@@ -60,7 +60,7 @@
      "labo": "openai",
      "score": 1382,
      "marge": 4,
-     "votes": 110696,
+     "votes": 112925,
      "licence": "Proprietary"
     }
    ]
@@ -94,7 +94,7 @@
     {
      "rang": 3,
      "nom": "Gemini Omni Flash",
-     "reglage": "",
+     "reglage": "gemini-omni-flash",
      "labo": "google",
      "score": 1509,
      "marge": 8,
@@ -127,16 +127,16 @@
    "id": "sites",
    "label": "Sites web",
    "description": "Créer une page ou un site web complet à partir d'une demande.",
-   "date_arena": "2026-11-15",
+   "date_arena": "2026-11-23",
    "modeles": [
     {
      "rang": 1,
      "nom": "Claude Fable 5.2",
      "reglage": "Claude Fable 5.2 (xHigh)",
      "labo": "anthropic",
-     "score": 1826,
-     "marge": 19,
-     "votes": 1445,
+     "score": 1822,
+     "marge": 15,
+     "votes": 2159,
      "licence": "Proprietary"
     },
     {
@@ -144,9 +144,9 @@
      "nom": "Claude Opus 5.5",
      "reglage": "Claude Opus 5.5 (Max)",
      "labo": "anthropic",
-     "score": 1816,
-     "marge": 12,
-     "votes": 4399,
+     "score": 1820,
+     "marge": 11,
+     "votes": 5121,
      "licence": "Proprietary"
     },
     {
@@ -154,9 +154,9 @@
      "nom": "Claude Sonnet 5.5",
      "reglage": "Claude Sonnet 5.5 (xHigh)",
      "labo": "anthropic",
-     "score": 1772,
-     "marge": 10,
-     "votes": 6120,
+     "score": 1773,
+     "marge": 9,
+     "votes": 6973,
      "licence": "Proprietary"
     },
     {
@@ -164,19 +164,19 @@
      "nom": "Gemini 4 Carbon",
      "reglage": "Gemini 4 Carbon (High)",
      "labo": "google",
-     "score": 1768,
+     "score": 1769,
      "marge": 15,
-     "votes": 2105,
+     "votes": 2091,
      "licence": "Proprietary"
     },
     {
      "rang": 5,
-     "nom": "GPT-6 Astra",
-     "reglage": "GPT-6 Astra (Max)",
-     "labo": "openai",
-     "score": 1763,
-     "marge": 8,
-     "votes": 8685,
+     "nom": "Gemini 4 Neon",
+     "reglage": "Gemini 4 Neon (xHigh)",
+     "labo": "google",
+     "score": 1765,
+     "marge": 14,
+     "votes": 2308,
      "licence": "Proprietary"
     }
    ]
@@ -185,46 +185,46 @@
    "id": "code",
    "label": "Code",
    "description": "Écrire, corriger et expliquer du code (scripts, automatisations).",
-   "date_arena": "2026-11-11",
+   "date_arena": "2026-11-22",
    "modeles": [
     {
      "rang": 1,
      "nom": "Gemini 4 Carbon",
      "reglage": "Gemini 4 Carbon (High)",
      "labo": "google",
-     "score": 1564,
+     "score": 1563,
      "marge": 19,
-     "votes": 1069,
+     "votes": 1059,
      "licence": "Proprietary"
     },
     {
      "rang": 2,
-     "nom": "Claude Opus 5.5",
-     "reglage": "Claude Opus 5.5 (High)",
-     "labo": "anthropic",
-     "score": 1543,
-     "marge": 11,
-     "votes": 3460,
+     "nom": "Gemini 4 Neon",
+     "reglage": "Gemini 4 Neon (High)",
+     "labo": "google",
+     "score": 1555,
+     "marge": 17,
+     "votes": 1320,
      "licence": "Proprietary"
     },
     {
      "rang": 3,
-     "nom": "Gemini 4 Argon",
-     "reglage": "Gemini 4 Argon (High)",
-     "labo": "google",
-     "score": 1540,
-     "marge": 9,
-     "votes": 4833,
+     "nom": "Claude Opus 5.5",
+     "reglage": "Claude Opus 5.5 (High)",
+     "labo": "anthropic",
+     "score": 1543,
+     "marge": 10,
+     "votes": 4152,
      "licence": "Proprietary"
     },
     {
      "rang": 4,
-     "nom": "Claude Opus 4.6",
-     "reglage": "",
-     "labo": "anthropic",
-     "score": 1534,
-     "marge": 5,
-     "votes": 24530,
+     "nom": "Gemini 4 Argon",
+     "reglage": "Gemini 4 Argon (High)",
+     "labo": "google",
+     "score": 1540,
+     "marge": 8,
+     "votes": 6727,
      "licence": "Proprietary"
     },
     {
@@ -232,9 +232,9 @@
      "nom": "MiMo-V2.6-Pro",
      "reglage": "",
      "labo": "xiaomi",
-     "score": 1534,
+     "score": 1535,
      "marge": 18,
-     "votes": 1091,
+     "votes": 1087,
      "licence": "MIT"
     }
    ]
@@ -243,56 +243,56 @@
    "id": "recherche",
    "label": "Recherche web",
    "description": "Répondre en cherchant sur internet, avec des sources.",
-   "date_arena": "2026-11-09",
+   "date_arena": "2026-11-19",
    "modeles": [
     {
      "rang": 1,
-     "nom": "Qwen3.8-Max",
+     "nom": "Amazon-Web-Search-Agent",
      "reglage": "",
-     "labo": "alibaba",
-     "score": 1260,
-     "marge": 14,
-     "votes": 1998,
+     "labo": "amazon",
+     "score": 1266,
+     "marge": 15,
+     "votes": 1565,
      "licence": "Proprietary"
     },
     {
      "rang": 2,
-     "nom": "GPT-5.6 Sol",
-     "reglage": "GPT-5.6 Sol (xHigh)",
-     "labo": "openai",
-     "score": 1258,
-     "marge": 6,
-     "votes": 62364,
+     "nom": "Qwen3.8-Max",
+     "reglage": "",
+     "labo": "alibaba",
+     "score": 1261,
+     "marge": 11,
+     "votes": 3737,
      "licence": "Proprietary"
     },
     {
      "rang": 3,
+     "nom": "GPT-5.6 Sol",
+     "reglage": "GPT-5.6 Sol (xHigh)",
+     "labo": "openai",
+     "score": 1256,
+     "marge": 6,
+     "votes": 68265,
+     "licence": "Proprietary"
+    },
+    {
+     "rang": 4,
      "nom": "Claude Opus 4.6",
      "reglage": "Claude Opus 4.6 (Search)",
      "labo": "anthropic",
      "score": 1252,
      "marge": 5,
-     "votes": 166732,
+     "votes": 165940,
      "licence": "Proprietary"
     },
     {
-     "rang": 4,
+     "rang": 5,
      "nom": "GPT-5.5",
      "reglage": "GPT-5.5 (Search)",
      "labo": "openai",
      "score": 1246,
      "marge": 5,
-     "votes": 121489,
-     "licence": "Proprietary"
-    },
-    {
-     "rang": 5,
-     "nom": "Claude Opus 5",
-     "reglage": "Claude Opus 5 (High)",
-     "labo": "anthropic",
-     "score": 1239,
-     "marge": 7,
-     "votes": 34000,
+     "votes": 127296,
      "licence": "Proprietary"
     }
    ]

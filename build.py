@@ -24,6 +24,10 @@ calcul, lien, source] avec source = "e" (Epoch), "o" (annonce officielle), "m" (
 import csv, json, math, re, sys
 
 csv.field_size_limit(10**9)
+if len(sys.argv) != 10:
+    # Ancien appel (avant la v23 : build.py notable.csv frontier.csv data.json D) : on ne touche à rien.
+    sys.exit("build.py attend 9 arguments depuis la v23 : data.json n'a pas été modifié. "
+             "Les consignes de la tâche du vendredi sont à mettre à jour (doc claude/consignes-tache-vendredi.md du projet).")
 (all_p, notable_p, md_p, or_p, sorties_p, alias_p, labos_p, out, updated) = sys.argv[1:10]
 
 GEN = re.compile(r"generation|chat|text-to-|image-to-|video-to-|speech synthesis|tts|language modeling|autocompletion|summarization|translation|image editing|image completion|code|question answering|coding|instruction", re.I)

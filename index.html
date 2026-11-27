@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Tous les modèles d'IA générative depuis 2018 (texte, code, image, vidéo, audio), et les nouveaux dès leur sortie, filtrables par pays, fournisseur, modalité et accès, avec les meilleurs modèles par usage et leurs prix en euros. Mis à jour chaque vendredi.">
+<meta name="description" content="Tous les modèles d'IA générative, de l'historique aux nouveaux dès leur sortie (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès, avec les meilleurs modèles par usage et leurs prix en euros. Mis à jour chaque vendredi.">
 <meta name="author" content="Hugo Dumontet">
 <meta name="robots" content="noindex, follow">
 <meta property="og:title" content="Radar des modèles IA générative">
@@ -11,10 +11,10 @@
 <meta property="og:image" content="https://hugodumontet.github.io/radar-ia-generative/apercu-partage.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Radar des modèles IA générative : tous les modèles d'IA générative depuis 2018 et les nouveaux dès leur sortie, mis à jour chaque vendredi">
+<meta property="og:image:alt" content="Radar des modèles IA générative : tous les modèles d'IA générative, de l'historique aux nouveaux dès leur sortie, mis à jour chaque vendredi">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Tous les modèles d'IA générative depuis 2018, et les nouveaux dès leur sortie. Mis à jour chaque vendredi.">
+<meta property="og:description" content="Tous les modèles d'IA générative, de l'historique aux nouveaux dès leur sortie. Mis à jour chaque vendredi.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://hugodumontet.github.io/radar-ia-generative/">
 <title>Radar des modèles IA</title>
@@ -457,7 +457,7 @@ a.xtog{text-decoration:none}
   <header class="hero">
     <div class="hero-txt">
       <div class="titre"><h1>Radar des modèles IA</h1><span class="beta" id="beta" title="Le radar est encore en développement">Bêta</span></div>
-      <p class="sub">Toutes les sorties de modèles d'IA générative depuis 2018, au même endroit : qui sort quoi, quand, d'où, et comment y accéder (texte, code, image, vidéo, audio). Mis à jour chaque vendredi.</p>
+      <p class="sub">Toutes les sorties de modèles d'IA générative, de l'historique aux nouveautés, au même endroit : qui sort quoi, quand, d'où, et comment y accéder (texte, code, image, vidéo, audio). Mis à jour chaque vendredi.</p>
       <p class="byline">Conçu par <a href="https://www.linkedin.com/in/hugodumontet/" target="_blank" rel="noopener">Hugo DUMONTET</a> avec Claude</p>
       <div class="stamp">
         <label class="label" for="snap">Publication affichée</label>
@@ -480,7 +480,7 @@ a.xtog{text-decoration:none}
     <div class="xrow">
       <h2 id="explain-title" class="xt">Quels modèles d'IA générative ?</h2>
       <p><span class="badge b-fr">Dès leur sortie</span> Les nouveaux modèles d'une soixantaine de labos (OpenAI, Google, Mistral…), ajoutés chaque vendredi.</p>
-      <p><span class="badge b-fr">Depuis 2018</span> Tout l'historique, y compris les modèles de recherche qui ont marqué l'IA.</p>
+      <p><span class="badge b-fr">Tout l'historique</span> Les modèles qui ont marqué l'IA, des premiers réseaux de neurones aux grands modèles d'aujourd'hui.</p>
       <a class="xtog" id="xtog" href="#methode">En savoir plus <span aria-hidden="true">↓</span></a>
     </div>
   </section>
@@ -604,7 +604,7 @@ a.xtog{text-decoration:none}
     <div class="guide g2">
         <div>
           <h3>Ce qui entre dans le radar</h3>
-          <p>Un modèle d'IA générative (texte, code, image, vidéo, audio) sorti depuis 2018, s'il remplit au moins une condition :</p>
+          <p>Un modèle dont le domaine et la tâche font partie de la sélection du radar (texte, code, image, vidéo, audio, vision, parole, robotique…), quelle que soit sa date de sortie, s'il remplit au moins une condition :</p>
           <ul>
             <li>il vient d'un des labos suivis (OpenAI, Google, Anthropic, Mistral, Meta, Alibaba, DeepSeek, Black Forest Labs, ElevenLabs…) ;</li>
             <li>le public peut l'utiliser (il est proposé sur <a href="https://models.dev" target="_blank" rel="noopener">models.dev</a> ou <a href="https://openrouter.ai/models" target="_blank" rel="noopener">OpenRouter</a>) ;</li>
@@ -698,7 +698,7 @@ function passes(r){
   if(state.mod&&!r[4].includes(state.mod))return false;
   return inPeriod(r)}
 function bindCatalogue(){
-  msPeriod=makeMS($("f-period"),{presets:[{v:"30",l:"30 derniers jours"},{v:"90",l:"90 derniers jours"},{v:"all",l:"Depuis 2018"}],def:"all",unit:"années",labelledby:"l-f-period",onChange:update});
+  msPeriod=makeMS($("f-period"),{presets:[{v:"30",l:"30 derniers jours"},{v:"90",l:"90 derniers jours"},{v:"all",l:"Toutes les années"}],def:"all",unit:"années",labelledby:"l-f-period",onChange:update});
   fillSelect($("f-acc"),"Tous les accès",[["open","Open source (toutes licences)"],["api","API ou appli (fermé)"],["closed","Non publié ou restreint"],["open-nc","Open source, non commercial"],["hosted","Appli seulement"]]);
   $("mods").innerHTML='<span class="label" style="margin-right:4px">Modalité</span><button class="chip" type="button" data-m="" aria-pressed="true">Toutes</button>'+Object.entries(MOD).map(([k,l])=>`<button class="chip" type="button" data-m="${k}" aria-pressed="false">${l}</button>`).join("");
   $("mods").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;state.mod=b.dataset.m;setPressed($("mods"),"m",state.mod);update()});
@@ -759,25 +759,25 @@ function kpis(){
   const y=UPDATED.slice(0,4);
   $("k-year-l").textContent="Sorties en "+y;
   $("k-total").textContent=DATA.length.toLocaleString("fr-FR");
-  $("k-total-d").textContent="depuis 2018, de "+new Set(DATA.map(org1).filter(Boolean)).size+" fournisseurs";
+  $("k-total-d").textContent="depuis "+YEARS[0]+", de "+new Set(DATA.map(org1).filter(Boolean)).size+" fournisseurs";
   const yr=DATA.filter(r=>r[2].startsWith(y));
   $("k-year").textContent=yr.length;
   const prev=DATA.filter(r=>r[2].startsWith(String(+y-1))&&r[2].slice(5)<=UPDATED.slice(5)).length;
   $("k-year-d").textContent="contre "+prev+" à la même date en "+(+y-1);
   const op=DATA.filter(r=>ACC_GROUP[r[5]]==="open");
   $("k-open").textContent=Math.round(op.length/Math.max(DATA.length,1)*100)+" %";
-  $("k-open-d").textContent=op.length+" depuis 2018, dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois";
+  $("k-open-d").textContent=op.length+" depuis "+YEARS[0]+", dont "+op.filter(r=>ctyOf(r)[0]==="CN").length+" chinois";
   const eu=DATA.filter(r=>EU.has(ctyOf(r)[0]));
   $("k-eu").textContent=eu.length;
-  $("k-eu-d").textContent="depuis 2018, dont "+eu.filter(r=>ctyOf(r)[0]==="FR").length+" en France";
+  $("k-eu-d").textContent="depuis "+YEARS[0]+", dont "+eu.filter(r=>ctyOf(r)[0]==="FR").length+" en France";
 }
 
 /* ---------- Chart (drawn at the container's real width, in pixels) ---------- */
 let msCtYears,msCtCountries,msCcYears,msCcQ;
 function bindChart(){
-  msCtYears=makeMS($("ct-years"),{presets:[{v:"",l:"Depuis 2018"}],def:"",unit:"années",labelledby:"l-ct-years",onChange:chart});
+  msCtYears=makeMS($("ct-years"),{presets:[{v:"",l:"Toutes les années"}],def:"",unit:"années",labelledby:"l-ct-years",onChange:chart});
   msCtCountries=makeMS($("ct-countries"),{presets:[{v:"",l:"Tous les pays"}],def:"",unit:"pays",labelledby:"l-ct-countries",onChange:chart});
-  msCcYears=makeMS($("cc-years"),{presets:[{v:"",l:"Depuis 2018"}],def:"",unit:"années",labelledby:"l-cc-years",onChange:chart});
+  msCcYears=makeMS($("cc-years"),{presets:[{v:"",l:"Toutes les années"}],def:"",unit:"années",labelledby:"l-cc-years",onChange:chart});
   msCcQ=makeMS($("cc-q"),{presets:[{v:"",l:"Toute l'année"}],def:"",unit:"trimestres",labelledby:"l-cc-q",onChange:chart});
   msCcQ.setOptions([1,2,3,4].map(q=>({v:""+q,l:"T"+q+" ("+["janv.–mars","avr.–juin","juil.–sept.","oct.–déc."][q-1]+")",short:"T"+q})));
   $("c-view").addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;cs.view=b.dataset.v;setPressed($("c-view"),"v",cs.view);
@@ -846,7 +846,7 @@ function chartCountry(){
     s+=`<text class="lbl" x="${L-10}" y="${y+18}" text-anchor="end">${esc(label)}</text><rect x="${L}" y="${y+6}" width="${w.toFixed(1)}" height="${rowH-11}" rx="${4}" fill="var(${col})"${edge}/><text class="v" x="${(L+w+6).toFixed(1)}" y="${y+18}">${n}</text>`});
   s+="</svg>";
   $("chart").innerHTML=s;$("swipe").hidden=true;
-  const yTxt=ys?[...ys].sort().join(", "):"depuis 2018";const qTxt=qs?" · trimestres "+[...qs].sort().map(q=>"T"+q).join(", "):"";
+  const yTxt=ys?[...ys].sort().join(", "):"toutes les années";const qTxt=qs?" · trimestres "+[...qs].sort().map(q=>"T"+q).join(", "):"";
   $("chart-note").textContent=`${rows.length} sorties (${yTxt}${qTxt}), classées par pays du premier fournisseur.`;
 }
 

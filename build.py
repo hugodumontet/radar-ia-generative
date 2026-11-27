@@ -10,7 +10,9 @@ Sources (une seule ligne par modèle, dans cet ordre de priorité) :
   3. models.dev (MIT) : modèles disponibles dès leur sortie, labos suivis seulement.
   OpenRouter ne crée aucune ligne : il sert seulement à savoir si un modèle est utilisable par le public.
 
-Critère d'entrée d'un modèle Epoch (au moins un des trois) :
+Critère d'entrée d'un modèle Epoch, toutes années confondues :
+  - il passe la sélection Domain ET Task de Hugo (DOMAINES, TACHES ci-dessous) ;
+  - et il remplit au moins une de ces trois conditions :
   - il vient d'un labo suivi (labos.json) ;
   - il est utilisable par le public (présent sur models.dev ou OpenRouter) ;
   - Epoch le classe « notable ».
@@ -30,15 +32,48 @@ if len(sys.argv) != 10:
              "Les consignes de la tâche du vendredi sont à mettre à jour (doc claude/consignes-tache-vendredi.md du projet).")
 (all_p, notable_p, md_p, or_p, sorties_p, alias_p, labos_p, out, updated) = sys.argv[1:10]
 
-GEN = re.compile(r"generation|chat|text-to-|image-to-|video-to-|speech synthesis|tts|language modeling|autocompletion|summarization|translation|image editing|image completion|code|question answering|coding|instruction", re.I)
-SKIP = {"Biology", "Medicine", "Earth science", "Materials science", "Robotics", "Games"}
+# Sélection de Hugo dans le fichier complet d'Epoch (v23.1) : un modèle entre si AU MOINS un de ses
+# domaines ET AU MOINS une de ses tâches sont dans ces listes. Fiche sans domaine ou sans tâche = écartée.
+DOMAINES = {"audio", "cybersecurity", "image generation", "language", "multimodal", "other", "recommendation",
+            "robotics", "search", "speech", "video", "vision"}
+TACHES = {t.lower() for t in [
+    "Action recognition", "Agentic tasks", "Agentic workflows", "Audio classification", "Audio generation",
+    "Audio question answering", "Checkers", "Click-through rate prediction", "Cloud monitoring / analysis",
+    "Code autocompletion", "Code edit prediction", "Code generation", "Coding", "Constrained text output",
+    "Crop Mapping / Segmentation", "Data analytics", "Digit recognition", "Document classification",
+    "Document representation", "Financial management", "Image captioning", "Image classification",
+    "Image clustering", "Image completion", "Image editing", "Image embedding", "Image generation",
+    "Image representation", "Image segmentation", "Image super-resolution", "Image Understanding",
+    "Image-to-image", "Image-to-video", "Instruction interpretation", "Language generation", "Language modeling",
+    "Language modeling/generation", "Language Structure Modeling", "Multi-class classification",
+    "Multimodal understanding", "Music generation", "Neural architecture Search - NAS",
+    "Neural architecture search for computer vision", "Numerical simulation", "Part-of-speech tagging",
+    "Proof generation", "Proof verification", "Proof writing", "Quantitative reasoning", "Reasoning",
+    "Robotic manipulation", "Search", "Semantic embedding", "Semantic search", "Semantic segmentation",
+    "Software vulnerability discovery and exploitation", "Speech", "Speech completion",
+    "Speech recognition (ASR)", "Speech synthesis", "Speech-to-speech", "Speech-to-text", "System control",
+    "Table tasks", "Text autocompletion", "Text classification", "Text summarization", "Text-to-image",
+    "Text-to-speech (TTS)", "Text-to-video", "Tool use", "Transcription", "Translation", "Video",
+    "Video classification", "Video compression", "Video description", "Video editing", "Video generation",
+    "Video understanding", "Video-to-image", "Video-to-video", "Virus-host association prediction",
+    "Voice identification", "Word sense disambiguation", "Zero-shot image classification",
+    # Ajoutées à la demande de Hugo (27/11/2026) : tâches génératives absentes de sa première liste.
+    "Chat", "Question answering", "Visual question answering", "Character recognition (OCR)",
+    "Retrieval-augmented generation"]}
+
+def valeurs(s):
+    return [x.strip().lower() for x in (s or "").split(",") if x.strip()]
+
+def selection_epoch(r):
+    return (any(d in DOMAINES for d in valeurs(r.get("Domain")))
+            and any(t in TACHES for t in valeurs(r.get("Task"))))
 C = {"United States of America":"US","China":"CN","France":"FR","United Kingdom":"GB","South Korea":"KR","Canada":"CA","Germany":"DE","Australia":"AU","Hong Kong":"HK","Israel":"IL","Singapore":"SG","Japan":"JP","Switzerland":"CH","Finland":"FI","United Arab Emirates":"AE","India":"IN","Austria":"AT","Belgium":"BE","Netherlands":"NL","Saudi Arabia":"SA","Taiwan":"TW","Norway":"NO","Russia":"RU","Spain":"ES","Sweden":"SE","Italy":"IT","Brazil":"BR","Denmark":"DK","Poland":"PL","Ireland":"IE","Vietnam":"VN","Turkey":"TR","Indonesia":"ID","Czech Republic":"CZ","Portugal":"PT"}
 A = {"API access":"api","Hosted access (no API)":"hosted","Limited access":"limited","Open weights (unrestricted)":"open","Open weights (restricted use)":"open-r","Open weights (non-commercial)":"open-nc","Unreleased":"unrel"}
 # Variantes de models.dev qui doublonnent un modèle déjà listé (alias « latest », instantanés datés).
 VARIANTE = re.compile(r"\(latest\)|-latest$|\b(19|20)\d{2}(\d{2})?\b$|\b\d{2}\.\d{2}\b|\b\d{4}$|\b\d{2}-\d{2}$|\(\d{4}-\d{2}-\d{2}\)"
                       r"|highspeed|ultraspeed|\(fast\)|custom tools", re.I)
-# Modèles qui ne génèrent pas de contenu (recherche, modération, transcription) : hors radar.
-NON_GEN = re.compile(r"embed|rerank|guard|safety|moderation|transcri|whisper|\bstt\b", re.I)
+# models.dev seulement : filtres de modération et de classement de résultats, hors sélection de Hugo.
+NON_GEN = re.compile(r"rerank|guard|safety|moderation", re.I)
 # models.dev ne sert qu'à la fraîcheur : il n'ajoute que les sorties à partir de cette date.
 # L'historique reste celui d'Epoch (sinon doublons d'écriture : « Claude Sonnet 3.7 » / « Claude 3.7 Sonnet »).
 MD_DEPUIS = "2026-10-01"
@@ -125,11 +160,7 @@ compte = {"labo": 0, "public": 0, "notable": 0, "derive": 0}
 for r in recs:
     date = (r.get("Publication date") or "")[:10]
     org1 = premier(r.get("Organization"))
-    # Une fiche toute fraîche d'un labo suivi n'a souvent pas encore sa tâche : on la garde.
-    frais = not (r.get("Task") or "").strip() and org1 in LAB_EPOCH and date >= "2025"
-    if date < "2018" or (r.get("Domain") or "").strip() in SKIP or not (frais or GEN.search(r.get("Task") or "")):
-        continue
-    if NON_GEN.search(r["Model"]):
+    if not date or not selection_epoch(r):
         continue
     notable = r["Model"] in notables or bool((r.get("Notability criteria") or "").strip())
     labo = org1 in LAB_EPOCH
@@ -179,7 +210,7 @@ def mods_md(m):
 n_off = 0
 for s in load_json(sorties_p, {"sorties": []}).get("sorties", []):
     k = cles(s["nom"], s.get("fournisseur", ""))
-    if k & (vus | EPOCH_CLES) or (s.get("date") or "") < "2018":
+    if k & (vus | EPOCH_CLES) or not s.get("date"):
         continue
     lab = LAB_NOM.get(norm(s.get("fournisseur"))) or LAB_NOM.get(norm(premier(s.get("fournisseur"))))
     acc = next((ACCES_MD[x] for x in k if x in ACCES_MD), "?")

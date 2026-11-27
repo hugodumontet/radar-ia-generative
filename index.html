@@ -773,11 +773,13 @@ function kpis(){
 }
 
 /* ---------- Chart (drawn at the container's real width, in pixels) ---------- */
+// Le graphique part de 2022 par défaut (l'historique complet reste dans le catalogue et dans le choix des années).
+const CHART_DEBUT="2022";
 let msCtYears,msCtCountries,msCcYears,msCcQ;
 function bindChart(){
-  msCtYears=makeMS($("ct-years"),{presets:[{v:"",l:"Toutes les années"}],def:"",unit:"années",labelledby:"l-ct-years",onChange:chart});
+  msCtYears=makeMS($("ct-years"),{presets:[{v:"",l:"Depuis "+CHART_DEBUT}],def:"",unit:"années",labelledby:"l-ct-years",onChange:chart});
   msCtCountries=makeMS($("ct-countries"),{presets:[{v:"",l:"Tous les pays"}],def:"",unit:"pays",labelledby:"l-ct-countries",onChange:chart});
-  msCcYears=makeMS($("cc-years"),{presets:[{v:"",l:"Toutes les années"}],def:"",unit:"années",labelledby:"l-cc-years",onChange:chart});
+  msCcYears=makeMS($("cc-years"),{presets:[{v:"",l:"Depuis "+CHART_DEBUT}],def:"",unit:"années",labelledby:"l-cc-years",onChange:chart});
   msCcQ=makeMS($("cc-q"),{presets:[{v:"",l:"Toute l'année"}],def:"",unit:"trimestres",labelledby:"l-cc-q",onChange:chart});
   msCcQ.setOptions([1,2,3,4].map(q=>({v:""+q,l:"T"+q+" ("+["janv.–mars","avr.–juin","juil.–sept.","oct.–déc."][q-1]+")",short:"T"+q})));
   $("c-view").addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;cs.view=b.dataset.v;setPressed($("c-view"),"v",cs.view);
@@ -795,7 +797,7 @@ const chartW=()=>Math.max(280,$("chart").clientWidth||900);
 function chart(){cs.view==="time"?chartTime():chartCountry()}
 function chartTime(){
   const ey=+UPDATED.slice(0,4),em=+UPDATED.slice(5,7);
-  const years=msCtYears.all()?YEARS.map(Number):[...msCtYears.vals].map(Number).sort((a,b)=>a-b);
+  const years=msCtYears.all()?YEARS.filter(y=>y>=CHART_DEBUT).map(Number):[...msCtYears.vals].map(Number).sort((a,b)=>a-b);
   const ctySet=msCtCountries.all()?null:msCtCountries.vals;
   const keys=[];
   years.forEach(y=>{
@@ -829,7 +831,7 @@ function chartTime(){
   $("chart-note").textContent=`Une barre par ${unit}, couleur selon le pays du fournisseur. La période la plus récente est en cours. ${n} modèles affichés.`;
 }
 function chartCountry(){
-  const ys=msCcYears.all()?null:msCcYears.vals,qs=msCcQ.all()?null:msCcQ.vals;
+  const ys=msCcYears.all()?new Set(YEARS.filter(y=>y>=CHART_DEBUT)):msCcYears.vals,qs=msCcQ.all()?null:msCcQ.vals;
   const rows=DATA.filter(r=>(!ys||ys.has(r[2].slice(0,4)))&&(!qs||qs.has(""+qOf(r[2]))));
   const C={};rows.forEach(r=>{const c=ctyOf(r)[0]||"";C[c]=(C[c]||0)+1});
   const list=Object.entries(C).sort((a,b)=>b[1]-a[1]);
@@ -846,7 +848,7 @@ function chartCountry(){
     s+=`<text class="lbl" x="${L-10}" y="${y+18}" text-anchor="end">${esc(label)}</text><rect x="${L}" y="${y+6}" width="${w.toFixed(1)}" height="${rowH-11}" rx="${4}" fill="var(${col})"${edge}/><text class="v" x="${(L+w+6).toFixed(1)}" y="${y+18}">${n}</text>`});
   s+="</svg>";
   $("chart").innerHTML=s;$("swipe").hidden=true;
-  const yTxt=ys?[...ys].sort().join(", "):"toutes les années";const qTxt=qs?" · trimestres "+[...qs].sort().map(q=>"T"+q).join(", "):"";
+  const yTxt=msCcYears.all()?"depuis "+CHART_DEBUT:[...ys].sort().join(", ");const qTxt=qs?" · trimestres "+[...qs].sort().map(q=>"T"+q).join(", "):"";
   $("chart-note").textContent=`${rows.length} sorties (${yTxt}${qTxt}), classées par pays du premier fournisseur.`;
 }
 

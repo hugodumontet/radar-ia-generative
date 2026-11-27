@@ -33,7 +33,7 @@ if len(sys.argv) != 10:
 (all_p, notable_p, md_p, or_p, sorties_p, alias_p, labos_p, out, updated) = sys.argv[1:10]
 
 # Sélection de Hugo dans le fichier complet d'Epoch (v23.1) : un modèle entre si AU MOINS un de ses
-# domaines ET AU MOINS une de ses tâches sont dans ces listes. Fiche sans domaine ou sans tâche = écartée.
+# domaines ET AU MOINS une de ses tâches sont dans ces listes. Un champ encore vide chez Epoch ne l'écarte pas.
 DOMAINES = {"audio", "cybersecurity", "image generation", "language", "multimodal", "other", "recommendation",
             "robotics", "search", "speech", "video", "vision"}
 TACHES = {t.lower() for t in [
@@ -65,8 +65,11 @@ def valeurs(s):
     return [x.strip().lower() for x in (s or "").split(",") if x.strip()]
 
 def selection_epoch(r):
-    return (any(d in DOMAINES for d in valeurs(r.get("Domain")))
-            and any(t in TACHES for t in valeurs(r.get("Task"))))
+    # Un champ vide ne compte pas contre le modèle : Epoch remplit Domain et Task en retard
+    # (GPT-5.2, o3-pro, sorties fraîches). Un champ rempli doit, lui, être dans la sélection.
+    d, t = valeurs(r.get("Domain")), valeurs(r.get("Task"))
+    return ((not d or any(x in DOMAINES for x in d))
+            and (not t or any(x in TACHES for x in t)))
 C = {"United States of America":"US","China":"CN","France":"FR","United Kingdom":"GB","South Korea":"KR","Canada":"CA","Germany":"DE","Australia":"AU","Hong Kong":"HK","Israel":"IL","Singapore":"SG","Japan":"JP","Switzerland":"CH","Finland":"FI","United Arab Emirates":"AE","India":"IN","Austria":"AT","Belgium":"BE","Netherlands":"NL","Saudi Arabia":"SA","Taiwan":"TW","Norway":"NO","Russia":"RU","Spain":"ES","Sweden":"SE","Italy":"IT","Brazil":"BR","Denmark":"DK","Poland":"PL","Ireland":"IE","Vietnam":"VN","Turkey":"TR","Indonesia":"ID","Czech Republic":"CZ","Portugal":"PT"}
 A = {"API access":"api","Hosted access (no API)":"hosted","Limited access":"limited","Open weights (unrestricted)":"open","Open weights (restricted use)":"open-r","Open weights (non-commercial)":"open-nc","Unreleased":"unrel"}
 # Variantes de models.dev qui doublonnent un modèle déjà listé (alias « latest », instantanés datés).

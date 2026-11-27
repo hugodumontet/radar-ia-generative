@@ -1,6 +1,11 @@
 {
- "maj": "2026-11-20",
+ "maj": "2026-11-27",
  "semaines": [
+  {
+   "publication": "2026-11-27",
+   "debut": "2026-11-20",
+   "fin": "2026-11-26"
+  },
   {
    "publication": "2026-11-20",
    "debut": "2026-11-18",
@@ -50,7 +55,7 @@
     }
    ],
    "publication": "2026-11-18",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "GPT-6.2 Astra",
@@ -113,7 +118,7 @@
    "modalites": "I",
    "lien": "https://minimax.io/blog/minimax-h3-image",
    "publication": "2026-11-18",
-   "statut": "attente"
+   "statut": "pas_encore"
   },
   {
    "nom": "Gemini Omni 1.2 Flash",

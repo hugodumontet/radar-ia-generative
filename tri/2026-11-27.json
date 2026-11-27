@@ -1,0 +1,23 @@
+{
+ "publication": "2026-11-27",
+ "debut": "2026-11-20",
+ "fin": "2026-11-26",
+ "retenus": [],
+ "ecartes": [
+  {
+   "titre": "Anthropic announces closing of initial public offering…",
+   "source": "Anthropic",
+   "raison": "opération financière, pas une sortie de modèle"
+  }
+ ],
+ "sources_en_panne": [
+  "OpenAI (refus du proxy réseau : domaine non autorisé)",
+  "Google DeepMind (refus du proxy réseau : domaine non autorisé)",
+  "Google (blog IA) (refus du proxy réseau : domaine non autorisé)",
+  "Mistral AI (refus du proxy réseau : domaine non autorisé)",
+  "Hugging Face (comptes officiels) (refus du proxy réseau : domaine non autorisé)",
+  "TechCrunch (refus du proxy réseau : domaine non autorisé)",
+  "Ars Technica (refus du proxy réseau : domaine non autorisé)",
+  "The Decoder (refus du proxy réseau : domaine non autorisé)"
+ ]
+}

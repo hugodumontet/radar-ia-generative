@@ -123,7 +123,22 @@ def hf(s):
             items.append((m["id"], f"https://huggingface.co/{m['id']}", d))
     return items
 
-LECTEURS = {"rss": rss, "anthropic": anthropic, "hf": hf}
+def openrouter(s):
+    # Catalogue OpenRouter : « created » = date d'ajout chez OpenRouter, pas date de sortie.
+    # Sert seulement à repérer un nouveau modèle d'un labo suivi (labos.json) ; la date se vérifie à la source officielle.
+    import os
+    labos = json.load(open(os.path.join(os.path.dirname(os.path.abspath(src_path)), "labos.json"), encoding="utf-8"))["labos"]
+    prefixes = {p for l in labos for p in l["or"]}
+    items = []
+    for m in json.loads(get(s["url"]))["data"]:
+        p = m["id"].split("/")[0].lstrip("~")
+        if p not in prefixes or BRUIT_HF.search(m["id"]) or ":" in m["id"] or re.search(r"embed|rerank|guard|transcri|whisper", m["id"], re.I):
+            continue
+        d = dt.datetime.fromtimestamp(m.get("created") or 0, dt.timezone.utc).date()
+        items.append((m.get("name") or m["id"], f"https://openrouter.ai/{m['id']}", d))
+    return items
+
+LECTEURS = {"rss": rss, "anthropic": anthropic, "hf": hf, "openrouter": openrouter}
 sources = json.load(open(src_path, encoding="utf-8"))["sources"]
 candidats, etat = [], []
 for s in sources:
@@ -138,13 +153,13 @@ for s in sources:
     for titre, lien, d in items:
         if not d or not (D0 <= d <= D1) or lien in vus:
             continue
-        if s["role"] == "reperage" and not MOTS.search(titre or ""):
+        if s["role"] == "reperage" and s["type"] == "rss" and not MOTS.search(titre or ""):
             continue
         vus.add(lien)
         garde += 1
         candidats.append({"date": d.isoformat(), "source": s["nom"], "role": s["role"],
                           "titre": re.sub(r"\s+", " ", titre or "").strip(), "lien": lien})
-    complet = bool(dates) and (min(dates) <= D0 or s["type"] == "hf")
+    complet = bool(dates) and (min(dates) <= D0 or s["type"] in ("hf", "openrouter"))
     etat.append({"source": s["nom"], "ok": True, "elements": len(items), "gardes": garde,
                  "plus_ancien": min(dates).isoformat() if dates else None,
                  "semaine_couverte": complet})

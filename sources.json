@@ -32,6 +32,12 @@
       "url": "https://www.anthropic.com/news"
     },
     {
+      "nom": "ElevenLabs",
+      "role": "officiel",
+      "type": "rss",
+      "url": "https://elevenlabs.io/blog/rss.xml"
+    },
+    {
       "nom": "Hugging Face (comptes officiels)",
       "role": "officiel",
       "type": "hf",
@@ -74,6 +80,12 @@
       "role": "reperage",
       "type": "rss",
       "url": "https://the-decoder.com/feed/"
+    },
+    {
+      "nom": "OpenRouter (catalogue)",
+      "role": "reperage",
+      "type": "openrouter",
+      "url": "https://openrouter.ai/api/v1/models?output_modalities=all"
     }
   ]
 }

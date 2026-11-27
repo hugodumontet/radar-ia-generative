@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Tous les modèles d'IA générative frontier et notables depuis 2018 (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité et accès, avec les meilleurs modèles par usage et leurs prix en euros. Données Epoch AI et Arena, mises à jour chaque semaine.">
+<meta name="description" content="Tous les modèles d'IA générative depuis 2018 (texte, code, image, vidéo, audio), et les nouveaux dès leur sortie, filtrables par pays, fournisseur, modalité et accès, avec les meilleurs modèles par usage et leurs prix en euros. Mis à jour chaque vendredi.">
 <meta name="author" content="Hugo Dumontet">
 <meta name="robots" content="noindex, follow">
 <meta property="og:title" content="Radar des modèles IA générative">
@@ -11,10 +11,10 @@
 <meta property="og:image" content="https://hugodumontet.github.io/radar-ia-generative/apercu-partage.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Radar des modèles IA générative : tous les modèles d'IA générative notables depuis 2018, mis à jour chaque vendredi à partir des données Epoch AI">
+<meta property="og:image:alt" content="Radar des modèles IA générative : tous les modèles d'IA générative depuis 2018 et les nouveaux dès leur sortie, mis à jour chaque vendredi">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Les modèles d'IA générative frontier et notables, mis à jour chaque vendredi à partir des données Epoch AI.">
+<meta property="og:description" content="Tous les modèles d'IA générative depuis 2018, et les nouveaux dès leur sortie. Mis à jour chaque vendredi.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://hugodumontet.github.io/radar-ia-generative/">
 <title>Radar des modèles IA</title>
@@ -113,12 +113,7 @@ select,.ms-btn{appearance:none;-webkit-appearance:none;background-image:url("dat
 .week .dt{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--fond)}
 .week .nm{font-weight:700;overflow-wrap:anywhere}
 .week .og{display:block;color:var(--menthe);font-size:13px;margin:2px 0 6px}
-.st{display:inline-block;font-size:12px;font-weight:600;border-radius:var(--r-pilule);padding:2px 10px;white-space:nowrap}
-.st-attente{border:1px solid var(--fond);color:var(--fond)}
-.st-confirme{border:1px solid var(--fond);background:var(--fond);color:var(--marine)}
-.st-pas_encore{border:1px dashed var(--menthe);color:var(--menthe)}
 .wlegend{display:flex;flex-wrap:wrap;gap:8px 24px}
-.wlegend .st{margin-right:6px}
 .week-empty{margin:0;color:var(--menthe);font-size:14px}
 .cat-filters{display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(0,1fr));gap:12px;align-items:end}
 @media (max-width:1000px){.cat-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.cat-filters .f-search{grid-column:1/-1}}
@@ -433,16 +428,15 @@ a.xtog{text-decoration:none}
   .hero-txt .stamp{margin-top:auto;padding-top:14px}
 }
 /* sorties de la semaine : une ligne par modèle */
-.week a,.week .wi{grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:12px;padding:8px 0;min-height:44px}
+.week a,.week .wi{grid-template-columns:48px minmax(0,1fr);align-items:center;gap:12px;padding:8px 0;min-height:44px}
 .week .wn{min-width:0}
 .week .og{display:inline;margin:0 0 0 6px;font-size:13px}
-.week .st{justify-self:end}
 #week-before .week li{opacity:.85}
 .wlate{margin:4px 0 0;padding:10px 14px;border-radius:8px;background:var(--tag);font-size:13.5px;line-height:1.6;color:var(--blanc)}
 .wlate b{color:var(--fond);margin-right:4px}
 .wlate a{color:var(--blanc);font-weight:600}
 .wlate .muted{font-size:12.5px}
-@media (max-width:599px){.week a,.week .wi{grid-template-columns:44px minmax(0,1fr)}.week .st{grid-column:2;justify-self:start}.week .og{display:block;margin:2px 0 0}}
+@media (max-width:599px){.week a,.week .wi{grid-template-columns:44px minmax(0,1fr)}.week .og{display:block;margin:2px 0 0}}
 /* contraste B retenu (v21.1) : chiffres clés et bande explicative sans fond, bordure menthe */
 @media (max-width:1099px){.xt{white-space:normal}}
 @media (max-width:599px){.xrow{grid-template-columns:minmax(0,1fr)}.xrow .xtog{grid-column:1;grid-row:auto;justify-content:center}}
@@ -485,8 +479,8 @@ a.xtog{text-decoration:none}
   <section class="card explain" aria-labelledby="explain-title">
     <div class="xrow">
       <h2 id="explain-title" class="xt">Quels modèles d'IA générative ?</h2>
-      <p><span class="badge b-fr">Notable</span> Un modèle qui a compté : très cité, très utilisé, coûteux à entraîner ou record.</p>
-      <p><span class="badge b-fr">Frontier</span> Parmi les 5 modèles les plus puissants au monde à sa sortie.</p>
+      <p><span class="badge b-fr">Dès leur sortie</span> Les nouveaux modèles d'une soixantaine de labos (OpenAI, Google, Mistral…), ajoutés chaque vendredi.</p>
+      <p><span class="badge b-fr">Depuis 2018</span> Tout l'historique, y compris les modèles de recherche qui ont marqué l'IA.</p>
       <a class="xtog" id="xtog" href="#methode">En savoir plus <span aria-hidden="true">↓</span></a>
     </div>
   </section>
@@ -513,12 +507,11 @@ a.xtog{text-decoration:none}
 
   <section class="card" aria-labelledby="week-title" id="week-sec">
     <div class="ph"><h2 id="week-title">Les sorties de la semaine</h2><span class="count" id="week-range"></span></div>
-    <p class="note">Annonces officielles des labos et ajouts de la base Epoch AI, sans doublon. Touchez un modèle pour lire sa source.</p>
+    <p class="note">Annonces officielles des labos, catalogues de modèles et base Epoch AI, sans doublon. Touchez un modèle pour lire sa source.</p>
     <ol class="week" id="week"></ol>
     <p class="week-empty" id="week-empty" hidden>Aucune sortie repérée sur cette période.</p>
     <div class="wpart" id="week-before" hidden><h3 class="wsub">Juste avant</h3><ol class="week" id="week-prev"></ol></div>
     <p class="wlate" id="week-late" hidden></p>
-    <p class="note wlegend" id="week-legend"></p>
   </section>
 
   <section class="card" aria-labelledby="usage-title" id="usage-sec" hidden>
@@ -547,7 +540,6 @@ a.xtog{text-decoration:none}
         <div class="bar fbar">
           <div class="chips" id="mods" role="group" aria-label="Modalité"></div>
           <div class="chips">
-            <button class="chip" id="f-front" aria-pressed="false" type="button">Frontier uniquement</button>
             <button class="chip ghost" id="reset" type="button">Réinitialiser</button>
           </div>
         </div>
@@ -582,7 +574,7 @@ a.xtog{text-decoration:none}
     <summary><span><h2>Lire le catalogue</h2><span class="sum-d">Types d'accès, paramètres, modalités et liens</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
     <div class="guide">
       <div>
-        <h3>Types d'accès, d'après Epoch</h3>
+        <h3>Types d'accès</h3>
         <ul>
           <li><b>API</b> : utilisable par les développeurs via API, et en général dans l'appli de l'éditeur.</li>
           <li><b>Appli seulement</b> : utilisable dans un produit grand public, sans API.</li>
@@ -596,40 +588,34 @@ a.xtog{text-decoration:none}
         <ul>
           <li><b>Paramètres</b> : estimations Epoch, vides quand l'éditeur ne les publie pas.</li>
           <li><b>Nouveau</b> : sorti dans les 14 jours précédant la publication affichée.</li>
-          <li><b>Modalités</b> : déduites des tâches renseignées par Epoch. « Comprend les images » : le modèle analyse des images en entrée, sans forcément en créer.</li>
-          <li><b>Lien ↗</b> : page officielle du modèle (annonce, fiche technique ou article de recherche) indiquée par Epoch.</li>
+          <li><b>Modalités</b> : déduites des tâches renseignées par Epoch AI ou models.dev. « Comprend les images » : le modèle analyse des images en entrée, sans forcément en créer.</li>
+          <li><b>Lien ↗</b> : page officielle du modèle (annonce, fiche technique ou article de recherche) indiquée par Epoch AI ou par l'annonce du labo.</li>
         </ul>
       </div>
       <div>
         <h3>Source</h3>
-        <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI, Data on AI Models</a> (fichiers « notable » et « frontier »), filtrés sur les tâches génératives. Licence CC BY 4.0.</p>
+        <p><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI, Data on AI Models</a> (base complète, licence CC BY 4.0), <a href="https://models.dev" target="_blank" rel="noopener">models.dev</a> (licence MIT) et annonces officielles des labos, filtrés sur les tâches génératives.</p>
       </div>
     </div>
   </details>
 
   <details class="card about" id="methode">
-    <summary><span><h2>Méthode et sources</h2><span class="sum-d">Notable, frontier, sorties de la semaine, classements et prix</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+    <summary><span><h2>Méthode et sources</h2><span class="sum-d">Ce qui entre dans le radar, sorties de la semaine, classements et prix</span></span><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
     <div class="guide g2">
         <div>
-          <h3>Notable : au moins un critère</h3>
+          <h3>Ce qui entre dans le radar</h3>
+          <p>Un modèle d'IA générative (texte, code, image, vidéo, audio) sorti depuis 2018, s'il remplit au moins une condition :</p>
           <ul>
-            <li>plus de 5 000 citations scientifiques ;</li>
-            <li>entraînement à plus de 1 M$ (dollars 2023), ou au moins 1 % du modèle le plus cher à date ;</li>
-            <li>plus d'un million d'utilisateurs actifs par mois ;</li>
-            <li>meilleur résultat sur un benchmark reconnu ;</li>
-            <li>importance historique équivalente, jugée par Epoch.</li>
+            <li>il vient d'un des labos suivis (OpenAI, Google, Anthropic, Mistral, Meta, Alibaba, DeepSeek, Black Forest Labs, ElevenLabs…) ;</li>
+            <li>le public peut l'utiliser (il est proposé sur <a href="https://models.dev" target="_blank" rel="noopener">models.dev</a> ou <a href="https://openrouter.ai/models" target="_blank" rel="noopener">OpenRouter</a>) ;</li>
+            <li><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI</a> le juge notable : très cité, très utilisé, coûteux à entraîner ou record.</li>
           </ul>
-          <p>Liste et critères tenus par <a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI</a>, la base de référence des modèles d'IA.</p>
-        </div>
-        <div>
-          <h3>Frontier</h3>
-          <p>Le modèle figurait dans le top 5 mondial du calcul d'entraînement au moment de sa sortie : c'est la pointe de la puissance brute.</p>
-          <p>Epoch ne classe un modèle frontier que s'il a une estimation de son calcul. Beaucoup de modèles fermés récents n'en ont pas encore, d'où moins de frontier sur 2026.</p>
+          <p>Les versions retravaillées par un autre labo à partir d'un modèle existant ne sont pas reprises. Pays et fournisseur : on retient le labo principal, celui qui publie le modèle.</p>
         </div>
         <div>
           <h3>Sorties de la semaine</h3>
-          <p>Sources lues chaque vendredi : OpenAI, Google, Anthropic, Mistral et leurs comptes Hugging Face ; repérage dans TechCrunch, Ars Technica et The Decoder. Un modèle n'est retenu que si son labo l'a annoncé.</p>
-          <p>Il devient « Confirmé par Epoch » dès son ajout, ou « Pas encore chez Epoch » après deux semaines. Chiffres, graphique et catalogue restent calculés sur Epoch seul.</p>
+          <p>Chaque vendredi, le radar ajoute les modèles sortis du vendredi au jeudi précédents. Sources : annonces officielles (OpenAI, Google, Anthropic, Mistral, ElevenLabs, comptes Hugging Face des labos), le catalogue models.dev, et un repérage dans OpenRouter, TechCrunch, Ars Technica et The Decoder. Un modèle n'est retenu que si son labo l'a publié.</p>
+          <p>Un même modèle n'apparaît qu'une fois. Quand Epoch AI le recense, ses informations (paramètres, calcul) complètent la fiche.</p>
         </div>
         <div>
           <h3>Classements et prix</h3>
@@ -656,11 +642,13 @@ const GROUP_COLOR={us:"--us",cn:"--cn",eu:"--eu",other:"--other"};
 const GROUP_NAME={us:"États-Unis",cn:"Chine",eu:"Europe",other:"Autres pays"};
 const $=id=>document.getElementById(id);
 let DATA=[],UPDATED=null,YEARS=[],view=[],shown=60,sortK=2,sortDir=-1;
-const state={q:"",country:"",org:"",acc:"",mod:"",front:false};
+const state={q:"",country:"",org:"",acc:"",mod:""};
 const cs={view:"time",gran:"q"};
 
 const orgsOf=r=>r[1].split(",").map(s=>s.trim()).filter(Boolean);
-const ctyOf=r=>r[3]?r[3].split(","):[];
+// Un seul pays et un seul fournisseur par modèle : le principal (premier listé). Les filtres et les chiffres ne regardent que lui.
+const ctyOf=r=>r[3]?[r[3].split(",")[0]]:[];
+const org1=r=>orgsOf(r)[0]||"";
 const groupOf=c=>c==="US"?"us":c==="CN"?"cn":EU.has(c)?"eu":"other";
 const qOf=d=>Math.floor((+d.slice(5,7)-1)/3)+1;
 const daysBetween=(a,b)=>(new Date(b)-new Date(a))/864e5;
@@ -705,10 +693,9 @@ function inPeriod(r){const d=r[2];if(msPeriod.preset==="all")return true;if(msPe
 function passes(r){
   if(state.q){const q=state.q.toLowerCase();if(!(r[0].toLowerCase().includes(q)||r[1].toLowerCase().includes(q)))return false}
   if(state.country&&!ctyOf(r).includes(state.country))return false;
-  if(state.org&&!orgsOf(r).includes(state.org))return false;
+  if(state.org&&org1(r)!==state.org)return false;
   if(state.acc&&ACC_GROUP[r[5]]!==state.acc&&r[5]!==state.acc)return false;
   if(state.mod&&!r[4].includes(state.mod))return false;
-  if(state.front&&!r[6])return false;
   return inPeriod(r)}
 function bindCatalogue(){
   msPeriod=makeMS($("f-period"),{presets:[{v:"30",l:"30 derniers jours"},{v:"90",l:"90 derniers jours"},{v:"all",l:"Depuis 2018"}],def:"all",unit:"années",labelledby:"l-f-period",onChange:update});
@@ -719,10 +706,9 @@ function bindCatalogue(){
   $("f-country").addEventListener("change",e=>{state.country=e.target.value;update()});
   $("f-org").addEventListener("change",e=>{state.org=e.target.value;update()});
   $("f-acc").addEventListener("change",e=>{state.acc=e.target.value;update()});
-  $("f-front").addEventListener("click",e=>{state.front=!state.front;e.currentTarget.setAttribute("aria-pressed",state.front);update()});
-  $("reset").addEventListener("click",()=>{Object.assign(state,{q:"",country:"",org:"",acc:"",mod:"",front:false});
+  $("reset").addEventListener("click",()=>{Object.assign(state,{q:"",country:"",org:"",acc:"",mod:""});
     $("q").value="";["f-country","f-org","f-acc"].forEach(i=>$(i).value="");msPeriod.reset();
-    setPressed($("mods"),"m","");$("f-front").setAttribute("aria-pressed","false");update()});
+    setPressed($("mods"),"m","");update()});
   document.querySelectorAll("th button").forEach(b=>b.addEventListener("click",()=>{const k=+b.dataset.k;if(sortK===k)sortDir*=-1;else{sortK=k;sortDir=-1}update()}));
   $("sort-m").addEventListener("change",e=>{const[k,d]=e.target.value.split(":").map(Number);sortK=k;sortDir=d;update()});
   $("more").addEventListener("click",()=>{shown+=60;renderRows()});
@@ -731,7 +717,7 @@ function bindCatalogue(){
   $("rows").addEventListener("click",e=>{const b=e.target.closest(".tog");if(!b)return;const tr=b.closest("tr");const o=tr.classList.toggle("open");b.setAttribute("aria-expanded",o)});
 }
 function fillCatalogue(){
-  const oc={};DATA.forEach(r=>orgsOf(r).forEach(o=>oc[o]=(oc[o]||0)+1));
+  const oc={};DATA.forEach(r=>{const o=org1(r);if(o)oc[o]=(oc[o]||0)+1});
   fillSelect($("f-country"),"Tous les pays",countryEntries());$("f-country").value=state.country;if($("f-country").value!==state.country)state.country="";
   fillSelect($("f-org"),"Tous les fournisseurs",Object.entries(oc).filter(([,n])=>n>=2).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([o,n])=>[o,o+" ("+n+")"]));$("f-org").value=state.org;if($("f-org").value!==state.org)state.org="";
   msPeriod.setOptions(YEARS.slice().reverse().map(y=>({v:y,l:y})));
@@ -743,7 +729,7 @@ function renderRows(){
     const isNew=daysBetween(r[2],UPDATED)<=14;
     const orgs=orgsOf(r);const orgTxt=orgs.length>2?orgs.slice(0,2).join(", ")+" +"+(orgs.length-2):orgs.join(", ");
     return `<tr><td class="num" data-label="Sortie">${fmtDate(r[2])}</td>
-      <td class="c-name"><span class="mname">${esc(r[0])}</span>${isNew?'<span class="badge b-new">Nouveau</span>':""}${r[6]?'<span class="badge b-fr">Frontier</span>':""}</td>
+      <td class="c-name"><span class="mname">${esc(r[0])}</span>${isNew?'<span class="badge b-new">Nouveau</span>':""}</td>
       <td class="org" data-label="Fournisseur">${esc(orgTxt)}</td>
       <td data-label="Pays">${ctyOf(r).map(c=>esc(cname(c))).join(", ")||"–"}</td>
       <td data-label="Modalités"><span>${r[4].split("").map(m=>`<span class="tag">${MOD[m]}</span>`).join("")}</span></td>
@@ -762,11 +748,10 @@ function update(){
   document.querySelectorAll("th button").forEach(b=>{const on=+b.dataset.k===sortK;b.classList.toggle("on",on);b.querySelector(".ar").textContent=on?(sortDir<0?"↓":"↑"):"↕"});
   $("sort-m").value=sortK+":"+sortDir;
   shown=60;renderRows();
-  const fr=view.filter(r=>r[6]).length;
-  const nf=[state.country,state.org,state.acc,state.mod,state.front].filter(Boolean).length+(msPeriod.all()?0:1);
+  const nf=[state.country,state.org,state.acc,state.mod].filter(Boolean).length+(msPeriod.all()?0:1);
   $("fcount").textContent=nf?" ("+nf+")":"";
   $("fapply").textContent=view.length?`Afficher ${view.length===1?"le modèle":"les "+view.length.toLocaleString("fr-FR")+" modèles"}`:"Aucun modèle : modifiez les filtres";
-  $("count").innerHTML=`<b>${view.length}</b> modèle${view.length>1?"s":""}${fr?` · dont ${fr} frontier`:""}`;
+  $("count").innerHTML=`<b>${view.length}</b> modèle${view.length>1?"s":""}`;
 }
 
 /* ---------- KPIs ---------- */
@@ -774,7 +759,7 @@ function kpis(){
   const y=UPDATED.slice(0,4);
   $("k-year-l").textContent="Sorties en "+y;
   $("k-total").textContent=DATA.length.toLocaleString("fr-FR");
-  $("k-total-d").textContent="depuis 2018, dont "+DATA.filter(r=>r[6]).length+" frontier";
+  $("k-total-d").textContent="depuis 2018, de "+new Set(DATA.map(org1).filter(Boolean)).size+" fournisseurs";
   const yr=DATA.filter(r=>r[2].startsWith(y));
   $("k-year").textContent=yr.length;
   const prev=DATA.filter(r=>r[2].startsWith(String(+y-1))&&r[2].slice(5)<=UPDATED.slice(5)).length;
@@ -923,7 +908,6 @@ function chartCountry(){
 /* ---------- Publications (one snapshot per Friday) ---------- */
 let SNAPS=[];
 const SORTIES=fetch("sorties.json").then(r=>r.ok?r.json():null).catch(()=>null);
-const ST={attente:"Annoncé, en attente",confirme:"Confirmé par Epoch",pas_encore:"Pas encore chez Epoch"};
 const dm=d=>d.slice(8)+"/"+d.slice(5,7);
 const ALIAS=fetch("alias.json").then(r=>r.ok?r.json():null).then(a=>a&&a.alias||{}).catch(()=>({}));
 const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g,"");
@@ -932,7 +916,7 @@ const SNAPCACHE={};
 const getSnap=f=>f?(SNAPCACHE[f]||(SNAPCACHE[f]=fetch(f).then(r=>r.ok?r.json():null).catch(()=>null))):Promise.resolve(null);
 function wItem(o){
   const mods=(o.mods||"T").split("").filter(m=>m!=="M").map(m=>MOD[m]).join(", ")||"Texte";
-  const inner=`<span class="dt">${dm(o.date)}</span><span class="wn"><span class="nm">${esc(o.nom)}</span>${o.lien?' <span aria-hidden="true">↗</span>':""} <span class="og">${esc(o.four)} · ${mods}</span></span><span class="st st-${o.st}">${ST[o.st]||""}</span>`;
+  const inner=`<span class="dt">${dm(o.date)}</span><span class="wn"><span class="nm">${esc(o.nom)}</span>${o.lien?' <span aria-hidden="true">↗</span>':""} <span class="og">${esc(o.four)} · ${mods}</span></span>`;
   return `<li>${o.lien?`<a href="${esc(o.lien)}" target="_blank" rel="noopener">${inner}</a>`:`<div class="wi">${inner}</div>`}</li>`}
 function week(file){
   const i=SNAPS.findIndex(x=>x.file===file),date=(SNAPS[i]&&SNAPS[i].date)||UPDATED,rows=DATA;
@@ -944,22 +928,19 @@ function week(file){
     const push=o=>{if(o.keys.some(k=>known.has(k)))return;o.keys.forEach(k=>known.add(k));pool.push(o)};
     (S?S.sorties:[]).filter(x=>x.publication<=date).sort((a,b)=>b.publication.localeCompare(a.publication))
       .forEach(x=>push({date:x.date,nom:x.nom,four:x.fournisseur,mods:x.modalites,lien:x.lien,st:x.statut,keys:[x.nom,x.fournisseur.split(/[\s,]/)[0]+" "+x.nom,...(A[x.nom]||[])].map(norm)}));
-    const ep=r=>({date:r[2],nom:r[0],four:orgsOf(r)[0]||"",mods:r[4],lien:/^https?:\/\//.test(r[9]||"")?r[9]:"",st:"confirme",keys:[norm(r[0])]});
+    const ep=r=>({date:r[2],nom:r[0],four:org1(r),mods:r[4],lien:/^https?:\/\//.test(r[9]||"")?r[9]:"",st:"confirme",keys:[norm(r[0])]});
     rows.forEach(r=>push(ep(r)));
     const byDate=(a,b)=>b.date.localeCompare(a.date);
     const now=pool.filter(o=>o.date>=debut&&o.date<=fin).sort(byDate);
     const prev=now.length<5?pool.filter(o=>o.date<debut).sort(byDate).slice(0,6-now.length):[];
     const shownK=new Set(prev.map(o=>o.keys[0]));
     let late=[];
-    if(P){const old=new Set(P.rows.map(r=>norm(r[0])));late=rows.filter(r=>r[2]<debut&&!old.has(norm(r[0]))).map(ep).filter(o=>!shownK.has(o.keys[0])).sort(byDate).slice(0,6)}
+    if(P){const old=new Set(P.rows.map(r=>norm(r[0])));(S?S.sorties:[]).filter(x=>x.publication<date).forEach(x=>[x.nom,...(A[x.nom]||[])].forEach(n=>old.add(norm(n))));late=rows.filter(r=>r[2]<debut&&!old.has(norm(r[0]))).map(ep).filter(o=>!shownK.has(o.keys[0])).sort(byDate).slice(0,6)}
     $("week-range").textContent=`Du ${dm(debut)} au ${dm(fin)}`;
     $("week").innerHTML=now.map(wItem).join("");$("week").hidden=!now.length;
     $("week-empty").hidden=now.length>0;
     $("week-prev").innerHTML=prev.map(wItem).join("");$("week-before").hidden=!prev.length;
-    $("week-late").innerHTML=late.length?`<b>Aussi entrés au catalogue</b> <span class="muted">(sortis plus tôt, ajoutés par Epoch AI cette semaine)</span> `+late.map(o=>`${o.lien?`<a href="${esc(o.lien)}" target="_blank" rel="noopener">${esc(o.nom)}</a>`:esc(o.nom)} <span class="muted">${dm(o.date)}</span>`).join('<span class="sep" aria-hidden="true"> · </span>'):"";$("week-late").hidden=!late.length;
-    const sts=new Set([...now,...prev,...late].map(o=>o.st));
-    const LEG={attente:"pas encore vérifié par Epoch AI",confirme:"présent dans le catalogue",pas_encore:"annoncé il y a plus de 2 semaines, absent d'Epoch"};
-    $("week-legend").innerHTML=["attente","confirme","pas_encore"].filter(k=>sts.has(k)).map(k=>`<span><span class="st st-${k}">${ST[k]}</span> ${LEG[k]}</span>`).join("");
+    $("week-late").innerHTML=late.length?`<b>Aussi entrés au catalogue</b> <span class="muted">(sortis plus tôt, ajoutés au catalogue cette semaine)</span> `+late.map(o=>`${o.lien?`<a href="${esc(o.lien)}" target="_blank" rel="noopener">${esc(o.nom)}</a>`:esc(o.nom)} <span class="muted">${dm(o.date)}</span>`).join('<span class="sep" aria-hidden="true"> · </span>'):"";$("week-late").hidden=!late.length;
   });
 }
 function loadSnapshot(file){

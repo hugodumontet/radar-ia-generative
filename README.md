@@ -1,6 +1,6 @@
 # Radar des modèles IA
 
-Tableau de bord des modèles d'IA générative, de l'historique (dès 1955) aux nouveaux dès leur sortie (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité, accès et période.
+Tableau de bord des modèles d'IA générative, de l'historique (dès 1987) aux nouveaux dès leur sortie (texte, code, image, vidéo, audio), filtrables par pays, fournisseur, modalité, accès et période.
 
 Consulter : https://hugodumontet.github.io/radar-ia-generative/
 
@@ -9,7 +9,7 @@ Consulter : https://hugodumontet.github.io/radar-ia-generative/
   2. annonces officielles retenues chaque vendredi (`sorties.json`) ;
   3. [models.dev](https://models.dev) (licence MIT, mis à jour plusieurs fois par jour) : sorties à partir du 01/10/2026, labos suivis seulement.
   [OpenRouter](https://openrouter.ai/models) sert seulement à savoir si un modèle est utilisable par le public et à repérer des sorties : sa date est celle de l'ajout chez OpenRouter, pas la sortie.
-- Critère d'entrée (v23.1), toutes années : un modèle Epoch doit passer la sélection Domain ET Task choisie par Hugo (listes `DOMAINES` et `TACHES` de `build.py` ; un champ encore vide chez Epoch ne compte pas contre le modèle), PUIS venir d'un labo suivi (`labos.json`), OU être utilisable par le public (models.dev, OpenRouter), OU être jugé notable par Epoch. Les versions retravaillées par un autre labo (champ « Base model » d'Epoch) sont écartées, sauf si notables. Pays et fournisseur : le premier listé (fournisseur principal) ; filtres et chiffres ne regardent que lui.
+- Critère d'entrée (v23.1), toutes années : un modèle Epoch doit passer la sélection Domain ET Task choisie par Hugo et avoir au moins une tâche qui génère du contenu (listes `DOMAINES`, `TACHES` et `TACHES_GEN` de `build.py` ; un champ encore vide chez Epoch ne compte pas contre le modèle), PUIS venir d'un labo suivi (`labos.json`), OU être utilisable par le public (models.dev, OpenRouter), OU être jugé notable par Epoch. Les versions retravaillées par un autre labo (champ « Base model » d'Epoch) sont écartées, sauf si notables. Pays et fournisseur : le premier listé (fournisseur principal) ; filtres et chiffres ne regardent que lui.
 - Mise à jour automatique chaque vendredi : une nouvelle publication est ajoutée dans `data/` et listée dans `snapshots.json`.
 - Bloc « Sorties de la semaine » : `collect.py` lit chaque vendredi les annonces officielles des labos (flux d'OpenAI, Google DeepMind, Google, Mistral AI, ElevenLabs, page actualités d'Anthropic, comptes officiels Hugging Face) et repère les sorties dans le catalogue OpenRouter et la presse tech (TechCrunch, Ars Technica, The Decoder). Liste des sources : `sources.json`. Seuls le titre, le lien et la date sont lus, jamais le texte des articles.
 - Le tri suit `tri/CRITERES.md` (une annonce officielle est obligatoire) ; chaque semaine, les choix et les éléments écartés sont gardés dans `tri/AAAA-MM-JJ.json`. Les sorties retenues sont dans `sorties.json`.

@@ -64,12 +64,30 @@ TACHES = {t.lower() for t in [
 def valeurs(s):
     return [x.strip().lower() for x in (s or "").split(",") if x.strip()]
 
+# v23.3 : parmi les tâches de la sélection, celles qui GÉNÈRENT un contenu (texte, code, image, vidéo, audio).
+# Un modèle doit en avoir au moins une : ceux qui ne font que classer, reconnaître, segmenter, chercher
+# ou piloter un robot sortent du radar. Un grand modèle qui sait aussi classer des images reste.
+TACHES_GEN = {t.lower() for t in [
+    "Agentic tasks", "Agentic workflows", "Audio generation", "Audio question answering",
+    "Code autocompletion", "Code edit prediction", "Code generation", "Coding", "Constrained text output",
+    "Image captioning", "Image completion", "Image editing", "Image generation", "Image super-resolution",
+    "Image-to-image", "Image-to-video", "Instruction interpretation", "Language generation",
+    "Language modeling", "Language modeling/generation", "Music generation", "Proof generation",
+    "Proof writing", "Quantitative reasoning", "Reasoning", "Speech", "Speech completion",
+    "Speech synthesis", "Speech-to-speech", "Text autocompletion", "Text summarization", "Text-to-image",
+    "Text-to-speech (TTS)", "Text-to-video", "Tool use", "Translation", "Video", "Video description",
+    "Video editing", "Video generation", "Video-to-image", "Video-to-video",
+    "Chat", "Question answering", "Visual question answering", "Retrieval-augmented generation"]}
+# L'OCR seule n'en fait pas partie : elle ne retiendrait que des lecteurs de chiffres (1955-2021) ;
+# les OCR récents (Mistral OCR, Deepseek OCR) passent par Chat ou Visual question answering.
+assert TACHES_GEN <= TACHES
+
 def selection_epoch(r):
     # Un champ vide ne compte pas contre le modèle : Epoch remplit Domain et Task en retard
     # (GPT-5.2, o3-pro, sorties fraîches). Un champ rempli doit, lui, être dans la sélection.
     d, t = valeurs(r.get("Domain")), valeurs(r.get("Task"))
     return ((not d or any(x in DOMAINES for x in d))
-            and (not t or any(x in TACHES for x in t)))
+            and (not t or any(x in TACHES_GEN for x in t)))
 C = {"United States of America":"US","China":"CN","France":"FR","United Kingdom":"GB","South Korea":"KR","Canada":"CA","Germany":"DE","Australia":"AU","Hong Kong":"HK","Israel":"IL","Singapore":"SG","Japan":"JP","Switzerland":"CH","Finland":"FI","United Arab Emirates":"AE","India":"IN","Austria":"AT","Belgium":"BE","Netherlands":"NL","Saudi Arabia":"SA","Taiwan":"TW","Norway":"NO","Russia":"RU","Spain":"ES","Sweden":"SE","Italy":"IT","Brazil":"BR","Denmark":"DK","Poland":"PL","Ireland":"IE","Vietnam":"VN","Turkey":"TR","Indonesia":"ID","Czech Republic":"CZ","Portugal":"PT"}
 A = {"API access":"api","Hosted access (no API)":"hosted","Limited access":"limited","Open weights (unrestricted)":"open","Open weights (restricted use)":"open-r","Open weights (non-commercial)":"open-nc","Unreleased":"unrel"}
 # Variantes de models.dev qui doublonnent un modèle déjà listé (alias « latest », instantanés datés).

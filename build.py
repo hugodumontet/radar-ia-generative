@@ -241,6 +241,21 @@ for s in load_json(sorties_p, {"sorties": []}).get("sorties", []):
     n_off += 1
 
 # ---------- 3. models.dev (labos suivis seulement) ----------
+def lien_md(m, lab):
+    """Lien d'un modèle models.dev (v24), du plus précis au plus général :
+    annonce officielle, puis page des poids sur Hugging Face si elle porte bien
+    le nom du modèle, puis page officielle des modèles du labo (labos.json)."""
+    for l in m.get("links") or []:
+        u = (l or {}).get("url", "")
+        if (l.get("type") == "announcement") and u.startswith("https://"):
+            return u
+    n = norm(m["name"])
+    for w in m.get("weights") or []:
+        u = (w or {}).get("url", "")
+        if u.startswith("https://huggingface.co/") and n and n in norm(u.rstrip("/").rsplit("/", 1)[-1]):
+            return u
+    return lab.get("page", "")
+
 n_md = 0
 for m in sorted(md, key=lambda x: x.get("release_date") or ""):
     lab = labo_prefixe(m.get("id", ""), "md")
@@ -252,7 +267,7 @@ for m in sorted(md, key=lambda x: x.get("release_date") or ""):
     if k & (vus | EPOCH_CLES):
         continue
     rows.append([m["name"], lab["nom"], date[:10], lab["pays"], mods_md(m),
-                 "open" if m.get("open_weights") else "api", 0, 0, 0, "", "m"])
+                 "open" if m.get("open_weights") else "api", 0, 0, 0, lien_md(m, lab), "m"])
     vus |= k
     n_md += 1
 

@@ -857,7 +857,7 @@ function chartCountry(){
   const nb=(v,d)=>v.toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d});
   const eur=(usd,t)=>{const v=usd/t;return nb(v,v<0.1?3:2)+"\u00a0€"};
   const lab={};
-  Promise.all([fetch("classements.json").then(r=>r.ok?r.json():null),fetch("prix.json").then(r=>r.ok?r.json():null)]).catch(()=>[null,null]).then(([C,P])=>{
+  Promise.all([fetch("classements.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null),fetch("prix.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null)]).catch(()=>[null,null]).then(([C,P])=>{
     if(!C||!C.usages||!C.usages.length)return;
     const sec=$("usage-sec"),tabs=$("utabs"),T=P&&P.taux?P.taux.eur_usd:null,auj=new Date().toISOString().slice(0,10);
     Object.assign(lab,(P&&P.labos)||{});
@@ -909,13 +909,13 @@ function chartCountry(){
 })();
 /* ---------- Publications (one snapshot per Friday) ---------- */
 let SNAPS=[];
-const SORTIES=fetch("sorties.json").then(r=>r.ok?r.json():null).catch(()=>null);
+const SORTIES=fetch("sorties.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null);
 const dm=d=>d.slice(8)+"/"+d.slice(5,7);
-const ALIAS=fetch("alias.json").then(r=>r.ok?r.json():null).then(a=>a&&a.alias||{}).catch(()=>({}));
+const ALIAS=fetch("alias.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(a=>a&&a.alias||{}).catch(()=>({}));
 const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g,"");
 const addDays=(d,n)=>{const x=new Date(d+"T12:00:00Z");x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)};
 const SNAPCACHE={};
-const getSnap=f=>f?(SNAPCACHE[f]||(SNAPCACHE[f]=fetch(f).then(r=>r.ok?r.json():null).catch(()=>null))):Promise.resolve(null);
+const getSnap=f=>f?(SNAPCACHE[f]||(SNAPCACHE[f]=fetch(f,{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null))):Promise.resolve(null);
 function wItem(o){
   const mods=(o.mods||"T").split("").filter(m=>m!=="M").map(m=>MOD[m]).join(", ")||"Texte";
   const inner=`<span class="dt">${dm(o.date)}</span><span class="wn"><span class="nm">${esc(o.nom)}</span>${o.lien?' <span aria-hidden="true">↗</span>':""} <span class="og">${esc(o.four)} · ${mods}</span></span>`;
@@ -946,7 +946,7 @@ function week(file){
   });
 }
 function loadSnapshot(file){
-  return fetch(file).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{
+  return fetch(file,{cache:"no-cache"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{
     DATA=d.rows;UPDATED=d.updated;YEARS=[...new Set(DATA.map(r=>r[2].slice(0,4)))].sort();
     fillCatalogue();fillChart();kpis();chart();update();week(file);
   })}
@@ -958,7 +958,7 @@ addEventListener("hashchange",()=>{if(location.hash==="#methode")$("methode").op
 const totop=$("totop");
 addEventListener("scroll",()=>{totop.hidden=scrollY<700},{passive:true});
 totop.addEventListener("click",()=>{scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("snap").focus({preventScroll:true})});
-fetch("snapshots.json").then(r=>r.ok?r.json():Promise.reject()).catch(()=>[{date:null,label:"Dernière publication",file:"data.json"}]).then(list=>{
+fetch("snapshots.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).catch(()=>[{date:null,label:"Dernière publication",file:"data.json"}]).then(list=>{
   SNAPS=list.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   fillSelect($("snap"),null,SNAPS.map((s,i)=>[s.file,(s.date?fmtDate(s.date):s.label)+(i===0?" (dernière)":"")]));
   $("snap").addEventListener("change",e=>loadSnapshot(e.target.value).catch(fail));
